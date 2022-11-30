@@ -1,15 +1,16 @@
 {
   "name": "wardice",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "Wardice Tabletop Tools",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isorna/wardice.git"
+    "url": "https://github.com/isorna/wardice.git"
   },
   "author": "Alvaro Isorna @isorna",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "@commitlint/config-conventional": "^17.3.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "babel-jest": "^29.3.1",
+    "conventional-changelog-cli": "^2.2.2",
     "eslint": "^8.28.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -35,6 +37,10 @@
     "jest": "^29.3.1",
     "lint-staged": "^13.0.4",
     "react-test-renderer": "^18.2.0",
+    "semantic-release": "^19.0.5",
     "typescript": "^4.9.3"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
