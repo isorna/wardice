@@ -8,6 +8,11 @@
     "prepare": "husky install",
     "semantic-release": "semantic-release"
   },
+  "jest": {
+    "transform": {
+      "\\.[jt]sx?$": "babel-jest"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/isorna/wardice.git"
