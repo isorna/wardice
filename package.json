@@ -9,6 +9,13 @@
     "semantic-release": "semantic-release"
   },
   "jest": {
+    "testMatch": ["**/__test__/?(*.)(spec|test).js?(x)"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
     "transform": {
       "\\.[jt]sx?$": "babel-jest"
     }
