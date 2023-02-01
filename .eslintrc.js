@@ -6,7 +6,7 @@ module.exports = {
     'jest/globals': true
   },
   extends: [
-    'plugin:react/recommended',
+  //    'plugin:react/recommended',
     'standard-with-typescript'
   ],
   overrides: [
@@ -16,7 +16,7 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'react',
+  //  'react',
     'jest'
   ],
   rules: {
