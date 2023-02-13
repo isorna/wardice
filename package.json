@@ -32,7 +32,7 @@
   "homepage": "https://github.com/isorna/wardice#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
-    "@commitlint/cli": "^17.3.0",
+    "@commitlint/cli": "^17.4.3",
     "@commitlint/config-conventional": "^17.3.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "autoprefixer": "^10.4.13",
