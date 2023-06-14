@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/isorna/wardice/compare/v0.1.0...v0.2.0) (2023-06-14)
+
+
+### Features
+
+* **40k pages:** :sparkles: basic 40k pages navigation ([c85e384](https://github.com/isorna/wardice/commit/c85e38412e27e425355bd8611457fc23ea5900d9))
+* **architecture:** :sparkles: add vite configuration files ([bf2fefe](https://github.com/isorna/wardice/commit/bf2fefe7efa968c18283f1fd12f8e2edab16df7f))
+
 ## [0.1.0](https://github.com/isorna/wardice/compare/v0.0.0...v0.1.0) (2023-06-14)
 
 
