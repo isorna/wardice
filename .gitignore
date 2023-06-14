@@ -19,6 +19,10 @@ __hidden
 
 # ignored for the moment
 /src/api/
+.firebase
+.firebaserc
+firebase.json
+firebase.init.js
 
 /cypress/videos/
 /cypress/screenshots/
