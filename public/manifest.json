@@ -27,8 +27,8 @@
 ],
 "screenshots": [
   {
-    "src": "/screen1.png",
-    "sizes": "2880x1800",
+    "src": "/icons/screen1.png",
+    "sizes": "300x507",
     "type": "image/png",
     "description": "A screenshot of the home page"
   }
