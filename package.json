@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Online wargaming tools",
   "main": "main.js",
+  "type": "module",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "lint:js": "npx eslint 'src/**/*.{js,vue}'",
+    "lint:css": "npx stylelint 'src/**/*.{css,vue}'"
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,20 @@
   "bugs": {
     "url": "https://github.com/isorna/wardice/issues"
   },
-  "homepage": "https://github.com/isorna/wardice#readme"
+  "homepage": "https://github.com/isorna/wardice#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "eslint": "^8.42.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^16.0.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.14.1",
+    "lint-staged": "^13.2.2",
+    "postcss-html": "^1.5.0",
+    "stylelint": "^15.7.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-standard": "^33.0.0"
+  }
 }
