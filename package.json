@@ -1,0 +1,22 @@
+{
+  "name": "wardice",
+  "version": "1.0.0",
+  "description": "Online wargaming tools",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isorna/wardice.git"
+  },
+  "keywords": [
+    "wargaming"
+  ],
+  "author": "Alvaro Isorna @isorna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isorna/wardice/issues"
+  },
+  "homepage": "https://github.com/isorna/wardice#readme"
+}
