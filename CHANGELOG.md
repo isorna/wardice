@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/isorna/wardice/compare/v0.2.0...v0.3.0) (2023-06-14)
+
+
+### Features
+
+* **PWA:** :sparkles: add PWA files ([cdc4174](https://github.com/isorna/wardice/commit/cdc4174cc9a759c81dd7b6d402c099bae9dc54a8))
+
 ## [0.2.0](https://github.com/isorna/wardice/compare/v0.1.0...v0.2.0) (2023-06-14)
 
 
