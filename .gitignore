@@ -17,6 +17,9 @@ coverage
 *.local
 __hidden
 
+# ignored for the moment
+/src/api/
+
 /cypress/videos/
 /cypress/screenshots/
 

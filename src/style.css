@@ -1,0 +1,191 @@
+/* stylelint-disable selector-class-pattern */
+:root {
+  --opacity: 100%;
+  --transition-fast: 200ms;
+
+  /* --menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(0,0,0,0.5)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
+  --menu-link-sublist-icon-filter: none;
+  --menu-link-sublist-icon-filter-dark: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98%); */
+
+  /* COLOR variables */
+  --light-orange-gradient: rgba(247 238 159 / 100%);
+  --dark-orange-gradient: rgba(248 105 41 / 100%);
+  --bright-orange: rgba(254 103 12 / 100%);
+  --dark-orange: rgba(42 8 6 / 100%);
+  --light-turquoise-gradient: rgba(214 252 252 / 100%);
+  --dark-turquoise-gradient: rgba(5 115 159 / 100%);
+  --bright-turquoise: rgba(4 255 248 / 100%);
+  --dark-turquoise: rgba(5 49 75 / 100%);
+  --medium-blue: rgba(13 70 86 / 100%);
+  --dark-blue: rgba(1 45 54 / 100%);
+  --darkest-blue: rgba(4 25 36 / 100%);
+
+  /* FONTS variables */
+  --font-family-titles: 'Black Ops One', sans-serif;
+  /* stylelint-disable-next-line value-keyword-case */
+  --font-family-text: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  /* THEME COLORS */
+  --border-color: var(--bright-turquoise);
+  --brand-color: var(--bright-orange);
+  --brand-color-light: var(--bright-turquoise);
+  --page-background: var(--darkest-blue);
+  --header-background: var(--dark-blue);
+  --form-background: var(--medium-blue);
+  --footer-background: var(--dark-blue);
+  --text-color: var(--bright-turquoise);
+  --secondary-text-color: var(--dark-turquoise);
+}
+
+html {
+  color: var(--text-color);
+  font-family: var(--font-family-text);
+  font-size: 14px;
+  line-height: 1.5rem;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--page-background);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main {
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+
+  /* justify-content: center; */
+  height: 100vh;
+}
+
+.page {
+  background-color: var(--page-background);
+}
+
+section {
+  margin: 0 20px;
+}
+
+section:first-of-type {
+  margin-top: 25px;
+}
+
+section:last-of-type {
+  margin-bottom: 75px;
+}
+
+/*
+* Custom component fonts
+*/
+
+/* .main p,
+.main ul,
+.main ol,
+.breadcrumb {
+  font-family: var(--font-family-text);
+} */
+
+a {
+  color: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--brand-color-light);
+  text-decoration-style: dotted;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  color: var(--brand-color);
+  font-family: var(--font-family-titles);
+  font-size: 20px;
+}
+
+:where(ul, ol, li, dl, dt) {
+  list-style: none;
+}
+
+:where(p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt) {
+  margin: 0;
+  padding: 0;
+}
+
+input::placeholder {
+  color: var(--light-turquoise-gradient);
+  font-size: 13px;
+  line-height: 50px;
+  padding: 0;
+}
+
+:where(input, button, select, option) {
+  color: var(--text-color);
+  font-size: 13px;
+  line-height: 50px;
+  padding: 10px 20px;
+}
+
+fieldset {
+  border: none;
+  display: inline-block;
+}
+
+legend {
+  font-weight: bold;
+}
+
+input {
+  background: linear-gradient(transparent, var(--dark-turquoise-gradient));
+  border-bottom: 1px dotted var(--border-color);
+  border-radius: 10px;
+}
+
+/* TODO: flexible sticky */
+footer {
+  background-color: var(--dark-blue);
+  border-top: 1px solid var(--border-color);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  position: fixed;
+  width: 100vw;
+}
+
+/*
+* dark mode image styles
+html.dark Icon {
+  filter: grayscale(1);
+}
+@media (prefers-color-scheme: dark) {
+  Icon {
+    filter: grayscale(1);
+  }
+}
+*/
+
+/*
+* DESKTOP styles
+*/
+@media (width >= 768px) {
+  section {
+    margin: 0 auto;
+    width: 768px;
+  }
+}
+
+/*
+* TODO: header parallax animation (Chrome 115+)
+* https://twitter.com/bramus/status/1662052557211017217?t=7rg6w53WC2Tp_UdLOxtqMA&s=03
+* https://scroll-driven-animations.style/#card-cover-to-fixed-header
+*/
+
+/* header {
+  animation: shrink;
+  animation-timeline: scroll();
+  animation-range: 0 90vh;
+} */
