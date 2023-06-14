@@ -1,5 +1,0 @@
-{
-  "*.{js,jsx,ts,tsx}": "eslint --fix",
-  "*.css": "stylelint",
-  "*.scss": ["postcss --config postcss.config.js --replace", "stylelint"]
-}
