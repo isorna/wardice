@@ -1,6 +1,6 @@
 <template>
   <article class="page">
-    <site-header path="/40k" title="WH40k: Chaos Daemons" />
+    <site-header path="/40k" title="WH40k: Grey Knights" />
     <FilterForm v-model:nameFilter="nameFilter" />
     <ProfilesList :profiles="filteredProfiles" />
     <PageFooter />
@@ -13,7 +13,7 @@ import SiteHeader from '@/components/SiteHeader.vue'
 import FilterForm from '@/components/40k/FilterForm.vue'
 import ProfilesList from '@/components/40k/ProfilesList.vue'
 import PageFooter from '@/components/40k/PageFooter.vue'
-import profiles from '@/api/40k/40k-index-chaos-daemons.json'
+import profiles from '@/api/40k/40k-index-grey-knights.json'
 
 const nameFilter = ref('')
 

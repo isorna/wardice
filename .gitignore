@@ -18,6 +18,7 @@ coverage
 __hidden
 
 # ignored for the moment
+/src/views/40k/Page.vue
 .firebase
 .firebaserc
 firebase.json

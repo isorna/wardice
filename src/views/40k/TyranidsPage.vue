@@ -1,6 +1,6 @@
 <template>
   <article class="page">
-    <site-header path="/40k" title="WH40k 10th edition profiles" />
+    <site-header path="/40k" title="WH40k: Tyranids" />
     <FilterForm v-model:nameFilter="nameFilter" />
     <ProfilesList :profiles="filteredProfiles" />
     <PageFooter />
