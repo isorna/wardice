@@ -61,7 +61,7 @@ export const routes = [
     component: AdeptusMechanicusPage
   },
   {
-    path: '/40k/aledari',
+    path: '/40k/aeldari',
     name: 'Aeldari',
     component: AeldariPage
   },
