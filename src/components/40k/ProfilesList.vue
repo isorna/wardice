@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import ProfileCard from '@/components/ProfileCard.vue'
+import ProfileCard from '@/components/40k/ProfileCard.vue'
 defineProps(['profiles'])
 </script>
 

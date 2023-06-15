@@ -18,7 +18,6 @@ coverage
 __hidden
 
 # ignored for the moment
-/src/api/
 .firebase
 .firebaserc
 firebase.json

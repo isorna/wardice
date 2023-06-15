@@ -1,6 +1,6 @@
 <template>
   <article class="page">
-    <site-header path="/" title="WH40k 10th edition profiles" />
+    <site-header path="/" title="WH40k 10th edition" />
     <section class="page">
       <h1>Select a faction</h1>
       <ul>
@@ -18,13 +18,13 @@
         <!-- <li><router-link to=""></router-link></li> -->
       </ul>
     </section>
-    <PageFooter40k />
+    <PageFooter />
   </article>
 </template>
 
 <script setup>
 import SiteHeader from '@/components/SiteHeader.vue'
-import PageFooter40k from '@/components/40k/PageFooter40k.vue'
+import PageFooter from '@/components/40k/PageFooter.vue'
 </script>
 
 <style scoped>

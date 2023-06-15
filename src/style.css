@@ -3,9 +3,11 @@
   --opacity: 100%;
   --transition-fast: 200ms;
 
-  /* --menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(0,0,0,0.5)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
+  /*
+  --menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(0,0,0,0.5)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
   --menu-link-sublist-icon-filter: none;
-  --menu-link-sublist-icon-filter-dark: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98%); */
+  --menu-link-sublist-icon-filter-dark: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98%);
+  */
 
   /* COLOR variables */
   --light-orange-gradient: rgba(247 238 159 / 100%);
@@ -37,6 +39,14 @@
   --secondary-text-color: var(--dark-turquoise);
 }
 
+:not(:defined) {
+  opacity: 0;
+}
+
+:host {
+  contain: content;
+}
+
 html {
   color: var(--text-color);
   font-family: var(--font-family-text);
@@ -63,6 +73,11 @@ body {
 
 .page {
   background-color: var(--page-background);
+}
+
+.page + .page {
+  position: absolute;
+  inset: 0 0 100%;
 }
 
 section {
@@ -142,6 +157,10 @@ input {
   background: linear-gradient(transparent, var(--dark-turquoise-gradient));
   border-bottom: 1px dotted var(--border-color);
   border-radius: 10px;
+}
+
+svg {
+  fill: currentcolor;
 }
 
 /* TODO: flexible sticky */

@@ -3,17 +3,17 @@
     <site-header path="/40k" title="WH40k 10th edition profiles" />
     <FilterForm v-model:nameFilter="nameFilter" />
     <ProfilesList :profiles="filteredProfiles" />
-    <PageFooter40k />
+    <PageFooter />
   </article>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue'
 import SiteHeader from '@/components/SiteHeader.vue'
-import FilterForm from '@/components/FilterForm.vue'
-import ProfilesList from '@/components/ProfilesList.vue'
-import PageFooter40k from '@/components/40k/PageFooter40k.vue'
-import profiles from '@/api/40k-index-dark-angels.json'
+import FilterForm from '@/components/40k/FilterForm.vue'
+import ProfilesList from '@/components/40k/ProfilesList.vue'
+import PageFooter from '@/components/40k/PageFooter.vue'
+import profiles from '@/api/40k/40k-index-dark-angels.json'
 
 const nameFilter = ref('')
 

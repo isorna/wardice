@@ -31,13 +31,16 @@ function onSubmit (e) {
   justify-content: flex-start;
   padding: 20px;
 }
+
 .profile-name {
   width: 100%;
 }
+
 @media (width >= 768px) {
   .filter-form {
     flex-direction: row;
   }
+
   .profile-name {
     width: 30rem;
   }

@@ -1,5 +1,5 @@
 <template>
-  <article class="index-page">
+  <article class="page index-page">
     <router-link to="/40k"><img class="logo" src="/logo.v3.svg" /></router-link>
   </article>
 </template>

@@ -1,5 +1,5 @@
 import IndexPage from '@/views/IndexPage.vue'
-import Home40kPage from '@/views/40k/Home40kPage.vue'
+import HomePage40k from '@/views/40k/HomePage.vue'
 import AdeptusAstartesPage from '@/views/40k/AdeptusAstartesPage.vue'
 import BlackTemplarsPage from '@/views/40k/BlackTemplarsPage.vue'
 import BloodAngelsPage from '@/views/40k/BloodAngelsPage.vue'
@@ -22,7 +22,7 @@ export const routes = [
   {
     path: '/40k',
     name: '40k Home',
-    component: Home40kPage
+    component: HomePage40k
   },
   {
     path: '/40k/adeptus-astartes',
