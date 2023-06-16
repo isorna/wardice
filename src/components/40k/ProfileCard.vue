@@ -7,7 +7,7 @@
         <span>{{ profile.name }}</span>
         <span class="subtype" v-if="profile.subtype !== ''">{{ profile.subtype }}</span>
       </h1>
-      <p class="points-value">[ {{ profile.points }} ]</p>
+      <p class="points-value">[ {{ getParsedPoints(profile.points) }} ]</p>
     </div>
     <template v-if="isFullView">
       <template v-if="Array.isArray(profile.stats)">
@@ -217,6 +217,12 @@ defineProps(['profile'])
 
 const isFullView = ref(false)
 
+function getParsedPoints (points) {
+  return points.map((item) => {
+    return `${item.points} x ${item.per}`
+  }).join(', ')
+}
+
 function getWargearOptions (profile) {
   let returnValue = profile.wargear
 
@@ -306,11 +312,11 @@ function getWargearOptions (profile) {
   font-weight: normal;
 }
 
-.points-value {
+/* .points-value {
   font-family: var(--font-family-titles);
   font-size: 20px;
   font-weight: bold;
-}
+} */
 
 h1:hover,
 h1:focus,
