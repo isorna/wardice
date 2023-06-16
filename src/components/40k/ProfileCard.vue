@@ -1,8 +1,13 @@
 <template>
-  <div class="profile">
-    <div class="profile-header" @click="isFullView = !isFullView;console.log(profile)">
-      <h1 class="profile-name">{{ profile.name }}</h1>
-      <p v-if="profile.subtype !== ''">{{ profile.subtype }}</p>
+  <div class="profile"
+    :class="{ 'full-view': isFullView }">
+    <div class="profile-header"
+      @click="isFullView = !isFullView; console.log(profile)">
+      <h1 class="profile-name">
+        <span>{{ profile.name }}</span>
+        <span class="subtype" v-if="profile.subtype !== ''">{{ profile.subtype }}</span>
+      </h1>
+      <p>[ {{ profile.points }} ]</p>
     </div>
     <template v-if="isFullView">
       <template v-if="Array.isArray(profile.stats)">
@@ -133,13 +138,22 @@
       </div>
       <div class="profile-section" v-if="profile?.abilities">
         <h2 class="profile-subtitle">{{ i18n.ABILITIES }}</h2>
-        <p v-if="profile.abilities.core">{{ i18n.CORE }}: <strong>{{ profile.abilities.core }}</strong></p>
-        <p v-if="profile.abilities.faction">{{ i18n.FACTION }}: <strong>{{ profile.abilities.faction }}</strong></p>
+        <p v-if="profile.abilities.core">{{ i18n.CORE }}: <strong>{{ profile.abilities.core.join(', ') }}</strong></p>
+        <p v-if="profile.abilities.faction">{{ i18n.FACTION }}: <strong>{{ profile.abilities.faction.join(', ') }}</strong></p>
         <p
           v-for="(ability, index) in profile.abilities.special"
           :key="`${profile.id}-abilities-${index}`">
-          <strong>{{ ability.split(':')[0] }}:</strong>
-          {{ ability.split(':').slice(0).join(':') }}
+          <strong>{{ ability.name }}:</strong>
+          {{ ability.text }}
+        </p>
+      </div>
+      <div class="profile-section" v-if="profile?.wargearAbilities">
+        <h2 class="profile-subtitle">{{ i18n.WARGEAR_ABILITIES }}</h2>
+        <p
+          v-for="(ability, index) in profile.wargearAbilities.special"
+          :key="`${profile.id}-abilities-${index}`">
+          <strong>{{ ability.name }}:</strong>
+          {{ ability.text }}
         </p>
       </div>
       <div class="profile-section" v-if="profile?.invulnerable">
@@ -197,12 +211,30 @@ const isFullView = ref(false)
   gap: 20px;
 }
 
+.full-view {
+  background: linear-gradient(var(--medium-blue), var(--dark-blue));
+  border: 2px solid var(--brand-color);
+}
+
 .profile-header {
   cursor: pointer;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   gap: 1rem;
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+.profile-name {
+  display: flex;
+  flex-flow: column;
+  gap: .5rem;
+}
+
+.subtype {
+  color: var(--bright-turquoise);
+  font-family: var(--font-family-text);
+  font-size: .8em;
+  font-weight: normal;
 }
 
 h1:hover,
@@ -258,6 +290,16 @@ td {
 @media (width >= 768px) {
   .profile-header {
     flex-direction: row;
+  }
+
+  .profile-name {
+    flex-flow: row;
+    gap: 1rem;
+  }
+
+  .subtype {
+    flex-flow: row;
+    font-size: .8rem;
   }
 }
 </style>
