@@ -265,7 +265,7 @@ function getWargearOptions (profile) {
     }
   })
 
-  console.log(returnValue)
+  console.log(profile)
   return returnValue
     .filter((item) => item.empty === undefined)
 }
