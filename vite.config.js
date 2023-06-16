@@ -60,7 +60,7 @@ export default defineConfig({
         screenshots: [
           {
             src: '/icons/screen1.png',
-            sizes: '300x507',
+            sizes: '1094x1844',
             type: 'image/png',
             description: 'A screenshot of the home page'
           }

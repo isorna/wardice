@@ -2,12 +2,12 @@
   <div class="profile"
     :class="{ 'full-view': isFullView }">
     <div class="profile-header"
-      @click="isFullView = !isFullView; console.log(profile)">
+      @click="isFullView = !isFullView; getWargearOptions(profile)">
       <h1 class="profile-name">
         <span>{{ profile.name }}</span>
         <span class="subtype" v-if="profile.subtype !== ''">{{ profile.subtype }}</span>
       </h1>
-      <p>[ {{ profile.points }} ]</p>
+      <p class="points-value">[ {{ profile.points }} ]</p>
     </div>
     <template v-if="isFullView">
       <template v-if="Array.isArray(profile.stats)">
@@ -182,22 +182,91 @@
           {{ keysSet.value.join(', ') }}
         </p>
       </div>
+      <div class="profile-section"
+        v-for="(item, index) in getWargearOptions(profile)"
+        :key="`${profile.id}-wargearOptions-${index}`">
+        <h2 class="profile-subtitle">{{ item.name }}</h2>
+        <ul class="profile-list">
+          <li
+            :class="{
+              'parent-item': subitem.parent !== undefined,
+              'child-item': subitem.child !== undefined,
+              'note-item': subitem.note !== undefined
+            }"
+            v-for="(subitem, subindex) in item.values"
+            :key="`${profile.id}-wargearOptions-${index}-${subindex}`">
+            <template v-if="item.name === i18n.UNIT_COMPOSITION || item.name === i18n.LEADER">
+            <strong>{{ subitem.parent }}</strong>
+            </template>
+            <template v-else>
+            {{ subitem.parent }}
+            </template>
+            {{ subitem.line || subitem.child || subitem.note }}
+          </li>
+        </ul>
+      </div>
     </template>
   </div>
 </template>
 
 <script setup>
-// import { computed, ref } from 'vue'
 import { ref } from 'vue'
 import i18n from '@/api/40k/en.i18n.json'
 
-// const props = defineProps(['profile'])
 defineProps(['profile'])
 
 const isFullView = ref(false)
-// const keywords = computed(() => {
-//   return props.profile.keywords.split('| ')
-// })
+
+function getWargearOptions (profile) {
+  let returnValue = profile.wargear
+
+  returnValue = returnValue.map((item) => {
+    return {
+      name: item.name,
+      values: item.values.map((subitem, index, array) => {
+        if (subitem === '■') {
+          return {
+            parent: array[index + 1]
+          }
+        } else if (subitem === '◦') {
+          return {
+            child: array[index + 1]
+          }
+        } else if (subitem === '*') {
+          return {
+            note: array[index + 1]
+          }
+        } else if ((index === 0 &&
+          subitem !== '■' &&
+          subitem !== '◦' &&
+          subitem !== '*') ||
+          (index > 0 &&
+          array[index - 1] !== '■' &&
+          array[index - 1] !== '◦' &&
+          array[index - 1] !== '*')) {
+          // if subitem === profile.name !!!
+          return {
+            line: subitem
+          }
+        } else {
+          return {
+            empty: subitem
+          }
+        }
+      })
+        .filter((item) => item !== null)
+        .filter((item) => item.empty === undefined)
+    }
+  })
+
+  console.log(returnValue)
+  return returnValue
+    .filter((item) => item.empty === undefined)
+}
+
+// function filterOffEmpty (items) {
+//   return items.filter((item) => item.empty === undefined)
+// }
 </script>
 
 <style scoped>
@@ -235,6 +304,12 @@ const isFullView = ref(false)
   font-family: var(--font-family-text);
   font-size: .8em;
   font-weight: normal;
+}
+
+.points-value {
+  font-family: var(--font-family-titles);
+  font-size: 20px;
+  font-weight: bold;
 }
 
 h1:hover,
@@ -285,6 +360,31 @@ td {
 .profile-section p {
   font-size: 18px;
   margin-top: 10px;
+}
+
+.profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.profile-list li.parent-item {
+  list-style-type: '■';
+  padding-left: 1rem;
+  margin-left: 10px;
+}
+
+.profile-list li.child-item {
+  list-style-type: circle;
+  padding-left: 1rem;
+  margin-left: 20px;
+}
+
+.profile-list li.note-item {
+  list-style-type: '*';
+  padding-left: 1rem;
+  font-style: italic;
 }
 
 @media (width >= 768px) {

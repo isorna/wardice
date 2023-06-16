@@ -4,6 +4,17 @@
   </article>
 </template>
 
+<script setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+onMounted(() => {
+  setTimeout(() => { router.push({ path: '/40k', replace: true }) }, 500)
+})
+</script>
+
 <style scoped>
 .index-page {
   align-items: center;
