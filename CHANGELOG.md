@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0](https://github.com/isorna/wardice/compare/v0.3.0...v0.4.0) (2023-06-15)
+
+
+### Features
+
+* **40k pages:** :sparkles: jun 14 index pages ([bd883c0](https://github.com/isorna/wardice/commit/bd883c09c9d51dce3b30d7d3c6bc864284128504))
+* **40k pages:** :sparkles: jun 14 new indexes ([633a085](https://github.com/isorna/wardice/commit/633a08514859e0ea9fdbcefb2670ce98917bb96e))
+* **40k pages:** :sparkles: jun 14 new indexes ([af370a1](https://github.com/isorna/wardice/commit/af370a12d0019fdfdd554254ce41f2c25592987b))
+* **40k pages:** :sparkles: jun 15 indexes ([3c68962](https://github.com/isorna/wardice/commit/3c68962d34d42d0f733914f91ef9773bfcb2f313))
+* **40k pages:** :sparkles: jun 15 indexes ([7c13421](https://github.com/isorna/wardice/commit/7c13421362d70ccb53875e44e64a31b5d1a3572a))
+
 ## [0.3.0](https://github.com/isorna/wardice/compare/v0.2.0...v0.3.0) (2023-06-14)
 
 
