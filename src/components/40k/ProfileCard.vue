@@ -1,13 +1,23 @@
 <template>
   <div class="profile"
     :class="{ 'full-view': isFullView }">
-    <div class="profile-header"
-      @click="isFullView = !isFullView; getWargearOptions(profile)">
-      <h1 class="profile-name">
+    <div class="profile-header">
+      <h1 class="profile-name"
+        @click="isFullView = !isFullView; getWargearOptions(profile)">
         <span>{{ profile.name }}</span>
         <span class="subtype" v-if="profile.subtype !== ''">{{ profile.subtype }}</span>
       </h1>
-      <p class="points-value">[ {{ getParsedPoints(profile.points) }} ]</p>
+      <div class="points-value">
+        <button @click="isSelectorVisible = !isSelectorVisible">+</button>
+        <ul class="selector" v-show="isSelectorVisible">
+          <li
+            @click="saveToList({ name: profile.name, qty: item.per, points: item.points, keywords: parseKeywordsForList(profile.keywords)  })"
+            v-for="(item, index) in profile.points"
+            :key="`${profile.id}-points-${index}`">
+            {{ item.per }}: <em>{{ item.points }}p</em>
+          </li>
+        </ul>
+      </div>
     </div>
     <template v-if="isFullView">
       <template v-if="Array.isArray(profile.stats)">
@@ -212,15 +222,34 @@
 <script setup>
 import { ref } from 'vue'
 import i18n from '@/api/40k/en.i18n.json'
+import { useAppStore } from '@/store/app.store'
+import { useListsStore } from '@/store/40k/lists.store'
+
+const appStore = useAppStore()
+const listsStore = useListsStore()
 
 defineProps(['profile'])
 
 const isFullView = ref(false)
+const isSelectorVisible = ref(false)
 
-function getParsedPoints (points) {
-  return points.map((item) => {
-    return `${item.points} x ${item.per}`
-  }).join(', ')
+function saveToList ({ name, qty, points, keywords }) {
+  listsStore.addToList({
+    listId: appStore.activeListId,
+    value: { name, qty, points, keywords }
+  })
+  isSelectorVisible.value = !isSelectorVisible.value
+}
+
+function parseKeywordsForList (keywords) {
+  let returnValue = [...keywords]
+
+  if (typeof keywords[0] !== 'string') {
+    returnValue = keywords.map((item) => {
+      return [...item.value]
+    }).flat()
+  }
+  return returnValue
 }
 
 function getWargearOptions (profile) {
@@ -265,7 +294,7 @@ function getWargearOptions (profile) {
     }
   })
 
-  console.log(profile)
+  console.log(returnValue)
   return returnValue
     .filter((item) => item.empty === undefined)
 }
@@ -302,6 +331,8 @@ function getWargearOptions (profile) {
 .profile-name {
   display: flex;
   flex-flow: column;
+  line-height: 40px;
+  width: calc(100% - 50px);
   gap: .5rem;
 }
 
@@ -312,11 +343,54 @@ function getWargearOptions (profile) {
   font-weight: normal;
 }
 
-/* .points-value {
+.points-value {
+  position: relative;
+}
+
+.points-value button {
+  background-color: var(--brand-color);
+  clip-path: circle(40%);
+  color: var(--darkest-blue);
   font-family: var(--font-family-titles);
+  font-size: 30px;
+  line-height: 20px;
+}
+
+.points-value .selector {
+  background-color: var(--darkest-blue);
+  border: 1px solid var(--brand-color);
+  border-radius: 8px;
+  display: flex;
+  filter: drop-shadow(0 0 4px var(--brand-color-light));
+  flex-direction: column;
+  padding: 4px;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  z-index: 100;
+}
+
+.points-value .selector li {
+  cursor: pointer;
   font-size: 20px;
+  line-height: 40px;
+  padding: 0 5px;
+  white-space: nowrap;
+}
+
+.points-value .selector li + li {
+  border-top: 1px dotted var(--brand-color-light);
+}
+
+.points-value .selector li:hover {
+  background-color: var(--medium-blue);
+}
+
+.points-value .selector li em {
+  color: var(--brand-color);
+  font-style: normal;
   font-weight: bold;
-} */
+}
 
 h1:hover,
 h1:focus,

@@ -146,7 +146,7 @@ input::placeholder {
 
 fieldset {
   border: none;
-  display: inline-block;
+  display: block;
 }
 
 legend {
@@ -157,6 +157,8 @@ input {
   background: linear-gradient(transparent, var(--dark-turquoise-gradient));
   border-bottom: 1px dotted var(--border-color);
   border-radius: 10px;
+  display: block;
+  width: 100%;
 }
 
 svg {
