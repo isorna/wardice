@@ -2,12 +2,12 @@
 
 ## Online wargaming tools
 
-### Warhammer 40.000 10th edition (© Games Workshop Ltd.)
+### Warhammer 40.000 10th edition (© Games Workshop Ltd.)
 
 * Simple profile viewer.
 * Simple list builder.
 
-## Roadmap
+## Roadmap
 
 * [x] APP: create home page and adapt loading transition.
 * [x] APP: update app footer.
