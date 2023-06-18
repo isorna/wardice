@@ -12,7 +12,7 @@
 * [x] APP: create home page and adapt loading transition.
 * [x] APP: update app footer.
 * [x] WH40k: Update manifest shortcuts accordingly to previous changes.
-* [ ] WH40k: Refactor faction views to a single dynamic view.
+* [x] WH40k: Refactor faction views to a single dynamic view.
 * [ ] WH40k: Fix datasheets data & points costs.
 * [ ] WH40k: Add Detachments rules & stratagems.
 * [ ] WH40k: Develop a more robust and complete list builder.
