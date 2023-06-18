@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.5.0](https://github.com/isorna/wardice/compare/v0.4.0...v0.5.0) (2023-06-18)
+
+
+### Features
+
+* **40k pages:** :sparkles: show missing api data (WIP) ([d00f689](https://github.com/isorna/wardice/commit/d00f689874066fb1d9cf030163a85b2126fbe6a3))
+* **40k pages:** :sparkles: votann index points cost ([ce8c124](https://github.com/isorna/wardice/commit/ce8c124beb0bc6141cac57687a2cf9f0a8bafaa9))
+* **components:** :sparkles: new list builder WIP ([2e9c40c](https://github.com/isorna/wardice/commit/2e9c40c57d654e013132d338b5e5ffea0c7d35fc))
+
+
+### Bug Fixes
+
+* **40k pages:** :bug: fix bug with invalid points costs ([408dbf6](https://github.com/isorna/wardice/commit/408dbf602d76505b6da38deabc0e38dd1377798f))
+* **40k pages:** :bug: fix deathleaper points cost ([5484e54](https://github.com/isorna/wardice/commit/5484e54c09ef7fe011bb8b8f034580b63ac7dd67))
+* **40k pages:** :bug: fix profile bugfixes for Votann ([a054bee](https://github.com/isorna/wardice/commit/a054bee1f7324b809f0d877a3fe3a8f82ce925e1))
+* **40k pages:** :bug: fix several data bugs ([24b73af](https://github.com/isorna/wardice/commit/24b73af0c8fb740cc6cfcaf7a97450f695c56eba))
+
 ## [0.4.0](https://github.com/isorna/wardice/compare/v0.3.0...v0.4.0) (2023-06-15)
 
 
