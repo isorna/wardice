@@ -84,44 +84,20 @@ export default defineConfig({
       output: {
         manualChunks: {
           'group-app': [
+            './src/components/PageFooter.vue',
             './src/components/SiteHeader.vue',
             './src/components/SponsorMe.vue',
-            './src/views/IndexPage.vue'
+            './src/views/GamesPage.vue',
+            './src/views/IndexPage.vue',
+            './src/views/NotFound.vue'
           ],
           'group-40k': [
             './src/components/40k/FilterForm.vue',
-            './src/components/40k/PageFooter.vue',
             './src/components/40k/ProfileCard.vue',
             './src/components/40k/ProfilesList.vue',
             './src/components/40k/SavedList.vue',
-            './src/views/40k/AdeptaSororitasPage.vue',
-            './src/views/40k/AdeptusAstartesPage.vue',
-            './src/views/40k/AdeptusCustodesPage.vue',
-            './src/views/40k/AdeptusMechanicusPage.vue',
-            './src/views/40k/AeldariPage.vue',
-            './src/views/40k/AgentsImperiumPage.vue',
-            './src/views/40k/AstraMilitarumPage.vue',
-            './src/views/40k/BlackTemplarsPage.vue',
-            './src/views/40k/BloodAngelsPage.vue',
-            './src/views/40k/ChaosDaemonsPage.vue',
-            './src/views/40k/ChaosKnightsPage.vue',
-            './src/views/40k/ChaosSpaceMarinesPage.vue',
-            './src/views/40k/DarkAngelsPage.vue',
-            './src/views/40k/DeathGuardPage.vue',
-            './src/views/40k/DeathwatchPage.vue',
-            './src/views/40k/DrukhariPage.vue',
-            './src/views/40k/GenestealerCultsPage.vue',
-            './src/views/40k/GreyKnightsPage.vue',
-            './src/views/40k/HomePage.vue',
-            './src/views/40k/ImperialKnightsPage.vue',
-            './src/views/40k/LeaguesVotannPage.vue',
-            './src/views/40k/NecronsPage.vue',
-            './src/views/40k/OrksPage.vue',
-            './src/views/40k/SpaceWolvesPage.vue',
-            './src/views/40k/TauEmpirePage.vue',
-            './src/views/40k/ThousandSonsPage.vue',
-            './src/views/40k/TyranidsPage.vue',
-            './src/views/40k/WorldEatersPage.vue'
+            './src/views/40k/FactionPage.vue',
+            './src/views/40k/HomePage.vue'
           ]
         }
       }
