@@ -1,3 +1,0 @@
-[submodule "Api40k"]
-	path = src/api/40k
-	url = https://github.com/isorna/wardice-40k-api.git
