@@ -1,32 +1,33 @@
-import IndexPage from '@/views/IndexPage.vue'
-import HomePage40k from '@/views/40k/HomePage.vue'
-import AdeptusAstartesPage from '@/views/40k/AdeptusAstartesPage.vue'
-import AdeptusCustodesPage from '@/views/40k/AdeptusCustodesPage.vue'
-import AdeptusMechanicusPage from '@/views/40k/AdeptusMechanicusPage.vue'
-import AdeptaSororitasPage from '@/views/40k/AdeptaSororitasPage.vue'
-import AeldariPage from '@/views/40k/AeldariPage.vue'
-import AgentsImperiumPage from '@/views/40k/AgentsImperiumPage.vue'
-import AstraMilitarumPage from '@/views/40k/AstraMilitarumPage.vue'
-import BlackTemplarsPage from '@/views/40k/BlackTemplarsPage.vue'
-import BloodAngelsPage from '@/views/40k/BloodAngelsPage.vue'
-import ChaosDaemonsPage from '@/views/40k/ChaosDaemonsPage.vue'
-import ChaosKnightsPage from '@/views/40k/ChaosKnightsPage.vue'
-import ChaosSpaceMarinesPage from '@/views/40k/ChaosSpaceMarinesPage.vue'
-import DarkAngelsPage from '@/views/40k/DarkAngelsPage.vue'
-import DeathGuardPage from '@/views/40k/DeathGuardPage.vue'
-import DeathwatchPage from '@/views/40k/DeathwatchPage.vue'
-import DrukhariPage from '@/views/40k/DrukhariPage.vue'
-import GenestealerCultsPage from '@/views/40k/GenestealerCultsPage.vue'
-import GreyKnightsPage from '@/views/40k/GreyKnightsPage.vue'
-import ImperialKnightsPage from '@/views/40k/ImperialKnightsPage.vue'
-import LeaguesVotannPage from '@/views/40k/LeaguesVotannPage.vue'
-import NecronsPage from '@/views/40k/NecronsPage.vue'
-import OrksPage from '@/views/40k/OrksPage.vue'
-import SpaceWolvesPage from '@/views/40k/SpaceWolvesPage.vue'
-import TauEmpirePage from '@/views/40k/TauEmpirePage.vue'
-import ThousandSonsPage from '@/views/40k/ThousandSonsPage.vue'
-import TyranidsPage from '@/views/40k/TyranidsPage.vue'
-import WorldEatersPage from '@/views/40k/WorldEatersPage.vue'
+const IndexPage = () => import('@/views/IndexPage.vue')
+const HomePage40k = () => import('@/views/40k/HomePage.vue')
+const AdeptusAstartesPage = () => import('@/views/40k/AdeptusAstartesPage.vue')
+const AdeptusCustodesPage = () => import('@/views/40k/AdeptusCustodesPage.vue')
+const AdeptusMechanicusPage = () => import('@/views/40k/AdeptusMechanicusPage.vue')
+const AdeptaSororitasPage = () => import('@/views/40k/AdeptaSororitasPage.vue')
+const AeldariPage = () => import('@/views/40k/AeldariPage.vue')
+const AgentsImperiumPage = () => import('@/views/40k/AgentsImperiumPage.vue')
+const AstraMilitarumPage = () => import('@/views/40k/AstraMilitarumPage.vue')
+const BlackTemplarsPage = () => import('@/views/40k/BlackTemplarsPage.vue')
+const BloodAngelsPage = () => import('@/views/40k/BloodAngelsPage.vue')
+const ChaosDaemonsPage = () => import('@/views/40k/ChaosDaemonsPage.vue')
+const ChaosKnightsPage = () => import('@/views/40k/ChaosKnightsPage.vue')
+const ChaosSpaceMarinesPage = () => import('@/views/40k/ChaosSpaceMarinesPage.vue')
+const DarkAngelsPage = () => import('@/views/40k/DarkAngelsPage.vue')
+const DeathGuardPage = () => import('@/views/40k/DeathGuardPage.vue')
+const DeathwatchPage = () => import('@/views/40k/DeathwatchPage.vue')
+const DrukhariPage = () => import('@/views/40k/DrukhariPage.vue')
+const GenestealerCultsPage = () => import('@/views/40k/GenestealerCultsPage.vue')
+const GreyKnightsPage = () => import('@/views/40k/GreyKnightsPage.vue')
+const ImperialKnightsPage = () => import('@/views/40k/ImperialKnightsPage.vue')
+const LeaguesVotannPage = () => import('@/views/40k/LeaguesVotannPage.vue')
+const NecronsPage = () => import('@/views/40k/NecronsPage.vue')
+const OrksPage = () => import('@/views/40k/OrksPage.vue')
+const SpaceWolvesPage = () => import('@/views/40k/SpaceWolvesPage.vue')
+const TauEmpirePage = () => import('@/views/40k/TauEmpirePage.vue')
+const ThousandSonsPage = () => import('@/views/40k/ThousandSonsPage.vue')
+const TyranidsPage = () => import('@/views/40k/TyranidsPage.vue')
+const WorldEatersPage = () => import('@/views/40k/WorldEatersPage.vue')
+
 // import Page from '@/views/Page.vue'
 
 export const routes = [
