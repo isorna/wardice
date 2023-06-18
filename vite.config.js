@@ -89,7 +89,7 @@ export default defineConfig({
             './src/components/SponsorMe.vue',
             './src/views/GamesPage.vue',
             './src/views/IndexPage.vue',
-            './src/views/NotFound.vue'
+            './src/views/NotFoundPage.vue'
           ],
           'group-40k': [
             './src/components/40k/FilterForm.vue',
