@@ -3,12 +3,6 @@
   --opacity: 100%;
   --transition-fast: 200ms;
 
-  /*
-  --menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(0,0,0,0.5)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
-  --menu-link-sublist-icon-filter: none;
-  --menu-link-sublist-icon-filter-dark: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98%);
-  */
-
   /* COLOR variables */
   --light-orange-gradient: rgba(247 238 159 / 100%);
   --dark-orange-gradient: rgba(248 105 41 / 100%);
@@ -36,6 +30,7 @@
   --form-background: var(--medium-blue);
   --footer-background: var(--dark-blue);
   --text-color: var(--bright-turquoise);
+  --link-color: white;
   --secondary-text-color: var(--dark-turquoise);
 }
 
@@ -63,11 +58,8 @@ body {
 }
 
 .main {
-  /* align-items: center; */
   display: flex;
   flex-direction: column;
-
-  /* justify-content: center; */
   height: 100vh;
 }
 
@@ -92,40 +84,33 @@ section:last-of-type {
   margin-bottom: 75px;
 }
 
-/*
-* Custom component fonts
-*/
-
-/* .main p,
-.main ul,
-.main ol,
-.breadcrumb {
-  font-family: var(--font-family-text);
-} */
-
-a {
-  color: inherit;
-  line-height: inherit;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--brand-color-light);
-  text-decoration-style: dotted;
-}
-
-:where(h1, h2, h3, h4, h5, h6) {
+h1, h2, h3, h4, h5, h6 {
   color: var(--brand-color);
   font-family: var(--font-family-titles);
   font-size: 20px;
 }
 
-:where(ul, ol, li, dl, dt) {
+a {
+  color: var(--link-color);
+  line-height: inherit;
+  text-decoration-style: dotted;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  --link-color: var(--brand-color);
+  --brand-color-light: var(--light-orange-gradient);
+}
+
+a:hover {
+  text-decoration-color: var(--brand-color-light);
+  text-decoration-style: solid;
+}
+
+ul, ol, li, dl, dt {
   list-style: none;
 }
 
-:where(p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt) {
+p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt {
   margin: 0;
   padding: 0;
 }
@@ -137,7 +122,7 @@ input::placeholder {
   padding: 0;
 }
 
-:where(input, button, select, option) {
+input, button, select, option {
   color: var(--text-color);
   font-size: 13px;
   line-height: 50px;
@@ -159,6 +144,17 @@ input {
   border-radius: 10px;
   display: block;
   width: 100%;
+}
+
+button {
+  background-color: var(--brand-color);
+  color: var(--darkest-blue);
+  font-family: var(--font-family-titles);
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: var(--light-orange-gradient);
 }
 
 svg {

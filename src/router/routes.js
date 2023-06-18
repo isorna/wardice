@@ -1,4 +1,5 @@
 const IndexPage = () => import('@/views/IndexPage.vue')
+const GamesPage = () => import('@/views/GamesPage.vue')
 const HomePage40k = () => import('@/views/40k/HomePage.vue')
 const AdeptusAstartesPage = () => import('@/views/40k/AdeptusAstartesPage.vue')
 const AdeptusCustodesPage = () => import('@/views/40k/AdeptusCustodesPage.vue')
@@ -35,6 +36,11 @@ export const routes = [
     path: '/',
     name: 'Index',
     component: IndexPage
+  },
+  {
+    path: '/games',
+    name: 'Games',
+    component: GamesPage
   },
   {
     path: '/40k',

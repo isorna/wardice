@@ -14,7 +14,7 @@ import SiteHeader from '@/components/SiteHeader.vue'
 import FilterForm from '@/components/40k/FilterForm.vue'
 import SavedList from '@/components/40k/SavedList.vue'
 import ProfilesList from '@/components/40k/ProfilesList.vue'
-import PageFooter from '@/components/40k/PageFooter.vue'
+import PageFooter from '@/components/PageFooter.vue'
 import { useAppStore } from '@/store/app.store'
 
 const appStore = useAppStore()

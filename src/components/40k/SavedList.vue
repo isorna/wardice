@@ -78,17 +78,9 @@ h1 {
 }
 
 .delete-profile {
-  background-color: var(--brand-color);
   clip-path: circle(30%);
-  color: var(--darkest-blue);
-  font-family: var(--font-family-titles);
   font-size: 30px;
-  opacity: .6;
   line-height: 20px;
 }
 
-.delete-profile:hover {
-  background-color: var(--light-orange-gradient);
-  opacity: 1;
-}
 </style>

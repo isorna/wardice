@@ -47,17 +47,9 @@ function onSubmit (e) {
 }
 
 .list-button {
-  background-color: var(--brand-color);
   border-radius: 10px;
-  color: var(--darkest-blue);
-  font-family: var(--font-family-titles);
   font-size: 30px;
   line-height: 20px;
-  text-transform: uppercase;
-}
-
-.list-button:hover {
-  background-color: var(--light-orange-gradient);
 }
 
 @media (width >= 768px) {

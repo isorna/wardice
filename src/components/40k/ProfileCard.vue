@@ -5,8 +5,12 @@
       <h1 class="profile-name"
         :title="(isFullView) ? i18n.HIDE : i18n.SHOW"
         @click="isFullView = !isFullView; getWargearOptions(profile)">
-        <span>{{ profile.name }}</span>
-        <span class="subtype" v-if="profile.subtype !== ''">{{ profile.subtype }}</span>
+        <a
+          :name="profile.name.toLowerCase().replaceAll(' ', '-')"
+          :href="`#${profile.name.toLowerCase().replaceAll(' ', '-')}`">
+          <span>{{ profile.name }}</span>
+          <span class="subtype" v-if="profile.subtype !== ''">{{ profile.subtype }}</span>
+        </a>
       </h1>
       <div class="points-value">
         <button
@@ -340,10 +344,6 @@ function getWargearOptions (profile) {
   gap: .5rem;
 }
 
-.profile-name:hover {
-  color: var(--light-orange-gradient);
-}
-
 .subtype {
   color: var(--bright-turquoise);
   font-family: var(--font-family-text);
@@ -356,16 +356,9 @@ function getWargearOptions (profile) {
 }
 
 .points-value button {
-  background-color: var(--brand-color);
   clip-path: circle(30%);
-  color: var(--darkest-blue);
-  font-family: var(--font-family-titles);
   font-size: 30px;
   line-height: 20px;
-}
-
-.points-value button:hover {
-  background-color: var(--light-orange-gradient);
 }
 
 .points-value .selector {

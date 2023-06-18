@@ -1,18 +1,19 @@
 <template>
   <article class="page index-page">
-    <router-link to="/40k"><img class="logo" src="/logo.v3.svg" /></router-link>
+    <router-link to="/games"><img class="logo" src="/logo.v3.svg" /></router-link>
+    <h1>War Dice <em>Beta</em></h1>
+    <p>{{ i18n.HOME_P1 }}</p>
+    <p>{{ i18n.HOME_P2 }}</p>
+    <p>{{ i18n.HOME_P3 }}</p>
   </article>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import i18nApp from '@/i18n/en.i18n.json'
 
-const router = useRouter()
-
-onMounted(() => {
-  setTimeout(() => { router.push({ path: '/40k', replace: true }) }, 500)
-})
+const i18n = {
+  ...i18nApp
+}
 </script>
 
 <style scoped>

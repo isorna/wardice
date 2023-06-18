@@ -40,7 +40,7 @@
 
 <script setup>
 import SiteHeader from '@/components/SiteHeader.vue'
-import PageFooter from '@/components/40k/PageFooter.vue'
+import PageFooter from '@/components/PageFooter.vue'
 </script>
 
 <style scoped>
@@ -56,10 +56,6 @@ ul {
 li {
   font-size: 30px;
   line-height: 40px;
-}
-
-a:hover {
-  color: white;
 }
 
 /*
