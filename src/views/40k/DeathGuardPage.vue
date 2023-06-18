@@ -2,22 +2,38 @@
   <article class="page">
     <site-header path="/40k" title="WH40k: Death Guard" />
     <FilterForm v-model:nameFilter="nameFilter" />
+    <SavedList v-if="appStore.isListVisible" />
     <ProfilesList :profiles="filteredProfiles" />
     <PageFooter />
   </article>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import SiteHeader from '@/components/SiteHeader.vue'
 import FilterForm from '@/components/40k/FilterForm.vue'
+import SavedList from '@/components/40k/SavedList.vue'
 import ProfilesList from '@/components/40k/ProfilesList.vue'
 import PageFooter from '@/components/40k/PageFooter.vue'
-import profiles from '@/api/40k/40k-index-death-guard.json'
+import { useAppStore } from '@/store/app.store'
 
+const appStore = useAppStore()
+const API = '/api/40k/40k-index-death-guard.json'
+const listId = 'death-guard'
 const nameFilter = ref('')
-
+const profiles = ref([])
 const filteredProfiles = computed(() => {
-  return profiles.filter((profile) => profile.name.toLowerCase().indexOf(nameFilter.value.toLowerCase()) >= 0)
+  return profiles.value.filter((profile) => profile.name.toLowerCase().indexOf(nameFilter.value.toLowerCase()) >= 0)
 })
+
+async function fetchData () {
+  const res = await fetch(API)
+  profiles.value = await res.json()
+}
+
+onMounted(() => {
+  fetchData()
+})
+
+appStore.setActiveList(listId)
 </script>

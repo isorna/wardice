@@ -220,13 +220,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import i18n from '@/api/40k/en.i18n.json'
+import { ref, onMounted } from 'vue'
 import { useAppStore } from '@/store/app.store'
 import { useListsStore } from '@/store/40k/lists.store'
 
 const appStore = useAppStore()
 const listsStore = useListsStore()
+const API = '/api/40k/en.i18n.json'
+const i18n = ref({})
 
 defineProps(['profile'])
 
@@ -302,6 +303,15 @@ function getWargearOptions (profile) {
 // function filterOffEmpty (items) {
 //   return items.filter((item) => item.empty === undefined)
 // }
+
+async function fetchData () {
+  const res = await fetch(API)
+  i18n.value = await res.json()
+}
+
+onMounted(() => {
+  fetchData()
+})
 </script>
 
 <style scoped>
