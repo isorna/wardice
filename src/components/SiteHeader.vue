@@ -23,6 +23,10 @@ h1 {
   line-height: 40px;
 }
 
+h1:hover {
+  color: var(--light-orange-gradient);
+}
+
 @media (width >= 768px) {
   header {
     padding: 20px 40px;

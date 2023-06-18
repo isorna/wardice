@@ -1,19 +1,25 @@
 <template>
   <form @submit="onSubmit" class="filter-form">
     <fieldset class="profile-name">
-      <legend>Profile name</legend>
+      <legend>{{ i18n.PROFILE_NAME }}</legend>
       <input type="search"
-        placeholder="Filter by name"
+        :placeholder="i18n.FILTER_BY_NAME"
         :value="nameFilter"
         @input="$emit('update:nameFilter', $event.target.value)" />
     </fieldset>
-    <button class="list-button" @click="appStore.toggleList()">LIST</button>
+    <button class="list-button" @click="appStore.toggleList()">{{ i18n.LIST }}</button>
   </form>
 </template>
 
 <script setup>
 import { useAppStore } from '@/store/app.store'
+import i18nApp from '@/i18n/en.i18n.json'
+import i18n40k from '@/i18n/40k/en.i18n.40k.json'
 
+const i18n = {
+  ...i18nApp,
+  ...i18n40k
+}
 const appStore = useAppStore()
 
 defineProps(['nameFilter'])
@@ -47,6 +53,11 @@ function onSubmit (e) {
   font-family: var(--font-family-titles);
   font-size: 30px;
   line-height: 20px;
+  text-transform: uppercase;
+}
+
+.list-button:hover {
+  background-color: var(--light-orange-gradient);
 }
 
 @media (width >= 768px) {

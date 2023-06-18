@@ -58,6 +58,10 @@ li {
   line-height: 40px;
 }
 
+a:hover {
+  color: white;
+}
+
 /*
 @media (width >= 768px) {
   h1 {

@@ -12,6 +12,7 @@
         <p>- <strong>{{ profile.name }}</strong> ({{ profile.qty }}): {{ profile.points }}p</p>
         <button
           class="delete-profile"
+          :title="i18n.REMOVE"
           @click="listsStore.removeProfileFromList({ listId: appStore.activeListId, index })">-</button>
       </li>
     </ul>
@@ -22,6 +23,13 @@
 import { computed } from 'vue'
 import { useAppStore } from '@/store/app.store'
 import { useListsStore } from '@/store/40k/lists.store'
+import i18nApp from '@/i18n/en.i18n.json'
+import i18n40k from '@/i18n/40k/en.i18n.40k.json'
+
+const i18n = {
+  ...i18nApp,
+  ...i18n40k
+}
 
 const appStore = useAppStore()
 const listsStore = useListsStore()
@@ -71,11 +79,16 @@ h1 {
 
 .delete-profile {
   background-color: var(--brand-color);
-  clip-path: circle(40%);
+  clip-path: circle(30%);
   color: var(--darkest-blue);
   font-family: var(--font-family-titles);
   font-size: 30px;
   opacity: .6;
   line-height: 20px;
+}
+
+.delete-profile:hover {
+  background-color: var(--light-orange-gradient);
+  opacity: 1;
 }
 </style>

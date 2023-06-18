@@ -3,12 +3,15 @@
     :class="{ 'full-view': isFullView }">
     <div class="profile-header">
       <h1 class="profile-name"
+        :title="(isFullView) ? i18n.HIDE : i18n.SHOW"
         @click="isFullView = !isFullView; getWargearOptions(profile)">
         <span>{{ profile.name }}</span>
         <span class="subtype" v-if="profile.subtype !== ''">{{ profile.subtype }}</span>
       </h1>
       <div class="points-value">
-        <button @click="isSelectorVisible = !isSelectorVisible">+</button>
+        <button
+          :title="i18n.ADD"
+          @click="isSelectorVisible = !isSelectorVisible">+</button>
         <ul class="selector" v-show="isSelectorVisible">
           <li
             @click="saveToList({ name: profile.name, qty: item.per, points: item.points, keywords: parseKeywordsForList(profile.keywords)  })"
@@ -220,14 +223,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useAppStore } from '@/store/app.store'
 import { useListsStore } from '@/store/40k/lists.store'
+import i18nApp from '@/i18n/en.i18n.json'
+import i18n40k from '@/i18n/40k/en.i18n.40k.json'
 
+const i18n = {
+  ...i18nApp,
+  ...i18n40k
+}
 const appStore = useAppStore()
 const listsStore = useListsStore()
-const API = '/api/40k/en.i18n.json'
-const i18n = ref({})
 
 defineProps(['profile'])
 
@@ -299,19 +306,6 @@ function getWargearOptions (profile) {
   return returnValue
     .filter((item) => item.empty === undefined)
 }
-
-// function filterOffEmpty (items) {
-//   return items.filter((item) => item.empty === undefined)
-// }
-
-async function fetchData () {
-  const res = await fetch(API)
-  i18n.value = await res.json()
-}
-
-onMounted(() => {
-  fetchData()
-})
 </script>
 
 <style scoped>
@@ -346,6 +340,10 @@ onMounted(() => {
   gap: .5rem;
 }
 
+.profile-name:hover {
+  color: var(--light-orange-gradient);
+}
+
 .subtype {
   color: var(--bright-turquoise);
   font-family: var(--font-family-text);
@@ -359,11 +357,15 @@ onMounted(() => {
 
 .points-value button {
   background-color: var(--brand-color);
-  clip-path: circle(40%);
+  clip-path: circle(30%);
   color: var(--darkest-blue);
   font-family: var(--font-family-titles);
   font-size: 30px;
   line-height: 20px;
+}
+
+.points-value button:hover {
+  background-color: var(--light-orange-gradient);
 }
 
 .points-value .selector {
