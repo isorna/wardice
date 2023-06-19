@@ -14,11 +14,8 @@ export const useListsStore = defineStore('lists', () => {
   }
 
   function addToList ({ listId, value }) {
-    let list = lists.value.splice(lists.value.findIndex(list => list.id === listId), 1)[0]
-
-    if (list === undefined || Array.isArray(list)) {
-      list = { id: listId, profiles: [] }
-    }
+    const listIndex = lists.value.findIndex(list => list.id === listId)
+    const list = listIndex >= 0 ? lists.value.splice(listIndex, 1)[0] : { id: listId, profiles: [] }
 
     list.profiles.push(value)
     lists.value.push(list)
