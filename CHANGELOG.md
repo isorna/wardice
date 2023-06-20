@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.6.0](https://github.com/isorna/wardice/compare/v0.5.0...v0.6.0) (2023-06-20)
+
+
+### Features
+
+* **api:** :sparkles: add faction rules to api ([67770aa](https://github.com/isorna/wardice/commit/67770aa469386708cd2a8dfb074c981fd65c44b9))
+
+
+### Bug Fixes
+
+* **40k pages:** :bug: fix points costs ([abfb9e3](https://github.com/isorna/wardice/commit/abfb9e340459aa6dd07e5b08ad6527413f38fadb))
+* **components:** :bug: fix bug affecting list saving ([bb04b4a](https://github.com/isorna/wardice/commit/bb04b4a3f034a3c75a763ca33719850d6911b1ae))
+* **PWA:** :bug: fix typo ([4573d28](https://github.com/isorna/wardice/commit/4573d28b8020f6c0822212c3f7fde7d56a591e6b))
+
 ## [0.5.0](https://github.com/isorna/wardice/compare/v0.4.0...v0.5.0) (2023-06-18)
 
 
