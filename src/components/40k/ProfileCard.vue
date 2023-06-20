@@ -4,7 +4,7 @@
     <div class="profile-header">
       <h1 class="profile-name"
         :title="(isFullView) ? i18n.HIDE : i18n.SHOW"
-        @click="isFullView = !isFullView; getWargearOptions(profile)">
+        @click="isFullView = !isFullView; console.log(profile)">
         <a
           :name="profile.name.toLowerCase().replaceAll(' ', '-')"
           :href="`#${profile.name.toLowerCase().replaceAll(' ', '-')}`">
@@ -16,6 +16,7 @@
         <button
           :title="i18n.ADD"
           @click="isSelectorVisible = !isSelectorVisible">+</button>
+        <!-- TODO: ADD profile wargear options -->
         <ul class="selector" v-show="isSelectorVisible">
           <li
             @click="saveToList({ name: profile.name, qty: item.per, points: item.points, keywords: parseKeywordsForList(profile.keywords)  })"
@@ -94,17 +95,27 @@
           <template
             v-for="(weapon, index) in profile.weapons.ranged"
             :key="`${profile.id}-ranged-weapons-${index}`">
-            <tr>
-              <th colspan="6">{{ weapon.name }}</th>
-            </tr>
-            <tr>
-              <td>{{ weapon.range }}</td>
-              <td>{{ weapon.a }}</td>
-              <td>{{ weapon.bws }}</td>
-              <td>{{ weapon.s }}</td>
-              <td>{{ weapon.ap }}</td>
-              <td>{{ weapon.d }}</td>
-            </tr>
+            <template v-if="weapon.text === undefined">
+              <tr>
+                <th colspan="6" v-html="weapon.name"></th>
+              </tr>
+              <tr>
+                <td>{{ weapon.range }}</td>
+                <td>{{ weapon.a }}</td>
+                <td>{{ weapon.bws }}</td>
+                <td>{{ weapon.s }}</td>
+                <td>{{ weapon.ap }}</td>
+                <td>{{ weapon.d }}</td>
+              </tr>
+            </template>
+            <template v-else>
+              <tr>
+                <td colspan="7" class="weapon-rules">
+                  <strong>{{ weapon.name }}</strong>&nbsp;
+                  <span>{{ weapon.text }}</span>
+                </td>
+              </tr>
+            </template>
           </template>
         </tbody>
       </table>
@@ -127,58 +138,82 @@
           <template
             v-for="(weapon, index) in profile.weapons.melee"
             :key="`${profile.id}-melee-weapons-${index}`">
-            <tr>
-              <th colspan="6">{{ weapon.name }}</th>
-            </tr>
-            <tr>
-              <td>{{ weapon.range }}</td>
-              <td>{{ weapon.a }}</td>
-              <td>{{ weapon.bws }}</td>
-              <td>{{ weapon.s }}</td>
-              <td>{{ weapon.ap }}</td>
-              <td>{{ weapon.d }}</td>
-            </tr>
+            <template v-if="weapon.text === undefined">
+              <tr>
+                <th colspan="6" v-html="weapon.name"></th>
+              </tr>
+              <tr>
+                <td>{{ weapon.range }}</td>
+                <td>{{ weapon.a }}</td>
+                <td>{{ weapon.bws }}</td>
+                <td>{{ weapon.s }}</td>
+                <td>{{ weapon.ap }}</td>
+                <td>{{ weapon.d }}</td>
+              </tr>
+            </template>
+            <template v-else>
+              <tr>
+                <td colspan="7" class="weapon-rules">
+                  <strong>{{ weapon.name }}</strong>&nbsp;
+                  <span>{{ weapon.text }}</span>
+                </td>
+              </tr>
+            </template>
           </template>
         </tbody>
       </table>
       <div class="profile-section" v-if="profile?.footnotes">
         <p>&#10145; <em>{{ profile.footnotes.footnotes }}</em></p>
       </div>
-      <div class="profile-section" v-if="profile?.specialRules">
-        <h2 class="profile-subtitle">{{ profile.specialRules.name }}</h2>
-        <p
-          v-for="(ability, index) in profile.specialRules.abilities"
-          :key="`${profile.id}-specialRules-${index}`">
-          <strong>{{ ability.split(':')[0] }}:</strong>
-          {{ ability.split(':')[1] }}
-        </p>
-      </div>
       <div class="profile-section" v-if="profile?.abilities">
-        <h2 class="profile-subtitle">{{ i18n.ABILITIES }}</h2>
-        <p v-if="profile.abilities.core">{{ i18n.CORE }}: <strong>{{ profile.abilities.core.join(', ') }}</strong></p>
-        <p v-if="profile.abilities.faction">{{ i18n.FACTION }}: <strong>{{ profile.abilities.faction.join(', ') }}</strong></p>
-        <p
-          v-for="(ability, index) in profile.abilities.special"
+        <template
+          v-for="(ability, index) in profile.abilities"
           :key="`${profile.id}-abilities-${index}`">
-          <strong>{{ ability.name }}:</strong>
-          {{ ability.text }}
-        </p>
+          <h2 class="profile-subtitle">{{ i18n[ability.title] }}</h2>
+          <p
+            v-for="(abilityValue, abIndex) in ability.values"
+            :key="`${profile.id}-abilities-${index}-value-${abIndex}`">
+            <strong>{{ abilityValue.title }}:</strong>
+            {{ abilityValue.text }}
+          </p>
+        </template>
       </div>
       <div class="profile-section" v-if="profile?.wargearAbilities">
-        <h2 class="profile-subtitle">{{ i18n.WARGEAR_ABILITIES }}</h2>
-        <p
-          v-for="(ability, index) in profile.wargearAbilities.special"
-          :key="`${profile.id}-abilities-${index}`">
-          <strong>{{ ability.name }}:</strong>
-          {{ ability.text }}
-        </p>
+        <template
+          v-for="(ability, index) in profile.wargearAbilities"
+          :key="`${profile.id}-wargearAbilities-${index}`">
+          <h2 class="profile-subtitle">{{ i18n[ability.title] || ability.title }}</h2>
+          <p
+            v-for="(abilityValue, abIndex) in ability.values"
+            :key="`${profile.id}-wargearAbilities-${index}-value-${abIndex}`">
+            <strong>{{ abilityValue.title }}:</strong>
+            {{ abilityValue.text }}
+          </p>
+        </template>
       </div>
       <div class="profile-section" v-if="profile?.invulnerable">
-        <h2 class="profile-subtitle">{{ i18n.INVULNERABLE }} <strong>{{ profile.invulnerable }}</strong></h2>
+        <template
+          v-for="(invulnerable, index) in profile.invulnerable"
+          :key="`${profile.id}-invulnerable-${index}`">
+          <h2 class="profile-subtitle">{{ i18n[invulnerable.title] || invulnerable.title }}</h2>
+          <p
+            v-for="(invulnerableValue, iIndex) in invulnerable.values"
+            :key="`${profile.id}-invulnerable-${index}-value-${iIndex}`">
+            {{ invulnerableValue.text }}
+          </p>
+        </template>
       </div>
       <div class="profile-section" v-if="profile?.damaged">
-        <h2 class="profile-subtitle">{{ i18n.DAMAGED }}</h2>
-        <p>{{ profile.damaged }}</p>
+        <template
+          v-for="(damaged, index) in profile.damaged"
+          :key="`${profile.id}-damaged-${index}`">
+          <h2 class="profile-subtitle">{{ i18n[damaged.title] || damaged.title }}</h2>
+          <p
+            v-for="(damagedValue, iIndex) in damaged.values"
+            :key="`${profile.id}-damaged-${index}-value-${iIndex}`">
+            {{ damagedValue.text }}
+          </p>
+        </template>
       </div>
       <div class="profile-section" v-if="profile?.factionKeywords">
         <h2 class="profile-subtitle">{{ i18n.FACTION_KEYWORDS }}</h2>
@@ -200,27 +235,37 @@
         </p>
       </div>
       <div class="profile-section"
-        v-for="(item, index) in getWargearOptions(profile)"
+        v-for="(item, index) in profile.wargear"
         :key="`${profile.id}-wargearOptions-${index}`">
-        <h2 class="profile-subtitle">{{ item.name }}</h2>
-        <ul class="profile-list">
-          <li
-            :class="{
-              'parent-item': subitem.parent !== undefined,
-              'child-item': subitem.child !== undefined,
-              'note-item': subitem.note !== undefined
-            }"
-            v-for="(subitem, subindex) in item.values"
-            :key="`${profile.id}-wargearOptions-${index}-${subindex}`">
-            <template v-if="item.name === i18n.UNIT_COMPOSITION || item.name === i18n.LEADER">
-            <strong>{{ subitem.parent }}</strong>
-            </template>
-            <template v-else>
-            {{ subitem.parent }}
-            </template>
-            {{ subitem.line || subitem.child || subitem.note }}
-          </li>
-        </ul>
+        <h2 class="profile-subtitle">{{ i18n[item.title] || item.title }}</h2>
+        <div
+          v-for="(itemValue, iIndex) in item.values"
+          :key="`${profile.id}-wargearOptions-${index}-value-${iIndex}`">
+          <template v-if="itemValue.list">
+            <ul class="profile-list">
+              <template
+                v-for="(listItem, liIndex) in itemValue.list"
+                :key="`${profile.id}-wargearOptions-${index}-value-${iIndex}-LI-${liIndex}`">
+                <template
+                  v-if="Array.isArray(listItem)">
+                    <li
+                      class="child-item"
+                      v-for="(childListItem, cliIndex) in listItem"
+                      :key="`${profile.id}-wargearOptions-${index}-value-${iIndex}-LI-${liIndex}-${cliIndex}`">
+                      {{ childListItem }}
+                    </li>
+                </template>
+                <template v-else>
+                  <li class="parent-item">{{ listItem }}</li>
+                </template>
+              </template>
+            </ul>
+          </template>
+          <p>
+            <strong v-if="itemValue.title">{{ itemValue.title }}:</strong>
+            {{ itemValue.text }}
+          </p>
+        </div>
       </div>
     </template>
   </div>
@@ -264,52 +309,56 @@ function parseKeywordsForList (keywords) {
   return returnValue
 }
 
-function getWargearOptions (profile) {
-  let returnValue = profile.wargear
+// function parseTitleToI18n (title) {
+//   return i18n[title.toUppercase().replace(' ', '_')]
+// }
 
-  returnValue = returnValue.map((item) => {
-    return {
-      name: item.name,
-      values: item.values.map((subitem, index, array) => {
-        if (subitem === '■') {
-          return {
-            parent: array[index + 1]
-          }
-        } else if (subitem === '◦') {
-          return {
-            child: array[index + 1]
-          }
-        } else if (subitem === '*') {
-          return {
-            note: array[index + 1]
-          }
-        } else if ((index === 0 &&
-          subitem !== '■' &&
-          subitem !== '◦' &&
-          subitem !== '*') ||
-          (index > 0 &&
-          array[index - 1] !== '■' &&
-          array[index - 1] !== '◦' &&
-          array[index - 1] !== '*')) {
-          // if subitem === profile.name !!!
-          return {
-            line: subitem
-          }
-        } else {
-          return {
-            empty: subitem
-          }
-        }
-      })
-        .filter((item) => item !== null)
-        .filter((item) => item.empty === undefined)
-    }
-  })
+// function getWargearOptions (profile) {
+//   let returnValue = profile.wargear
 
-  console.log(returnValue)
-  return returnValue
-    .filter((item) => item.empty === undefined)
-}
+//   returnValue = returnValue.map((item) => {
+//     return {
+//       name: item.name,
+//       values: item.values.map((subitem, index, array) => {
+//         if (subitem === '■') {
+//           return {
+//             parent: array[index + 1]
+//           }
+//         } else if (subitem === '◦') {
+//           return {
+//             child: array[index + 1]
+//           }
+//         } else if (subitem === '*') {
+//           return {
+//             note: array[index + 1]
+//           }
+//         } else if ((index === 0 &&
+//           subitem !== '■' &&
+//           subitem !== '◦' &&
+//           subitem !== '*') ||
+//           (index > 0 &&
+//           array[index - 1] !== '■' &&
+//           array[index - 1] !== '◦' &&
+//           array[index - 1] !== '*')) {
+//           // if subitem === profile.name !!!
+//           return {
+//             line: subitem
+//           }
+//         } else {
+//           return {
+//             empty: subitem
+//           }
+//         }
+//       })
+//         .filter((item) => item !== null)
+//         .filter((item) => item.empty === undefined)
+//     }
+//   })
+
+//   console.log(profile.abilities)
+//   return returnValue
+//     .filter((item) => item.empty === undefined)
+// }
 </script>
 
 <style scoped>
@@ -353,12 +402,6 @@ function getWargearOptions (profile) {
 
 .points-value {
   position: relative;
-}
-
-.points-value button {
-  clip-path: circle(30%);
-  font-size: 30px;
-  line-height: 20px;
 }
 
 .points-value .selector {
@@ -412,6 +455,11 @@ h1:active {
   text-align: center;
 }
 
+.weapon-rules {
+  line-height: 1.5em;
+  padding: 10px;
+}
+
 caption,
 .profile-subtitle {
   color: var(--brand-color);
@@ -450,8 +498,9 @@ td {
 .profile-list {
   display: flex;
   flex-direction: column;
+  font-size: 18px;
   gap: 10px;
-  margin-top: 10px;
+  margin: 10px;
 }
 
 .profile-list li.parent-item {

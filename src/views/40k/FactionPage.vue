@@ -24,15 +24,23 @@ const appStore = useAppStore()
 const API = `/api/40k/40k-index-${route.params.faction}.json`
 const listId = route.params.faction
 const nameFilter = ref('')
+const rules = ref({})
+const detachments = ref([])
 const profiles = ref([])
 const filteredProfiles = computed(() => {
-  return profiles.value.filter((profile) => profile.name.toLowerCase().indexOf(nameFilter.value.toLowerCase()) >= 0)
+  const returnValue = (Array.isArray(profiles.value) && profiles.value.length > 0)
+    ? profiles.value.filter((profile) => profile.name.toLowerCase().indexOf(nameFilter.value.toLowerCase()) >= 0)
+    : []
+  return returnValue
 })
 const pageTitle = computed(() => `WH40k: ${factions.filter((item) => item.slug === route.params.faction)[0].name}`)
 
 async function fetchData () {
   const res = await fetch(API)
-  profiles.value = await res.json()
+  const data = await res.json()
+  rules.value = data?.rules
+  detachments.value = data?.detachments
+  profiles.value = data?.profiles
 }
 
 onMounted(() => {

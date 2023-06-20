@@ -47,9 +47,7 @@ function onSubmit (e) {
 }
 
 .list-button {
-  border-radius: 10px;
-  font-size: 30px;
-  line-height: 20px;
+  padding: 0 20px;
 }
 
 @media (width >= 768px) {

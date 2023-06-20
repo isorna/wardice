@@ -9,11 +9,11 @@
         class="list-profile"
         v-for="(profile, index) in activeList.profiles"
         :key="`profile-${index}`">
-        <p>- <strong>{{ profile.name }}</strong> ({{ profile.qty }}): {{ profile.points }}p</p>
         <button
           class="delete-profile"
           :title="i18n.REMOVE"
           @click="listsStore.removeProfileFromList({ listId: appStore.activeListId, index })">-</button>
+        <p><strong>{{ profile.name }}</strong> ({{ profile.qty }}): {{ profile.points }}p</p>
       </li>
     </ul>
   </div>
@@ -33,12 +33,14 @@ const i18n = {
 
 const appStore = useAppStore()
 const listsStore = useListsStore()
-const activeList = listsStore.getListById(appStore.activeListId)
+const activeList = computed(() => {
+  return listsStore.getListById(appStore.activeListId)
+})
 
 // TODO: validar la lista
 const totalPoints = computed(() => {
-  if (activeList.profiles.length === 0) return 0
-  return activeList.profiles
+  if (!activeList.value || activeList.value?.profiles.length === 0) return 0
+  return activeList.value.profiles
     .map((item) => item.points)
     .reduce((previousValue, currentValue) => {
       return previousValue + currentValue
@@ -66,21 +68,15 @@ h1 {
 .list-profiles {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
 }
 
 .list-profile {
   display: flex;
-  justify-content: space-between;
-  font-size: 20px;
+  justify-content: flex-start;
+  font-size: 18px;
+  gap: 10px;
   line-height: 40px;
 }
-
-.delete-profile {
-  clip-path: circle(30%);
-  font-size: 30px;
-  line-height: 20px;
-}
-
 </style>

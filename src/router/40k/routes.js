@@ -16,7 +16,7 @@ export const routes40k = [
     beforeEnter: (to, from) => {
       const slugs = factions.map((item) => item.slug)
       if (to?.params?.faction && slugs.indexOf(to.params.faction) >= 0) {
-        console.log(to?.params?.faction)
+        // console.log(to?.params?.faction)
       } else {
         return { name: 'NotFound' }
       }
