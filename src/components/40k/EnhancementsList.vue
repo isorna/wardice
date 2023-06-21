@@ -25,5 +25,6 @@ defineProps(['enhancements'])
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin: 20px 0;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="list-wrapper" v-if="appStore.activeListId === '' || activeList === undefined">
     <h1 class="list-title">No saved list yet</h1>
   </div>
-  <div class="list-wrapper" v-else>
+  <section class="list-wrapper" v-else>
     <h1 class="list-title">{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
     <template v-if="activeList.enhancements && activeList.enhancements.length > 0">
       <h2 class="list-section-title">{{ i18n.ENHANCEMENTS }}</h2>
@@ -15,7 +15,10 @@
             class="delete-enhancement"
             :title="i18n.REMOVE"
             @click="listsStore.removeFromList({ listId: appStore.activeListId, index, category: 'enhancements' })">-</button>
-          <p><strong>{{ enhancement.name }}</strong> {{ enhancement.points }}p</p>
+          <p class="enhancement">
+            <strong>{{ enhancement.name }}</strong>
+            <span><em>{{ enhancement.points }}p</em></span>
+          </p>
         </li>
       </ul>
     </template>
@@ -30,11 +33,14 @@
             class="delete-profile"
             :title="i18n.REMOVE"
             @click="listsStore.removeFromList({ listId: appStore.activeListId, index, category: 'profiles' })">-</button>
-          <p><strong>{{ profile.name }}</strong> ({{ profile.qty }}): {{ profile.points }}p</p>
+          <p class="profile">
+            <strong>{{ profile.name }}</strong>
+            <span>{{ profile.qty }}: <em>{{ profile.points }}p</em></span>
+          </p>
         </li>
       </ul>
     </template>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -57,18 +63,31 @@ const activeList = computed(() => {
 
 // TODO: validar la lista
 const totalPoints = computed(() => {
-  if (!activeList.value || activeList.value?.profiles.length === 0) return 0
-  return activeList.value.profiles
-    .map((item) => item.points)
+  if (!activeList.value) {
+    return 0
+  }
+  const enhancementsPoints = (activeList.value?.enhancements?.length === 0) ? 0 : addPoints(activeList.value.enhancements)
+  const profilesPoints = (activeList.value?.profiles?.length === 0) ? 0 : addPoints(activeList.value.profiles)
+
+  return profilesPoints + enhancementsPoints
+})
+
+function addPoints (items) {
+  return items.map((item) => item.points)
     .reduce((previousValue, currentValue) => {
       return previousValue + currentValue
     }) || 0
-})
+}
 
 defineProps(['listid'])
 </script>
 
 <style scoped>
+section.list-wrapper {
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
 .list-title,
 .list-section-title {
   color: var(--darkest-blue);
@@ -103,5 +122,47 @@ defineProps(['listid'])
   font-size: 18px;
   gap: 10px;
   line-height: 40px;
+}
+
+.enhancement,
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 24px;
+  gap: 1rem;
+  width: calc(100% - 80px);
+}
+
+.enhancement {
+  justify-content: space-between;
+  width: calc(100% - 80px);
+}
+
+.profile {
+  flex-direction: column;
+  gap: 0;
+}
+
+.enhancement strong,
+.profile strong {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.enhancement span,
+.profile span {
+  color: var(--medium-blue);
+  font-size: 24px;
+}
+
+.profile span {
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.delete-enhancement,
+.delete-profile {
+  height: 40px;
 }
 </style>
