@@ -4,9 +4,9 @@
       <h1 class="enhancement-name">
         <a>
           <span>{{ enhancement.title }}</span>
-          <span class="subtype">&nbsp;{{ enhancement.points }}p</span>
         </a>
       </h1>
+      <span class="subtype">&nbsp;{{ enhancement.points }}p</span>
       <div class="points-value">
         <button
           :title="i18n.ADD"
@@ -68,6 +68,8 @@ function saveToList ({ name, points }) {
 
 .subtype {
   color: var(--bright-turquoise);
+  line-height: 40px;
+  font-family: var(--font-family-titles);
   font-size: 20px;
 }
 
