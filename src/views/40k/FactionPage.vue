@@ -36,7 +36,7 @@ const i18n = {
 }
 const route = useRoute()
 const appStore = useAppStore()
-const API = `/api/40k/40k-index-${route.params.faction}.json`
+const API = `https://raw.githubusercontent.com/isorna/wardice-40k-api/main/40k-index-${route.params.faction}.json`
 const listId = route.params.faction
 const nameFilter = ref('')
 const rules = ref({})
@@ -53,6 +53,9 @@ const pageTitle = computed(() => `WH40k: ${factions.filter((item) => item.slug =
 async function fetchData () {
   const res = await fetch(API)
   const data = await res.json()
+    .catch(error => console.log('Authorization failed : ' + error.message))
+
+  console.log(data)
   rules.value = data?.rules
   detachments.value = data?.detachments
   profiles.value = data?.profiles

@@ -5,6 +5,9 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    host: 'wardice.local'
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
@@ -92,6 +95,8 @@ export default defineConfig({
             './src/views/NotFoundPage.vue'
           ],
           'group-40k': [
+            './src/components/40k/EnhancementCard.vue',
+            './src/components/40k/EnhancementsList.vue',
             './src/components/40k/FilterForm.vue',
             './src/components/40k/ProfileCard.vue',
             './src/components/40k/ProfilesList.vue',
