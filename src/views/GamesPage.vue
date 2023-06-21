@@ -25,6 +25,10 @@ const i18n = {
 </script>
 
 <style scoped>
+section {
+  height: calc(100vh - 250px);
+}
+
 .games-list {
   margin-top: 20px;
   font-size: 20px;
