@@ -5,11 +5,9 @@
       <h1 class="profile-name"
         :title="(isFullView) ? i18n.HIDE : i18n.SHOW"
         @click="isFullView = !isFullView; console.log(profile)">
-        <a
-          :name="profile.name.toLowerCase().replaceAll(' ', '-')"
-          :href="`#${profile.name.toLowerCase().replaceAll(' ', '-')}`">
+        <a>
           <span>{{ profile.name }}</span>
-          <span class="subtype" v-if="profile.subtype !== ''">{{ profile.subtype }}</span>
+          <span class="subtype" v-if="profile.subtype !== ''">&nbsp;{{ profile.subtype }}</span>
         </a>
       </h1>
       <div class="points-value">
@@ -293,7 +291,8 @@ const isSelectorVisible = ref(false)
 function saveToList ({ name, qty, points, keywords }) {
   listsStore.addToList({
     listId: appStore.activeListId,
-    value: { name, qty, points, keywords }
+    value: { name, qty, points, keywords },
+    category: 'profiles'
   })
   isSelectorVisible.value = !isSelectorVisible.value
 }
@@ -308,57 +307,6 @@ function parseKeywordsForList (keywords) {
   }
   return returnValue
 }
-
-// function parseTitleToI18n (title) {
-//   return i18n[title.toUppercase().replace(' ', '_')]
-// }
-
-// function getWargearOptions (profile) {
-//   let returnValue = profile.wargear
-
-//   returnValue = returnValue.map((item) => {
-//     return {
-//       name: item.name,
-//       values: item.values.map((subitem, index, array) => {
-//         if (subitem === '■') {
-//           return {
-//             parent: array[index + 1]
-//           }
-//         } else if (subitem === '◦') {
-//           return {
-//             child: array[index + 1]
-//           }
-//         } else if (subitem === '*') {
-//           return {
-//             note: array[index + 1]
-//           }
-//         } else if ((index === 0 &&
-//           subitem !== '■' &&
-//           subitem !== '◦' &&
-//           subitem !== '*') ||
-//           (index > 0 &&
-//           array[index - 1] !== '■' &&
-//           array[index - 1] !== '◦' &&
-//           array[index - 1] !== '*')) {
-//           // if subitem === profile.name !!!
-//           return {
-//             line: subitem
-//           }
-//         } else {
-//           return {
-//             empty: subitem
-//           }
-//         }
-//       })
-//         .filter((item) => item !== null)
-//         .filter((item) => item.empty === undefined)
-//     }
-//   })
-
-//   console.log(profile.abilities)
-//   return returnValue
-//     .filter((item) => item.empty === undefined)
-// }
 </script>
 
 <style scoped>

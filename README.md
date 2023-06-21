@@ -15,6 +15,8 @@
 * [x] WH40k: Refactor faction views to a single dynamic view.
 * [ ] WH40k: Fix datasheets data & points costs.
 * [ ] WH40k: Add Detachments rules & stratagems.
+  * [ ] Feature: add **enhancements** to list builder.
+* [ ] WH40k: Use [Locequen icons](https://github.com/Locequen/40k-Data-Card).
 * [ ] WH40k: Develop a more robust and complete list builder.
   * [ ] Feature: Save more than one list (with list name).
   * [ ] Feature: Share list.

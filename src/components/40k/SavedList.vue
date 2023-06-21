@@ -1,21 +1,39 @@
 <template>
   <div class="list-wrapper" v-if="appStore.activeListId === '' || activeList === undefined">
-    <h1>No saved list yet</h1>
+    <h1 class="list-title">No saved list yet</h1>
   </div>
   <div class="list-wrapper" v-else>
-    <h1>{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
-    <ul class="list-profiles">
-      <li
-        class="list-profile"
-        v-for="(profile, index) in activeList.profiles"
-        :key="`profile-${index}`">
-        <button
-          class="delete-profile"
-          :title="i18n.REMOVE"
-          @click="listsStore.removeProfileFromList({ listId: appStore.activeListId, index })">-</button>
-        <p><strong>{{ profile.name }}</strong> ({{ profile.qty }}): {{ profile.points }}p</p>
-      </li>
-    </ul>
+    <h1 class="list-title">{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
+    <template v-if="activeList.enhancements && activeList.enhancements.length > 0">
+      <h2 class="list-section-title">{{ i18n.ENHANCEMENTS }}</h2>
+      <ul class="list-enhancements">
+        <li
+          class="list-enhancement"
+          v-for="(enhancement, index) in activeList.enhancements"
+          :key="`enhancement-${index}`">
+          <button
+            class="delete-enhancement"
+            :title="i18n.REMOVE"
+            @click="listsStore.removeFromList({ listId: appStore.activeListId, index, category: 'enhancements' })">-</button>
+          <p><strong>{{ enhancement.name }}</strong> {{ enhancement.points }}p</p>
+        </li>
+      </ul>
+    </template>
+    <template v-if="activeList.profiles && activeList.profiles.length > 0">
+      <h2 class="list-section-title">{{ i18n.PROFILES }}</h2>
+      <ul class="list-profiles">
+        <li
+          class="list-profile"
+          v-for="(profile, index) in activeList.profiles"
+          :key="`profile-${index}`">
+          <button
+            class="delete-profile"
+            :title="i18n.REMOVE"
+            @click="listsStore.removeFromList({ listId: appStore.activeListId, index, category: 'profiles' })">-</button>
+          <p><strong>{{ profile.name }}</strong> ({{ profile.qty }}): {{ profile.points }}p</p>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
 
@@ -51,8 +69,13 @@ defineProps(['listid'])
 </script>
 
 <style scoped>
-h1 {
+.list-title,
+.list-section-title {
   color: var(--darkest-blue);
+}
+
+.list-section-title {
+  font-family: var(--font-family-text);
 }
 
 .list-wrapper {
@@ -65,13 +88,15 @@ h1 {
   padding: 20px;
 }
 
-.list-profiles {
+.list-profiles,
+.list-enhancements {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 10px;
 }
 
+.list-enhancement,
 .list-profile {
   display: flex;
   justify-content: flex-start;
