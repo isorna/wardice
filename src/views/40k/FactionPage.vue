@@ -14,6 +14,7 @@
         <EnhancementsList :enhancements="detachment.enhancements" />
       </section>
     </template>
+    <TauDrones v-if="drones?.length > 0" :drones="drones" />
     <ProfilesList :profiles="filteredProfiles" />
     <PageFooter />
   </article>
@@ -29,6 +30,7 @@ import FactionRulesList from '@/components/40k/FactionRulesList.vue'
 import DetachmentRulesCard from '@/components/40k/DetachmentRulesCard.vue'
 import StratagemsList from '@/components/40k/StratagemsList.vue'
 import EnhancementsList from '@/components/40k/EnhancementsList.vue'
+import TauDrones from '@/components/40k/TauDrones.vue'
 import ProfilesList from '@/components/40k/ProfilesList.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import { useAppStore } from '@/store/app.store'
@@ -47,6 +49,7 @@ const listId = route.params.faction
 const nameFilter = ref('')
 const rules = ref({})
 const detachments = ref([])
+const drones = ref([])
 const profiles = ref([])
 const filteredProfiles = computed(() => {
   const returnValue = (Array.isArray(profiles.value) && profiles.value.length > 0)
@@ -64,6 +67,7 @@ async function fetchData () {
   console.log(data)
   rules.value = data?.rules
   detachments.value = data?.detachments
+  drones.value = data?.drones
   profiles.value = data?.profiles
 }
 
