@@ -60,7 +60,7 @@ const filteredProfiles = computed(() => {
 const pageTitle = computed(() => `WH40k: ${factions.filter((item) => item.slug === route.params.faction)[0].name}`)
 
 async function fetchData () {
-  const res = await fetch(API)
+  const res = await fetch(`${API}?${Date.now()}`)
   const data = await res.json()
     .catch(error => console.log('Authorization failed : ' + error.message))
 
