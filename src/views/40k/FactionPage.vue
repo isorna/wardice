@@ -3,11 +3,14 @@
     <site-header path="/40k" :title="pageTitle" />
     <FilterForm v-model:nameFilter="nameFilter" />
     <SavedList v-if="appStore.isListVisible" />
+    <FactionRulesList :rules="rules" :detachments="detachments" />
     <template
       v-for="(detachment, index) in detachments"
       :key="`detachment-${index}`">
       <section>
         <h1 class="detachment-title">{{ i18n.DETACHMENT }} : <em class="detachment-name">{{ detachment.title }}</em></h1>
+        <DetachmentRulesCard :rules="detachment.rules" />
+        <StratagemsList :stratagems="detachment.stratagems" />
         <EnhancementsList :enhancements="detachment.enhancements" />
       </section>
     </template>
@@ -22,6 +25,9 @@ import { computed, ref, onMounted } from 'vue'
 import SiteHeader from '@/components/SiteHeader.vue'
 import FilterForm from '@/components/40k/FilterForm.vue'
 import SavedList from '@/components/40k/SavedList.vue'
+import FactionRulesList from '@/components/40k/FactionRulesList.vue'
+import DetachmentRulesCard from '@/components/40k/DetachmentRulesCard.vue'
+import StratagemsList from '@/components/40k/StratagemsList.vue'
 import EnhancementsList from '@/components/40k/EnhancementsList.vue'
 import ProfilesList from '@/components/40k/ProfilesList.vue'
 import PageFooter from '@/components/PageFooter.vue'

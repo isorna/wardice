@@ -17,7 +17,7 @@
         <!-- TODO: ADD profile wargear options -->
         <ul class="selector" v-show="isSelectorVisible">
           <li
-            @click="saveToList({ name: profile.name, qty: item.per, points: item.points, keywords: parseKeywordsForList(profile.keywords)  })"
+            @click="saveToList({ name: profile.name, subtype: profile.subtype, qty: item.per, points: item.points, keywords: parseKeywordsForList(profile.keywords)  })"
             v-for="(item, index) in profile.points"
             :key="`${profile.id}-points-${index}`">
             {{ item.per }}: <em>{{ item.points }}p</em>
@@ -109,7 +109,7 @@
             <template v-else>
               <tr>
                 <td colspan="7" class="weapon-rules">
-                  <strong>{{ weapon.name }}</strong>&nbsp;
+                  <strong>{{ weapon.name }}:&nbsp;</strong>
                   <span>{{ weapon.text }}</span>
                 </td>
               </tr>
@@ -152,7 +152,7 @@
             <template v-else>
               <tr>
                 <td colspan="7" class="weapon-rules">
-                  <strong>{{ weapon.name }}</strong>&nbsp;
+                  <strong>{{ weapon.name }}:&nbsp;</strong>
                   <span>{{ weapon.text }}</span>
                 </td>
               </tr>
@@ -167,11 +167,11 @@
         <template
           v-for="(ability, index) in profile.abilities"
           :key="`${profile.id}-abilities-${index}`">
-          <h2 class="profile-subtitle">{{ i18n[ability.title] }}</h2>
+          <h2 class="profile-subtitle">{{ i18n[ability.title] || ability.title }}</h2>
           <p
             v-for="(abilityValue, abIndex) in ability.values"
             :key="`${profile.id}-abilities-${index}-value-${abIndex}`">
-            <strong>{{ abilityValue.title }}:</strong>
+            <strong>{{ abilityValue.title }}:&nbsp;</strong>
             {{ abilityValue.text }}
           </p>
         </template>
@@ -184,7 +184,7 @@
           <p
             v-for="(abilityValue, abIndex) in ability.values"
             :key="`${profile.id}-wargearAbilities-${index}-value-${abIndex}`">
-            <strong>{{ abilityValue.title }}:</strong>
+            <strong>{{ abilityValue.title }}:&nbsp;</strong>
             {{ abilityValue.text }}
           </p>
         </template>
@@ -228,7 +228,7 @@
           v-else
           v-for="(keysSet, index) in profile.keywords"
           :key="`${profile.id}-keywords-${index}`">
-          <strong>{{ keysSet.keywordGroup }}:</strong>
+          <strong>{{ keysSet.keywordGroup }}:&nbsp;</strong>
           {{ keysSet.value.join(', ') }}
         </p>
       </div>
@@ -250,7 +250,10 @@
                       class="child-item"
                       v-for="(childListItem, cliIndex) in listItem"
                       :key="`${profile.id}-wargearOptions-${index}-value-${iIndex}-LI-${liIndex}-${cliIndex}`">
-                      {{ childListItem }}
+                      <template v-if="childListItem?.startsWith('*')">
+                        <em>{{ childListItem }}</em>
+                      </template>
+                      <template v-else>{{ childListItem }}</template>
                     </li>
                 </template>
                 <template v-else>
@@ -260,8 +263,11 @@
             </ul>
           </template>
           <p>
-            <strong v-if="itemValue.title">{{ itemValue.title }}:</strong>
-            {{ itemValue.text }}
+            <strong v-if="itemValue.title">{{ itemValue.title }}:&nbsp;</strong>
+            <template v-if="itemValue?.text?.startsWith('*')">
+              <em>{{ itemValue.text }}</em>
+            </template>
+            <template v-else>{{ itemValue.text }}</template>
           </p>
         </div>
       </div>
@@ -276,22 +282,21 @@ import { useListsStore } from '@/store/40k/lists.store'
 import i18nApp from '@/i18n/en.i18n.json'
 import i18n40k from '@/i18n/40k/en.i18n.40k.json'
 
+defineProps(['profile'])
+
 const i18n = {
   ...i18nApp,
   ...i18n40k
 }
 const appStore = useAppStore()
 const listsStore = useListsStore()
-
-defineProps(['profile'])
-
 const isFullView = ref(false)
 const isSelectorVisible = ref(false)
 
-function saveToList ({ name, qty, points, keywords }) {
+function saveToList ({ name, subtype, qty, points, keywords }) {
   listsStore.addToList({
     listId: appStore.activeListId,
-    value: { name, qty, points, keywords },
+    value: { name, subtype, qty, points, keywords },
     category: 'profiles'
   })
   isSelectorVisible.value = !isSelectorVisible.value

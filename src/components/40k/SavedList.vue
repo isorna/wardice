@@ -38,7 +38,8 @@
               <strong class="name">{{ profile.name }}</strong>
               <em class="points">{{ profile.points }}p</em>
             </span>
-            <span class="qty">{{ profile.qty }}</span>
+            <span class="info subtype" v-if="profile.subtype">{{ profile.subtype }}</span>
+            <span class="info qty">{{ profile.qty }}</span>
           </p>
         </li>
       </ul>
@@ -155,7 +156,16 @@ section.list-wrapper {
 }
 
 .qty {
-  line-height: 24px;
+  color: var(--medium-blue);
+}
+
+/* .subtype {
+
+} */
+
+.info {
+  font-size: 14px;
+  line-height: 20px;
   width: 100%;
 }
 
