@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.7.0](https://github.com/isorna/wardice/compare/v0.6.0...v0.7.0) (2023-06-22)
+
+
+### Features
+
+* **api:** :sparkles: list enhancements ([866f800](https://github.com/isorna/wardice/commit/866f800e34d13c7316fff6daf9e5daa48b8fc067))
+* **api:** :sparkles: move api files to github hosting ([68cd732](https://github.com/isorna/wardice/commit/68cd732ab38d4a95c4eec68accdef0c666804936))
+* **components:** :sparkles: show faction & detachment rules & stratagems ([332d6bd](https://github.com/isorna/wardice/commit/332d6bdc533e962449fb98f18bb1ed8fe98cbee6))
+
+
+### Bug Fixes
+
+* **styles:** :bug: fix horizontal scroll bug ([c73e359](https://github.com/isorna/wardice/commit/c73e35938a704d5328a41fc979af970a0459ad80))
+* **styles:** :bug: fix list styles ([6cf4288](https://github.com/isorna/wardice/commit/6cf4288403ab8387e17817e0d25b7c376fc297bb))
+
 ## [0.6.0](https://github.com/isorna/wardice/compare/v0.5.0...v0.6.0) (2023-06-20)
 
 
