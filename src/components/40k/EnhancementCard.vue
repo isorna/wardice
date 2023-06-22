@@ -83,6 +83,7 @@ h1:active {
 }
 
 .enhancement-header {
+  cursor: pointer;
   display: flex;
   flex-flow: row nowrap;
   gap: 1rem;

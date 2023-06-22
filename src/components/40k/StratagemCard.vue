@@ -63,6 +63,7 @@ h1:active {
 }
 
 .stratagem-header {
+  cursor: pointer;
   display: flex;
   flex-flow: row nowrap;
   gap: 1rem;
