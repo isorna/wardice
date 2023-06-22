@@ -1,10 +1,12 @@
 <template>
-  <section class="rules-list">
-    <h1>{{ i18n.RULES }}: {{ rules.title }}</h1>
+  <section class="rules-list"
+    v-for="(ruleSet, ruleSetIndex) in rules"
+    :key="`ruleset-${ruleSetIndex}`">
+    <h1>{{ i18n.RULES }}: {{ ruleSet.title }}</h1>
     <div
       class="rule"
-      v-for="(rule, index) in rules.rules"
-      :key="`rule-${index}`">
+      v-for="(rule, index) in ruleSet.rules"
+      :key="`ruleset-${ruleSetIndex}-rule-${index}`">
       <p v-if="rule.title || rule.text">
         <strong v-if="rule.title">{{ rule.title }}:&nbsp;</strong>
         <template v-if="rule?.text?.startsWith('*')">
@@ -16,7 +18,7 @@
         <li
           class="parent-item"
           v-for="(item, iIndex) in rule.list"
-          :key="`rule-${index}-${iIndex}`">
+          :key="`ruleset-${ruleSetIndex}-rule-${index}-${iIndex}`">
           <strong v-if="item.title">{{ item.title }}:&nbsp;</strong>
           <template v-if="item?.text?.startsWith('*')">
             <em>{{ item.text }}</em>
