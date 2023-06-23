@@ -3,7 +3,8 @@
     <h1 class="list-title">No saved list yet</h1>
   </div>
   <section class="list-wrapper saved" ref="listContent" v-else>
-    <h1 class="list-title" @click="copyListToClipboard()">{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
+    <h1 class="list-title">{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
+    <button class="copy-list" @click="copyListToClipboard()" :title="i18n.COPY_LIST"><Icon icon="ic:twotone-content-copy" /></button>
     <template v-if="activeList.enhancements && activeList.enhancements.length > 0">
       <h2 class="list-section-title">{{ i18n.ENHANCEMENTS }}</h2>
       <ul class="list-enhancements">
@@ -51,6 +52,7 @@
 import { computed, ref } from 'vue'
 import { useAppStore } from '@/store/app.store'
 import { useListsStore } from '@/store/40k/lists.store'
+import { Icon } from '@iconify/vue'
 import i18nApp from '@/i18n/en.i18n.json'
 import i18n40k from '@/i18n/40k/en.i18n.40k.json'
 
@@ -129,6 +131,14 @@ section.list-wrapper {
   flex-direction: column;
   gap: 10px;
   padding: 20px;
+  position: relative;
+}
+
+.copy-list {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
 }
 
 .list-profiles,
@@ -192,5 +202,11 @@ section.list-wrapper {
 .delete-enhancement,
 .delete-profile {
   height: 40px;
+}
+
+svg {
+  font-size: 40px;
+  line-height: 40px;
+  vertical-align: middle;
 }
 </style>
