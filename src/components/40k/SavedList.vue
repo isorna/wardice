@@ -2,8 +2,8 @@
   <div class="list-wrapper" v-if="appStore.activeListId === '' || activeList === undefined">
     <h1 class="list-title">No saved list yet</h1>
   </div>
-  <section class="list-wrapper" v-else>
-    <h1 class="list-title">{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
+  <section class="list-wrapper saved" ref="listContent" v-else>
+    <h1 class="list-title" @click="copyListToClipboard()">{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
     <template v-if="activeList.enhancements && activeList.enhancements.length > 0">
       <h2 class="list-section-title">{{ i18n.ENHANCEMENTS }}</h2>
       <ul class="list-enhancements">
@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useAppStore } from '@/store/app.store'
 import { useListsStore } from '@/store/40k/lists.store'
 import i18nApp from '@/i18n/en.i18n.json'
@@ -58,12 +58,12 @@ const i18n = {
   ...i18nApp,
   ...i18n40k
 }
-
 const appStore = useAppStore()
 const listsStore = useListsStore()
 const activeList = computed(() => {
   return listsStore.getListById(appStore.activeListId)
 })
+const listContent = ref('')
 
 // TODO: validar la lista
 const totalPoints = computed(() => {
@@ -84,6 +84,18 @@ function addPoints (items) {
 }
 
 defineProps(['listid'])
+
+// TODO: copy list text
+// https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard
+// https://web.dev/i18n/en/async-clipboard/
+async function copyListToClipboard () {
+  try {
+    await navigator.clipboard.writeText(listContent.value.innerText)
+    console.log('copiado', listContent.value.innerText)
+  } catch (err) {
+    console.error('fallo al copiar', err)
+  }
+}
 </script>
 
 <style scoped>
@@ -95,6 +107,14 @@ section.list-wrapper {
 .list-title,
 .list-section-title {
   color: var(--darkest-blue);
+}
+
+.saved .list-title {
+  cursor: copy;
+}
+
+.saved .list-title:hover {
+  text-decoration: 4px underline dotted var(--brand-color);
 }
 
 .list-section-title {
