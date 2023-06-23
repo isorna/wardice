@@ -120,7 +120,7 @@ defineProps(['faction'])
   flex-flow: row wrap;
   font-size: 14px;
   gap: 10px;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 /* .menu-item {
