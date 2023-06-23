@@ -36,6 +36,7 @@ export default defineConfig({
         theme_color: '#000000',
         background_color: '#000000',
         orientation: 'any',
+        clipboard_write: 'true',
         icons: [
           {
             src: '/icons/manifest-icon-192.png',

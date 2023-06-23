@@ -2,35 +2,35 @@
   <article class="page">
     <site-header path="/" title="WH40k 10th edition" />
     <section class="page">
-      <h1>Select a faction</h1>
-      <ul>
-        <li><router-link to="/40k/adepta-sororitas">Adepta Sororitas</router-link></li>
-        <li><router-link to="/40k/adeptus-astartes">Adeptus Astartes</router-link></li>
-        <li><router-link to="/40k/adeptus-custodes">Adeptus Custodes</router-link></li>
-        <li><router-link to="/40k/adeptus-mechanicus">Adeptus Mechanicus</router-link></li>
-        <li><router-link to="/40k/aeldari">Aeldari</router-link></li>
-        <li><router-link to="/40k/agents-imperium">Agents of the Imperium</router-link></li>
-        <li><router-link to="/40k/astra-militarum">Astra Militarum</router-link></li>
-        <li><router-link to="/40k/black-templars">Black Templars</router-link></li>
-        <li><router-link to="/40k/blood-angels">Blood Angels</router-link></li>
-        <li><router-link to="/40k/chaos-daemons">Chaos Daemons</router-link></li>
-        <li><router-link to="/40k/chaos-knights">Chaos Knights</router-link></li>
-        <li><router-link to="/40k/chaos-space-marines">Chaos Space Marines</router-link></li>
-        <li><router-link to="/40k/dark-angels">Dark Angels</router-link></li>
-        <li><router-link to="/40k/death-guard">Death Guard</router-link></li>
-        <li><router-link to="/40k/deathwatch">Deathwatch</router-link></li>
-        <li><router-link to="/40k/drukhari">Drukhari</router-link></li>
-        <li><router-link to="/40k/genestealer-cults">Genestealer Cults</router-link></li>
-        <li><router-link to="/40k/grey-knights">Grey Knights</router-link></li>
-        <li><router-link to="/40k/imperial-knights">Imperial Knights</router-link></li>
-        <li><router-link to="/40k/leagues-votann">Leagues of Votann</router-link></li>
-        <li><router-link to="/40k/necrons">Necrons</router-link></li>
-        <li><router-link to="/40k/orks">Orks</router-link></li>
-        <li><router-link to="/40k/space-wolves">Space Wolves</router-link></li>
-        <li><router-link to="/40k/tau-empire">T'au Empire</router-link></li>
-        <li><router-link to="/40k/thousand-sons">Thousand Sons</router-link></li>
-        <li><router-link to="/40k/tyranids">Tyranids</router-link></li>
-        <li><router-link to="/40k/world-eaters">World Eaters</router-link></li>
+      <h1 class="home-title">Select a faction</h1>
+      <ul class="faction-list">
+        <li class="faction-item"><router-link to="/40k/adepta-sororitas">Adepta Sororitas (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/adeptus-astartes">Adeptus Astartes (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/adeptus-custodes">Adeptus Custodes</router-link></li>
+        <li class="faction-item"><router-link to="/40k/adeptus-mechanicus">Adeptus Mechanicus (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/aeldari">Aeldari (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/agents-imperium">Agents of the Imperium (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/astra-militarum">Astra Militarum (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/black-templars">Black Templars (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/blood-angels">Blood Angels (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/chaos-daemons">Chaos Daemons (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/chaos-knights">Chaos Knights (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/chaos-space-marines">Chaos Space Marines (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/dark-angels">Dark Angels (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/death-guard">Death Guard (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/deathwatch">Deathwatch (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/drukhari">Drukhari (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/genestealer-cults">Genestealer Cults (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/grey-knights">Grey Knights (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/imperial-knights">Imperial Knights (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/leagues-votann">Leagues of Votann</router-link></li>
+        <li class="faction-item"><router-link to="/40k/necrons">Necrons (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/orks">Orks (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/space-wolves">Space Wolves (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/tau-empire">T'au Empire</router-link></li>
+        <li class="faction-item"><router-link to="/40k/thousand-sons">Thousand Sons (WIP)</router-link></li>
+        <li class="faction-item"><router-link to="/40k/tyranids">Tyranids</router-link></li>
+        <li class="faction-item"><router-link to="/40k/world-eaters">World Eaters (WIP)</router-link></li>
         <!-- <li><router-link to=""></router-link></li> -->
       </ul>
     </section>
@@ -44,18 +44,36 @@ import PageFooter from '@/components/PageFooter.vue'
 </script>
 
 <style scoped>
-h1 {
+.home-title {
   font-size: 30px;
   line-height: 40px;
 }
 
-ul {
+.faction-list {
+  display: flex;
+  flex-flow: column;
+  font-size: 30px;
+  line-height: 40px;
   margin-top: 20px;
+  gap: 1rem;
 }
 
-li {
-  font-size: 30px;
-  line-height: 40px;
+.faction-item {
+  background: linear-gradient(var(--medium-blue), var(--dark-turquoise-gradient));
+  border: 1px dotted var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.faction-item:hover,
+.faction-item:focus,
+.faction-item:active {
+  text-decoration: underline;
+  text-decoration-color: var(--brand-color-light);
+  text-decoration-style: dotted;
 }
 
 /*

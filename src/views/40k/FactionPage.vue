@@ -1,21 +1,22 @@
 <template>
   <article class="page">
     <site-header path="/40k" :title="pageTitle" />
-    <FilterForm v-model:nameFilter="nameFilter" />
+    <FactionMenu :faction="route.params.faction" />
+    <FilterForm v-if="appStore.isFilterVisible" v-model:nameFilter="nameFilter" />
     <SavedList v-if="appStore.isListVisible" />
-    <FactionRulesList :rules="rules" :detachments="detachments" />
+    <FactionRulesList v-if="appStore.isRulesVisible" :rules="rules" :detachments="detachments" />
     <template
       v-for="(detachment, index) in detachments"
       :key="`detachment-${index}`">
       <section>
-        <h1 class="detachment-title">{{ i18n.DETACHMENT }} : <em class="detachment-name">{{ detachment.title }}</em></h1>
-        <DetachmentRulesCard :rules="detachment.rules" />
-        <StratagemsList :stratagems="detachment.stratagems" />
-        <EnhancementsList :enhancements="detachment.enhancements" />
+        <h1 v-if="appStore.isDetachmentsVisible" class="detachment-title">{{ i18n.DETACHMENT }} : <em class="detachment-name">{{ detachment.title }}</em></h1>
+        <DetachmentRulesCard v-if="appStore.isDetachmentsVisible" :rules="detachment.rules" />
+        <StratagemsList v-if="appStore.isStratagemsVisible" :stratagems="detachment.stratagems" />
+        <EnhancementsList v-if="appStore.isEnhancementsVisible" :enhancements="detachment.enhancements" />
       </section>
     </template>
-    <TauDrones v-if="drones?.length > 0" :drones="drones" />
-    <ProfilesList :profiles="filteredProfiles" />
+    <TauDrones v-if="drones?.length > 0 && appStore.isDronesVisible" :drones="drones" />
+    <ProfilesList v-if="appStore.isProfilesVisible" :profiles="filteredProfiles" />
     <PageFooter />
   </article>
 </template>
@@ -24,6 +25,7 @@
 import { useRoute } from 'vue-router'
 import { computed, ref, onMounted } from 'vue'
 import SiteHeader from '@/components/SiteHeader.vue'
+import FactionMenu from '@/components/40k/FactionMenu.vue'
 import FilterForm from '@/components/40k/FilterForm.vue'
 import SavedList from '@/components/40k/SavedList.vue'
 import FactionRulesList from '@/components/40k/FactionRulesList.vue'

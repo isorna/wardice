@@ -7,12 +7,11 @@
         :value="nameFilter"
         @input="$emit('update:nameFilter', $event.target.value)" />
     </fieldset>
-    <button class="list-button" @click="appStore.toggleList()">{{ i18n.LIST }}</button>
   </form>
 </template>
 
 <script setup>
-import { useAppStore } from '@/store/app.store'
+// import { useAppStore } from '@/store/app.store'
 import i18nApp from '@/i18n/en.i18n.json'
 import i18n40k from '@/i18n/40k/en.i18n.40k.json'
 
@@ -20,7 +19,7 @@ const i18n = {
   ...i18nApp,
   ...i18n40k
 }
-const appStore = useAppStore()
+// const appStore = useAppStore()
 
 defineProps(['nameFilter'])
 defineEmits(['update:nameFilter'])
@@ -55,8 +54,9 @@ function onSubmit (e) {
     flex-direction: row;
   }
 
+/*
   .profile-name {
     width: calc(100% - 80px);
-  }
+  } */
 }
 </style>

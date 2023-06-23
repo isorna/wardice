@@ -61,11 +61,14 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .page {
   background-color: var(--page-background);
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .page + .page {
@@ -75,6 +78,7 @@ body {
 
 section {
   margin: 0 20px;
+  flex: 1;
 }
 
 section:first-of-type {
