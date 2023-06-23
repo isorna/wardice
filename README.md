@@ -25,3 +25,7 @@
   * [ ] Feature: Choose profiles' equipment.
   * [ ] Feature: Play game (with all rules used).
 * [ ] APP: add translations to Spanish language.
+
+## Credits
+
+* [Game Icons](https://game-icons.net/) for creating awesome free icons for games.

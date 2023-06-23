@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/isorna/wardice#readme",
   "dependencies": {
+    "@iconify/vue": "^4.1.1",
     "@vitejs/plugin-vue": "^4.1.0",
     "animate.css": "^4.1.1",
     "firebase": "^9.22.2",
