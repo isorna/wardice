@@ -18,5 +18,8 @@
   "GAMES_P1": "Games currently supported",
   "COPY_LIST": "Copy list",
   "COPY": "Copy",
-  "DELETE": "Delete"
+  "EDIT": "Edit",
+  "EDIT_LIST_NAME": "Choose a new name for the list",
+  "DELETE": "Delete",
+  "DELETE_LIST_CONFIRM": "Do you want to delete the list?"
 }

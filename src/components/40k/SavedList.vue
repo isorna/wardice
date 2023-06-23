@@ -3,9 +3,19 @@
     <h1 class="list-title">No saved list yet</h1>
   </div>
   <section class="list-wrapper saved" ref="listContent" v-else>
-    <h1 class="list-title">{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
-    <button class="delete-list" @click="listsStore.deleteListById(activeList.id)" :title="i18n.DELETE"><Icon icon="ic:baseline-delete" /></button>
-    <button class="copy-list" @click="copyListToClipboard()" :title="i18n.COPY"><Icon icon="ic:baseline-content-copy" /></button>
+    <h1 class="list-title">
+      <button
+        class="edit-list-name"
+        v-if="activeList.enhancements.length > 0 || activeList.profiles.length > 0"
+        @click="editListName({ id: activeList.id })"
+        :title="i18n.EDIT"><Icon icon="ic:baseline-edit" /></button>
+        {{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)
+    </h1>
+    <button
+      class="copy-list"
+      v-if="activeList.enhancements.length > 0 || activeList.profiles.length > 0"
+      @click="copyListToClipboard()"
+      :title="i18n.COPY"><Icon icon="ic:baseline-content-copy" /></button>
     <template v-if="activeList.enhancements && activeList.enhancements.length > 0">
       <h2 class="list-section-title">{{ i18n.ENHANCEMENTS }}</h2>
       <ul class="list-enhancements">
@@ -16,7 +26,7 @@
           <button
             class="delete-enhancement"
             :title="i18n.REMOVE"
-            @click="listsStore.removeFromList({ listId: appStore.activeListId, index, category: 'enhancements' })">-</button>
+            @click="listsStore.removeFromList({ id: appStore.activeListId, index, category: 'enhancements' })">-</button>
           <p class="enhancement">
             <strong class="name">{{ enhancement.name }}</strong>
             <em class="points">{{ enhancement.points }}p</em>
@@ -34,7 +44,7 @@
           <button
             class="delete-profile"
             :title="i18n.REMOVE"
-            @click="listsStore.removeFromList({ listId: appStore.activeListId, index, category: 'profiles' })">-</button>
+            @click="listsStore.removeFromList({ id: appStore.activeListId, index, category: 'profiles' })">-</button>
           <p class="profile">
             <span class="item-title">
               <strong class="name">{{ profile.name }}</strong>
@@ -46,6 +56,10 @@
         </li>
       </ul>
     </template>
+    <button
+      class="delete-list"
+      @click="deleteList(activeList.id)"
+      :title="i18n.DELETE"><Icon icon="ic:baseline-delete" /></button>
   </section>
 </template>
 
@@ -86,6 +100,21 @@ function addPoints (items) {
     }) || 0
 }
 
+function editListName ({ id }) {
+  const oldListName = activeList.value?.name || activeList.value?.id.replaceAll('-', ' ').toUpperCase()
+  const name = window.prompt(i18n.EDIT_LIST_NAME, oldListName)
+
+  if (name !== '') {
+    listsStore.setListName({ id, name })
+  }
+}
+
+function deleteList ({ id }) {
+  if (window.confirm(i18n.DELETE_LIST_CONFIRM)) {
+    listsStore.deleteListById({ id })
+  }
+}
+
 defineProps(['listid'])
 
 // TODO: copy list text
@@ -112,13 +141,13 @@ section.list-wrapper {
   color: var(--darkest-blue);
 }
 
-.saved .list-title {
+/* .saved .list-title {
   cursor: copy;
-}
+} */
 
-.saved .list-title:hover {
+/* .saved .list-title:hover {
   text-decoration: 4px underline dotted var(--brand-color);
-}
+} */
 
 .list-section-title {
   font-family: var(--font-family-text);
@@ -135,16 +164,18 @@ section.list-wrapper {
   position: relative;
 }
 
+.edit-list-name {
+  background-color: transparent;
+}
+
 .delete-list {
-  position: absolute;
-  top: 10px;
-  right: 80px;
+  align-self: flex-end;
   background-color: transparent;
 }
 
 .copy-list {
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 20px;
   background-color: transparent;
 }
