@@ -4,7 +4,8 @@
   </div>
   <section class="list-wrapper saved" ref="listContent" v-else>
     <h1 class="list-title">{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)</h1>
-    <button class="copy-list" @click="copyListToClipboard()" :title="i18n.COPY_LIST"><Icon icon="ic:twotone-content-copy" /></button>
+    <button class="delete-list" @click="listsStore.deleteListById(activeList.id)" :title="i18n.DELETE"><Icon icon="ic:baseline-delete" /></button>
+    <button class="copy-list" @click="copyListToClipboard()" :title="i18n.COPY"><Icon icon="ic:baseline-content-copy" /></button>
     <template v-if="activeList.enhancements && activeList.enhancements.length > 0">
       <h2 class="list-section-title">{{ i18n.ENHANCEMENTS }}</h2>
       <ul class="list-enhancements">
@@ -134,9 +135,16 @@ section.list-wrapper {
   position: relative;
 }
 
+.delete-list {
+  position: absolute;
+  top: 10px;
+  right: 80px;
+  background-color: transparent;
+}
+
 .copy-list {
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 20px;
   background-color: transparent;
 }

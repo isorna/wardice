@@ -10,7 +10,7 @@ export const useAppStore = defineStore('app', () => {
   const isStratagemsVisible = ref(false)
   const isEnhancementsVisible = ref(false)
   const isDronesVisible = ref(false)
-  const isProfilesVisible = ref(false)
+  const isProfilesVisible = ref(true)
   const activeListId = ref('')
   // Getters
   // const getListVisibility = computed(() => isListVisible.value)
@@ -22,6 +22,7 @@ export const useAppStore = defineStore('app', () => {
 
   function toggleFilter () {
     isFilterVisible.value = !isFilterVisible.value
+    if (isFilterVisible.value === true) isProfilesVisible.value = isFilterVisible.value
   }
 
   function toggleRules () {

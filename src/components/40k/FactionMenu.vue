@@ -8,7 +8,7 @@
     <Icon icon="game-icons:star-medal" />
     <Icon icon="game-icons:tank-tread" />
     <Icon icon="game-icons:truck" />
-    <Icon icon="game-icons:binoculars" />
+    <Icon icon="game-icons:airtight-hatch" />
     <Icon icon="game-icons:allied-star" />
     <Icon icon="game-icons:android-mask" />
     <Icon icon="game-icons:ammo-box" />
@@ -34,9 +34,22 @@
           :title="i18n.FILTER"
           :class="{ 'active': appStore.isFilterVisible }"
           @click="appStore.toggleFilter()">
-          <Icon icon="game-icons:airtight-hatch" />
+          <Icon icon="game-icons:binoculars" />
           </button>
-          <!-- @click="appStore.toggleFilter()">{{ i18n.FILTER }}</button> -->
+      </li>
+      <li class="menu-item">
+        <button class="list-button"
+          :title="i18n.PROFILES"
+          :class="{ 'active': appStore.isProfilesVisible }"
+          @click="appStore.toggleProfiles()">
+          <Icon icon="game-icons:ages" /></button>
+      </li>
+      <li class="menu-item">
+        <button class="list-button"
+          :title="i18n.ENHANCEMENTS"
+          :class="{ 'active': appStore.isEnhancementsVisible }"
+          @click="appStore.toggleEnhancements()">
+          <Icon icon="game-icons:gear-hammer" /></button>
       </li>
       <li class="menu-item">
         <button class="list-button"
@@ -66,13 +79,6 @@
           @click="appStore.toggleStratagems()">
           <Icon icon="game-icons:files" /></button>
       </li>
-      <li class="menu-item">
-        <button class="list-button"
-          :title="i18n.ENHANCEMENTS"
-          :class="{ 'active': appStore.isEnhancementsVisible }"
-          @click="appStore.toggleEnhancements()">
-          <Icon icon="game-icons:gear-hammer" /></button>
-      </li>
       <li class="menu-item"
         v-if="faction === 'tau-empire'">
         <button class="list-button"
@@ -80,13 +86,6 @@
           :class="{ 'active': appStore.isDronesVisible }"
           @click="appStore.toggleDrones()">
           <Icon icon="game-icons:vintage-robot" /></button>
-      </li>
-      <li class="menu-item">
-        <button class="list-button"
-          :title="i18n.PROFILES"
-          :class="{ 'active': appStore.isProfilesVisible }"
-          @click="appStore.toggleProfiles()">
-          <Icon icon="game-icons:ages" /></button>
       </li>
     </ol>
   </nav>
