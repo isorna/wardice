@@ -10,7 +10,7 @@
           <span class="subtype" v-if="profile.subtype !== ''">&nbsp;{{ profile.subtype }}</span>
         </a>
       </h1>
-      <div class="points-value">
+      <div class="points-value" v-if="!appStore.isFilterVisible">
         <button
           :title="i18n.ADD"
           @click="isSelectorVisible = !isSelectorVisible">+</button>

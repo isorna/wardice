@@ -10,7 +10,7 @@
         </a>
       </h1>
       <span class="subtype">&nbsp;{{ enhancement.points }}p</span>
-      <div class="points-value">
+      <div class="points-value" v-if="!appStore.isFilterVisible">
         <button
           :title="i18n.ADD"
           @click="saveToList()">+</button>
@@ -51,7 +51,7 @@ const props = defineProps(['enhancement'])
 
 function saveToList () {
   if (appStore.activeListId === '' || appStore.activeListId === undefined) {
-    const newListId = `${props.profile.faction}-${Date.now()}`
+    const newListId = `${props.enhancement.faction}-${Date.now()}`
     listsStore.createList({
       id: newListId,
       faction: props.enhancement.faction,

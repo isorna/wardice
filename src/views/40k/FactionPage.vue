@@ -72,14 +72,14 @@ const filteredProfiles = computed(() => {
         }
       })
       .filter((profile) => {
-        return (appStore.isFilterVisible &&
-          appStore.isProfilesVisible &&
-          // appStore.isListVisible &&
-          activeList.value.profiles
-            .findIndex((item) => item.id === profile.id) > -1) ||
+        return activeList.value === undefined ||
+          activeList.value.profiles === undefined ||
+          activeList.value.profiles.length === 0 ||
           !appStore.isFilterVisible ||
-          // !appStore.isListVisible ||
-          !appStore.isProfilesVisible
+          (activeList.value.profiles.length > 0 &&
+          appStore.isFilterVisible &&
+          activeList.value.profiles
+            .findIndex((item) => item.id === profile.id) > -1)
       })
     : []
   return returnValue
@@ -102,14 +102,14 @@ const filteredDetachments = computed(() => {
               }
             })
             .filter((enhancement) => {
-              return (appStore.isFilterVisible &&
-                appStore.isEnhancementsVisible &&
-                // appStore.isListVisible &&
-                activeList.value.enhancements
-                  .findIndex((item) => item.id === enhancement.id) > -1) ||
+              return activeList.value === undefined ||
+                activeList.value.enhancements === undefined ||
+                activeList.value.enhancements.length === 0 ||
                 !appStore.isFilterVisible ||
-                // !appStore.isListVisible ||
-                !appStore.isEnhancementsVisible
+                (activeList.value.enhancements.length > 0 &&
+                appStore.isFilterVisible &&
+                activeList.value.enhancements
+                  .findIndex((item) => item.id === enhancement.id) > -1)
             })
         }
       })
