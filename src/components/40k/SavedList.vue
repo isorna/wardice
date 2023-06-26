@@ -81,7 +81,29 @@ const activeList = computed(() => {
   return listsStore.getListById(appStore.activeListId)
 })
 const listContent = ref('')
-
+const textListContent = computed(() => {
+  const headerFragment = `
+${activeList.value.name} (${totalPoints.value}p)
+  `
+  const enhancementsFragment = (activeList.value?.enhancements?.length > 0)
+    ? `
+# ENHANCEMENTS
+${activeList.value.enhancements.map((item) => `  * ${item.name} (${item.points}p)`).join('\n')}`
+    : ''
+  // TODO: SEPARAR POR KEYWORDS
+  const profilesFragment = (activeList.value?.profiles?.length > 0)
+    ? `
+# PROFILES
+${activeList.value.profiles.map((item) => `  * ${item.name} ${(item.subtype !== undefined && item.subtype !== '') ? `- ${item.subtype}` : ''} (${item.qty}, ${item.points}p)`).join('\n')}`
+    : ''
+  const footerFragment = `\n\n==========\n\n${i18n.CREATED_WITH_WARDICE}`
+  return `
+${headerFragment}
+${enhancementsFragment}
+${profilesFragment}
+${footerFragment}
+  `
+})
 // TODO: validar la lista
 const totalPoints = computed(() => {
   if (!activeList.value) {
@@ -123,8 +145,8 @@ defineProps(['listid'])
 async function copyListToClipboard () {
   // TODO: parsear resultado de la copia
   try {
-    await navigator.clipboard.writeText(listContent.value.innerText)
-    console.log('copiado', listContent.value.innerText)
+    console.log('copiado', textListContent.value)
+    await navigator.clipboard.writeText(textListContent.value)
   } catch (err) {
     console.error('fallo al copiar', err)
   }

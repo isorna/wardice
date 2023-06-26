@@ -124,7 +124,7 @@ async function fetchData () {
   const data = await res.json()
     .catch(error => console.log('Authorization failed : ' + error.message))
 
-  console.log(data)
+  // console.log(data)
   rules.value = data?.rules
   detachments.value = data?.detachments
   drones.value = data?.drones

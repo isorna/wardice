@@ -4,7 +4,7 @@
     <div class="drone-header">
       <h1 class="drone-name"
         :title="(isFullView) ? i18n.HIDE : i18n.SHOW"
-        @click="isFullView = !isFullView; console.log(drone)">
+        @click="isFullView = !isFullView">
         <a>
           <span>{{ drone.name }}</span>
         </a>
