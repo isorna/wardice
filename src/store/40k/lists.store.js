@@ -9,6 +9,10 @@ export const useListsStore = defineStore('lists', () => {
     return (id) => lists.value.find((list) => list.id === id)
   })
   // Actions
+  function resetListsStore () {
+    lists.value = []
+  }
+
   function createList ({ id, faction, name }) {
     const list = {
       id,
@@ -59,6 +63,7 @@ export const useListsStore = defineStore('lists', () => {
   return {
     lists,
     getListById,
+    resetListsStore,
     createList,
     addToList,
     setListName,

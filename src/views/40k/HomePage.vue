@@ -1,20 +1,22 @@
 <template>
   <article class="page">
-    <site-header path="/" title="WH40k 10th edition" />
-    <section class="page">
+    <site-header path="/games" title="WH40k 10th edition" />
+    <section class="factions-section">
       <h1 class="home-title">Select a faction</h1>
       <ul class="faction-list">
         <li class="faction-item"
+          :class="{'animate__animated animate__bounce': faction.favorite}"
+          ref="itemRefs"
           v-for="(faction, index) in filteredFactions"
           :key="`factions-${index}`">
           <router-link :to="faction.link">{{ faction.name }}</router-link>
           <Icon
             icon="ic:outline-bookmark"
-            @click="appStore.unfavoriteFaction(faction.id)"
+            @click="removeBookmark(index, faction.id)"
             v-if="faction.favorite"
             :title="i18n.FAVORITE" />
           <Icon
-            @click="appStore.favoriteFaction(faction.id)"
+            @click="saveBookmark(index, faction.id)"
             icon="ic:outline-bookmark-border"
             v-else
             :title="i18n.FAVORITE" />
@@ -26,7 +28,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import SiteHeader from '@/components/SiteHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
@@ -35,6 +37,7 @@ import factions from '@/data/40k/factions.json'
 import i18nApp from '@/i18n/en.i18n.json'
 import i18n40k from '@/i18n/40k/en.i18n.40k.json'
 
+const itemRefs = ref([])
 const i18n = {
   ...i18nApp,
   ...i18n40k
@@ -67,7 +70,21 @@ const filteredFactions = computed(() => {
   return returnValue
 })
 
-// TODO: facciones favoritas y ordenarlas
+function saveBookmark (index, factionId) {
+  itemRefs.value[index].classList.add('animate__animated', 'animate__bounceOutUp')
+  itemRefs.value[index].addEventListener('animationend', () => {
+    itemRefs.value[index].classList.remove('animate__animated', 'animate__bounceOutUp')
+    appStore.favoriteFaction(factionId)
+  }, { once: true })
+}
+
+function removeBookmark (index, factionId) {
+  itemRefs.value[index].classList.add('animate__animated', 'animate__bounceOutDown')
+  itemRefs.value[index].addEventListener('animationend', () => {
+    itemRefs.value[index].classList.remove('animate__animated', 'animate__bounceOutDown')
+    appStore.unfavoriteFaction(factionId)
+  }, { once: true })
+}
 </script>
 
 <style scoped>

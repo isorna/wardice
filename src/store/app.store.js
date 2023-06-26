@@ -17,6 +17,19 @@ export const useAppStore = defineStore('app', () => {
   // const getListVisibility = computed(() => isListVisible.value)
   // const getActiveList = computed(() => activeListId.value)
   // Actions
+  function resetAppData () {
+    isFilterVisible.value = false
+    isListVisible.value = false
+    isRulesVisible.value = false
+    isDetachmentsVisible.value = false
+    isStratagemsVisible.value = false
+    isEnhancementsVisible.value = false
+    isDronesVisible.value = false
+    isProfilesVisible.value = true
+    activeListId.value = ''
+    favoriteFactions.value = []
+  }
+
   function toggleList () {
     isListVisible.value = !isListVisible.value
   }
@@ -79,6 +92,7 @@ export const useAppStore = defineStore('app', () => {
     favoriteFactions,
     // getListVisibility,
     // getActiveList,
+    resetAppData,
     toggleList,
     toggleFilter,
     toggleRules,

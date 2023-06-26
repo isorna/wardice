@@ -23,5 +23,6 @@
   "DELETE": "Delete",
   "DELETE_LIST_CONFIRM": "Do you want to delete the list?",
   "CREATED_WITH_WARDICE": "Created with https://wardice.app/",
-  "FAVORITE": "Favorite"
+  "FAVORITE": "Favorite",
+  "RESET_APP_CONFIRM": "Do you want to reset app data?"
 }
