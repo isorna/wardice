@@ -12,6 +12,7 @@ export const useAppStore = defineStore('app', () => {
   const isDronesVisible = ref(false)
   const isProfilesVisible = ref(true)
   const activeListId = ref('')
+  const favoriteFactions = ref([])
   // Getters
   // const getListVisibility = computed(() => isListVisible.value)
   // const getActiveList = computed(() => activeListId.value)
@@ -57,6 +58,14 @@ export const useAppStore = defineStore('app', () => {
     activeListId.value = ''
   }
 
+  function favoriteFaction (faction) {
+    favoriteFactions.value.push(faction)
+  }
+
+  function unfavoriteFaction (faction) {
+    favoriteFactions.value.splice(favoriteFactions.value.findIndex(item => item === faction), 1)
+  }
+
   return {
     activeListId,
     isFilterVisible,
@@ -67,6 +76,7 @@ export const useAppStore = defineStore('app', () => {
     isEnhancementsVisible,
     isDronesVisible,
     isProfilesVisible,
+    favoriteFactions,
     // getListVisibility,
     // getActiveList,
     toggleList,
@@ -78,7 +88,9 @@ export const useAppStore = defineStore('app', () => {
     toggleDrones,
     toggleProfiles,
     setActiveList,
-    restActiveList
+    restActiveList,
+    favoriteFaction,
+    unfavoriteFaction
   }
 }, {
   persist: true

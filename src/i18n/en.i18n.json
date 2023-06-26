@@ -22,5 +22,6 @@
   "EDIT_LIST_NAME": "Choose a new name for the list",
   "DELETE": "Delete",
   "DELETE_LIST_CONFIRM": "Do you want to delete the list?",
-  "CREATED_WITH_WARDICE": "Created with https://wardice.app/"
+  "CREATED_WITH_WARDICE": "Created with https://wardice.app/",
+  "FAVORITE": "Favorite"
 }
