@@ -121,6 +121,7 @@ defineProps(['listid'])
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard
 // https://web.dev/i18n/en/async-clipboard/
 async function copyListToClipboard () {
+  // TODO: parsear resultado de la copia
   try {
     await navigator.clipboard.writeText(listContent.value.innerText)
     console.log('copiado', listContent.value.innerText)

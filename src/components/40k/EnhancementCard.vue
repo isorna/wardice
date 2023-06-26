@@ -4,7 +4,7 @@
     <div class="enhancement-header">
       <h1 class="enhancement-name"
         :title="(isFullView) ? i18n.HIDE : i18n.SHOW"
-        @click="isFullView = !isFullView; console.log(enhancement)">
+        @click="isFullView = !isFullView">
         <a>
           <span>{{ enhancement.title }}</span>
         </a>
@@ -13,7 +13,7 @@
       <div class="points-value">
         <button
           :title="i18n.ADD"
-          @click="saveToList({ name: enhancement.title, points: enhancement.points })">+</button>
+          @click="saveToList()">+</button>
       </div>
     </div>
     <template v-if="isFullView">
@@ -47,12 +47,26 @@ const appStore = useAppStore()
 const listsStore = useListsStore()
 const isFullView = ref(false)
 
-defineProps(['enhancement'])
+const props = defineProps(['enhancement'])
 
-function saveToList ({ name, points }) {
+function saveToList () {
+  if (appStore.activeListId === '' || appStore.activeListId === undefined) {
+    const newListId = `${props.profile.faction}-${Date.now()}`
+    listsStore.createList({
+      id: newListId,
+      faction: props.enhancement.faction,
+      name: `${props.enhancement.faction.replaceAll('-', ' ').toUpperCase()} ${(new Date()).toLocaleDateString()}`
+    })
+    appStore.setActiveList(newListId)
+  }
   listsStore.addToList({
-    listId: appStore.activeListId,
-    value: { name, points },
+    id: appStore.activeListId,
+    value: {
+      id: props.enhancement.id,
+      faction: props.enhancement.faction,
+      name: props.enhancement.title,
+      points: props.enhancement.points
+    },
     category: 'enhancements'
   })
 }

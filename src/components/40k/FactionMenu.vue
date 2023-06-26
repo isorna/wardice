@@ -31,14 +31,6 @@
     <ol class="menu">
       <li class="menu-item">
         <button class="list-button"
-          :title="i18n.FILTER"
-          :class="{ 'active': appStore.isFilterVisible }"
-          @click="appStore.toggleFilter()">
-          <Icon icon="game-icons:binoculars" />
-          </button>
-      </li>
-      <li class="menu-item">
-        <button class="list-button"
           :title="i18n.PROFILES"
           :class="{ 'active': appStore.isProfilesVisible }"
           @click="appStore.toggleProfiles()">
@@ -50,6 +42,14 @@
           :class="{ 'active': appStore.isEnhancementsVisible }"
           @click="appStore.toggleEnhancements()">
           <Icon icon="game-icons:gear-hammer" /></button>
+      </li>
+      <li class="menu-item">
+        <button class="list-button filter-button"
+          :title="i18n.FILTER"
+          :class="{ 'active': appStore.isFilterVisible }"
+          @click="appStore.toggleFilter()">
+          <Icon icon="game-icons:binoculars" />
+          </button>
       </li>
       <li class="menu-item">
         <button class="list-button"
@@ -138,6 +138,12 @@ defineProps(['faction'])
 .list-button.active {
   background-color: var(--brand-color);
   border: 2px solid var(--light-orange-gradient);
+  color: var(--darkest-blue);
+}
+
+.filter-button.active {
+  background-color: var(--light-orange-gradient);
+  border: 2px solid var(--brand-color);
   color: var(--darkest-blue);
 }
 

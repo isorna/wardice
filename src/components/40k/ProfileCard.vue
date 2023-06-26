@@ -4,7 +4,7 @@
     <div class="profile-header">
       <h1 class="profile-name"
         :title="(isFullView) ? i18n.HIDE : i18n.SHOW"
-        @click="isFullView = !isFullView; console.log(profile)">
+        @click="isFullView = !isFullView">
         <a>
           <span>{{ profile.name }}</span>
           <span class="subtype" v-if="profile.subtype !== ''">&nbsp;{{ profile.subtype }}</span>
@@ -17,7 +17,7 @@
         <!-- TODO: ADD profile wargear options -->
         <ul class="selector" v-show="isSelectorVisible">
           <li
-            @click="saveToList({ name: profile.name, subtype: profile.subtype, qty: item.per, points: item.points, keywords: parseKeywordsForList(profile.keywords)  })"
+            @click="saveToList(item)"
             v-for="(item, index) in profile.points"
             :key="`${profile.id}-points-${index}`">
             {{ item.per }}: <em>{{ item.points }}p</em>
@@ -282,7 +282,7 @@ import { useListsStore } from '@/store/40k/lists.store'
 import i18nApp from '@/i18n/en.i18n.json'
 import i18n40k from '@/i18n/40k/en.i18n.40k.json'
 
-defineProps(['profile'])
+const props = defineProps(['profile'])
 
 const i18n = {
   ...i18nApp,
@@ -293,10 +293,27 @@ const listsStore = useListsStore()
 const isFullView = ref(false)
 const isSelectorVisible = ref(false)
 
-function saveToList ({ name, subtype, qty, points, keywords }) {
+function saveToList (item) {
+  if (appStore.activeListId === '' || appStore.activeListId === undefined) {
+    const newListId = `${props.profile.faction}-${Date.now()}`
+    listsStore.createList({
+      id: newListId,
+      faction: props.profile.faction,
+      name: `${props.profile.faction.replaceAll('-', ' ').toUpperCase()} ${(new Date()).toLocaleDateString()}`
+    })
+    appStore.setActiveList(newListId)
+  }
   listsStore.addToList({
-    listId: appStore.activeListId,
-    value: { name, subtype, qty, points, keywords },
+    id: appStore.activeListId,
+    value: {
+      id: props.profile.id,
+      faction: props.profile.faction,
+      name: props.profile.name,
+      subtype: props.profile?.subtype,
+      qty: item.per,
+      points: item.points,
+      keywords: parseKeywordsForList(props.profile.keywords)
+    },
     category: 'profiles'
   })
   isSelectorVisible.value = !isSelectorVisible.value

@@ -22,7 +22,7 @@ export const useAppStore = defineStore('app', () => {
 
   function toggleFilter () {
     isFilterVisible.value = !isFilterVisible.value
-    if (isFilterVisible.value === true) isProfilesVisible.value = isFilterVisible.value
+    // if (isFilterVisible.value === true) isProfilesVisible.value = isFilterVisible.value
   }
 
   function toggleRules () {

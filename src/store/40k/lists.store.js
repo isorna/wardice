@@ -9,7 +9,14 @@ export const useListsStore = defineStore('lists', () => {
     return (id) => lists.value.find((list) => list.id === id)
   })
   // Actions
-  function createList ({ list }) {
+  function createList ({ id, faction, name }) {
+    const list = {
+      id,
+      faction,
+      name,
+      profiles: [],
+      enhancements: []
+    }
     lists.value.push(list)
   }
 
@@ -31,6 +38,8 @@ export const useListsStore = defineStore('lists', () => {
   function setListName ({ id, name }) {
     const listIndex = lists.value.findIndex(list => list.id === id)
     const list = listIndex >= 0 ? lists.value.splice(listIndex, 1)[0] : { id, profiles: [], enhancements: [] }
+
+    // change active list id
 
     list.name = name
     lists.value.push(list)

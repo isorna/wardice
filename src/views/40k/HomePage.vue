@@ -41,6 +41,8 @@
 <script setup>
 import SiteHeader from '@/components/SiteHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
+
+// TODO: facciones favoritas y ordenarlas
 </script>
 
 <style scoped>
