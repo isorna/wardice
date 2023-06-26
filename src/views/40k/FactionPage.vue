@@ -82,10 +82,6 @@ const filteredProfiles = computed(() => {
           !appStore.isProfilesVisible
       })
     : []
-
-  if (appStore.isFilterVisible && appStore.isListVisible) {
-    // FILTRAR los perfiles según los que haya en la lista
-  }
   return returnValue
 })
 const filteredDetachments = computed(() => {
