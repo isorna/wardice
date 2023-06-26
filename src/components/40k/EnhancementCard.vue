@@ -9,7 +9,7 @@
           <span>{{ enhancement.title }}</span>
         </a>
       </h1>
-      <span class="subtype">&nbsp;{{ enhancement.points }}p</span>
+      <span class="subtype" v-if="!appStore.isFilterVisible">&nbsp;{{ enhancement.points }}p</span>
       <div class="points-value" v-if="!appStore.isFilterVisible">
         <button
           :title="i18n.ADD"
