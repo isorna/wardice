@@ -18,14 +18,17 @@ coverage
 __hidden
 
 # ignored for the moment
-/src/views/40k/Page.vue
 .firebase
 .firebaserc
 firebase.json
 firebase.init.js
 
-/cypress/videos/
-/cypress/screenshots/
+jsdoc
+.jsdoc.json
+cypress
+cypress.config.js
+.storybook
+src/stories
 
 # Editor directories and files
 .vscode/*
