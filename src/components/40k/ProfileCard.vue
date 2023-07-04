@@ -360,13 +360,13 @@ function parseKeywordsForList (keywords) {
   flex-flow: column;
   line-height: 40px;
   width: calc(100% - 50px);
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .subtype {
   color: var(--bright-turquoise);
   font-family: var(--font-family-text);
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: normal;
 }
 
@@ -503,7 +503,7 @@ td {
 
   .subtype {
     flex-flow: row;
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 }
 </style>

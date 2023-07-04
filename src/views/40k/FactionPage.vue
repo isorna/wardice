@@ -12,7 +12,7 @@
       <template
         v-for="(detachment, index) in filteredDetachments"
         :key="`detachment-${index}`">
-        <section>
+        <section v-if="appStore.isDetachmentsVisible || appStore.isStratagemsVisible || appStore.isEnhancementsVisible">
           <h1 v-if="appStore.isDetachmentsVisible" class="detachment-title">{{ i18n.DETACHMENT }} : <em class="detachment-name">{{ detachment.title }}</em></h1>
           <DetachmentRulesCard v-if="appStore.isDetachmentsVisible" :rules="detachment.rules" />
           <StratagemsList v-if="appStore.isStratagemsVisible" :stratagems="detachment.stratagems" />
