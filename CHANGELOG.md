@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.8.0](https://github.com/isorna/wardice/compare/v0.7.0...v0.8.0) (2023-07-04)
+
+
+### Features
+
+* **components:** :sparkles: app menu ([759a498](https://github.com/isorna/wardice/commit/759a498733590e1cafb3d2ca48f7c86bed2eab55))
+* **components:** :sparkles: copy list button ([d72a6e1](https://github.com/isorna/wardice/commit/d72a6e17d2d4ca162550f788e85a66e65e15189a))
+* **components:** :sparkles: copy list text ([2f7476a](https://github.com/isorna/wardice/commit/2f7476a57d75bf200e124631e48dfb0293126708))
+* **components:** :sparkles: filter visible profiles & enhancements, fix bug affecting list saving ([4f6cee1](https://github.com/isorna/wardice/commit/4f6cee1663bfb6cd3ee6a0a1d60c595404742fc1))
+* **components:** :sparkles: improve coy list feature ([2dfba03](https://github.com/isorna/wardice/commit/2dfba03b94023e44a286925b75e5209b4431e275))
+* **components:** :sparkles: set faction as favorite on 40k index page ([720a4d6](https://github.com/isorna/wardice/commit/720a4d651c7225ca2cc27b7975982d03901ebc43))
+* **components:** :sparkles: set list name ([b73f6b0](https://github.com/isorna/wardice/commit/b73f6b09f22cb1efbc569c1a1ad59dbd1a6c7da1))
+* **components:** :sparkles: show Tau Empire Drone rules ([933162c](https://github.com/isorna/wardice/commit/933162c051f50e36dead50d918d53aff73861cfd))
+
+
+### Bug Fixes
+
+* **api:** :bug: add timestam for api files ([53ad813](https://github.com/isorna/wardice/commit/53ad8135977c0c30c30e4cd00336ac58b9138486))
+* **api:** :bug: fix api caching bug ([73bce34](https://github.com/isorna/wardice/commit/73bce34560e5bdacdf6ee081cd433b2dc4f67798))
+* **components:** :bug: fix button alignment ([26207e4](https://github.com/isorna/wardice/commit/26207e4e3d65e9e3e0ae899b7ae6e2f2069bd917))
+* **components:** :bug: fix problem with filter view, now it's not possible to add profiles/enhancements while filtering ([b3cfb55](https://github.com/isorna/wardice/commit/b3cfb5545211a64c2e19e148ee84bd0ba5d33929))
+* **components:** :bug: fix typo ([1a7eb5d](https://github.com/isorna/wardice/commit/1a7eb5d30ce9bb0c8543a29701b99eb9e82ca917))
+* **components:** :bug: hide also enhancement cost while filtering ([cde2122](https://github.com/isorna/wardice/commit/cde21220592e9fae272aa849026120aedfee7964))
+* **components:** :recycle: show more than one faction rule ([506954a](https://github.com/isorna/wardice/commit/506954a8766b0a05432c16f80e0295ff223ec97c))
+
 ## [0.7.0](https://github.com/isorna/wardice/compare/v0.6.0...v0.7.0) (2023-06-22)
 
 
