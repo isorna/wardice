@@ -14,7 +14,21 @@ export default defineConfig({
     }
   },
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => [
+            'dc:format',
+            'dc:type',
+            'dc:title',
+            'cc:Work',
+            'rdf:RDF',
+            'inkscape:grid',
+            'sodipodi:namedview'
+          ].includes(tag)
+        }
+      }
+    }),
     // TODO: CHECK cache configurations needed: https://vite-pwa-org.netlify.app/deployment/
     VitePWA({
       registerType: 'autoUpdate',

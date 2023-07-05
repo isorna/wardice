@@ -1,37 +1,64 @@
 <template>
   <article class="page">
-    <site-header path="/" :title="i18n.GAMES_TITLE" />
+    <site-header path="/" :title="i18n.GAMES_TITLE" @show-help="resetHelp"/>
     <section class="games-section">
       <h2>{{ i18n.GAMES_P1 }}</h2>
       <ul class="games-list">
         <li>
-          <strong><router-link to="/40k">Warhammer 40.000 10th edition</router-link></strong>
+          <strong><router-link data-step="1" to="/40k">Warhammer 40.000 10th edition</router-link></strong>
           &nbsp;property of <a href="https://www.games-workshop.com" target="_blank">&copy; Games Workshop Ltd.</a>
         </li>
       </ul>
       <div class="reset-data">
         <p>
           <em>Have any problem with local data?</em>
-          <button class="reset-button" @click="resetAppData()">reset app</button>
+          <button class="reset-button" @click="resetAppData()" data-step="2">reset app</button>
         </p>
       </div>
     </section>
+    <VTour ref="tour" :steps="steps" :buttonLabels="tourButtonLabels" autoStart highlight />
     <PageFooter />
   </article>
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
 import SiteHeader from '@/components/SiteHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import i18nApp from '@/i18n/en.i18n.json'
 import { useAppStore } from '@/store/app.store'
 import { useListsStore } from '@/store/40k/lists.store'
 
+const tour = ref(null)
 const i18n = {
   ...i18nApp
 }
 const appStore = useAppStore()
 const listsStore = useListsStore()
+const tourButtonLabels = computed(() => {
+  return {
+    next: i18n.NEXT,
+    prev: i18n.BACK,
+    finish: i18n.FINISH,
+    skip: i18n.SKIP
+  }
+})
+const steps = [
+  {
+    target: '[data-step="1"]',
+    content: 'Choose your favourite game, it\'s also accessible from the installed app menu.',
+    placement: 'bottom'
+  },
+  {
+    target: '[data-step="2"]',
+    content: 'If you\'ve any problem with local data, press this button to reset it and refresh the app.',
+    placement: 'top'
+  }
+]
+
+function resetHelp () {
+  tour.value.resetTour()
+}
 
 function resetAppData () {
   if (window.confirm(i18n.RESET_APP_CONFIRM)) {

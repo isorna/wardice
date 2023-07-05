@@ -27,6 +27,7 @@
   * [ ] Feature: Choose profiles' equipment.
   * [ ] Feature: Play game (with all rules used).
 * [ ] APP: add translations to Spanish language.
+* [x] APP: add help system.
 
 ## Credits
 

@@ -143,14 +143,14 @@ h1 {
 }
 
 .visibility-button {
+  align-items: center;
   background-color: var(--darkest-blue);
   border: 2px dotted var(--brand-color);
   color: var(--brand-color);
   display: flex;
-  place-content: center;
-  align-items: center;
   flex-direction: column;
   padding: 0;
+  place-content: center;
   width: 40px;
 }
 

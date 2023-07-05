@@ -7,8 +7,6 @@
   "LIST": "List",
   "FILTER": "Filter",
   "RULES": "Rules",
-  "SHOW": "Show",
-  "HIDE": "Hide",
   "HOME": "Home",
   "HOME_P1": "Tools for gamers, by gamers.",
   "HOME_P2": "Welcome to War Dice web app.",
@@ -26,5 +24,13 @@
   "FAVORITE": "Favorite",
   "RESET_APP_CONFIRM": "Do you want to reset app data?",
   "ERROR_TITLE": "Oops! Error encountered",
-  "LOADING": "Loading"
+  "LOADING": "Loading",
+  "VIEW": "View",
+  "SHOW": "Show",
+  "HIDE": "Hide",
+  "HELP": "Help",
+  "NEXT": "Next",
+  "BACK": "Back",
+  "SKIP": "Skip",
+  "FINISH": "Finish"
 }

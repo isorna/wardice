@@ -1,0 +1,123 @@
+/*
+  VueJS Tooltip
+  https://globalhive.github.io/vuejs-tour/guide/styling.html#css
+*/
+:root {
+  --border-color-translucid: rgba(4 255 248 / 50%);
+  --border-color: rgba(4 255 248 / 100%);
+  --tooltip-color: #fff;
+  --tooltip-z-index: 9999;
+  --tooltip-font-size: 14px;
+  --tooltip-arrow-size: 8px;
+  --tooltip-background: rgba(13 70 86 / 100%);
+  --tooltip-border-radius: 4px;
+  --tooltip-max-width: 300px;
+  --highlight-offset: 4px;
+  --highlight-color: rgba(247 238 159 / 100%);
+  --highlight-outline-radius: 4px;
+  --highlight-outline: 1px solid var(--highlight-color);
+  --action-button-color: rgba(254 103 12 / 100%);
+  --action-button-color-hover: var(--action-button-color);
+  --action-button-font-size: 13px;
+  --action-button-padding: 4px 16px;
+  --action-button-border-radius: 4px;
+  --action-button-background: rgba(1 45 54 / 100%);
+  --action-button-background-hover: var(--action-button-background);
+  --action-button-border: 1px dotted rgba(254 103 12 / 100%);
+  --action-button-border-hover: 1px solid rgba(254 103 12 / 100%);
+  --font-family-text: system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen, ubuntu, cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+[data-hidden] {
+  display: none;
+}
+
+#vjt-tooltip {
+  background-color: var(--tooltip-background);
+  color: var(--tooltip-color);
+  padding: 10px;
+  border: 2px solid var(--border-color-translucid);
+  border-radius: var(--tooltip-border-radius);
+  font-family: var(--font-family-text);
+  font-size: var(--tooltip-font-size);
+  z-index: var(--tooltip-z-index);
+  max-width: var(--tooltip-max-width);
+}
+
+#vjt-arrow {
+  width: var(--tooltip-arrow-size);
+  height: var(--tooltip-arrow-size);
+  position: absolute;
+  z-index: -1;
+}
+
+#vjt-tooltip[data-popper-placement^='top'] #vjt-arrow {
+  bottom: calc(var(--tooltip-arrow-size) / 2 * -1);
+}
+
+#vjt-tooltip[data-popper-placement^='bottom'] #vjt-arrow {
+  top: calc(var(--tooltip-arrow-size) / 2 * -1);
+}
+
+#vjt-tooltip[data-popper-placement^='left'] #vjt-arrow {
+  right: calc(var(--tooltip-arrow-size) / 2 * -1);
+}
+
+#vjt-tooltip[data-popper-placement^='right'] #vjt-arrow {
+  left: calc(var(--tooltip-arrow-size) / 2 * -1);
+}
+
+#vjt-arrow::before {
+  content: "";
+  width: var(--tooltip-arrow-size);
+  height: var(--tooltip-arrow-size);
+  background-color: var(--border-color-translucid);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+#vjt-tooltip[data-popper-placement^='bottom'] #vjt-arrow::before {
+  transform: rotate(225deg);
+}
+
+#vjt-tooltip[data-popper-placement^='left'] #vjt-arrow::before {
+  transform: rotate(315deg);
+}
+
+#vjt-tooltip[data-popper-placement^='right'] #vjt-arrow::before {
+  transform: rotate(135deg);
+}
+
+.vjt-highlight {
+  outline: var(--highlight-outline);
+  outline-offset: var(--highlight-offset);
+  border-radius: var(--highlight-outline-radius);
+}
+
+.vjt-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.vjt-actions button {
+  width: 100%;
+  padding: unset;
+  line-height: 40px;
+  border: var(--action-button-border);
+  border-radius: var(--action-button-border-radius);
+  background-color: var(--action-button-background);
+  color: var(--action-button-color);
+  font-size: var(--action-button-font-size);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.vjt-actions button:hover {
+  background-color: var(--action-button-background-hover);
+  border: var(--action-button-border-hover);
+  color: var(--action-button-color-hover);
+}
