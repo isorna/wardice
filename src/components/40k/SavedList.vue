@@ -1,6 +1,6 @@
 <template>
   <div class="list-wrapper" v-if="appStore.activeListId === '' || activeList === undefined">
-    <h1 class="list-title">{{ I18N.NO_TITLE }}</h1>
+    <h1 class="list-title">{{ i18n.NO_TITLE }}</h1>
   </div>
   <section class="list-wrapper saved" ref="listContent" v-else>
     <h1 class="list-title">
@@ -34,7 +34,7 @@
         </li>
       </ul>
     </template>
-    <template v-if="activeList.profiles && activeList.profiles.length > 0">
+    <template v-if="characterProfiles && characterProfiles.length > 0">
       <h2 class="list-section-title">{{ i18n.CHARACTER }}</h2>
       <ul class="list-profiles">
         <li
@@ -55,6 +55,8 @@
           </p>
         </li>
       </ul>
+    </template>
+    <template v-if="battlelineProfiles && battlelineProfiles.length > 0">
       <h2 class="list-section-title">{{ i18n.BATTLELINE }}</h2>
       <ul class="list-profiles">
         <li
@@ -75,6 +77,8 @@
           </p>
         </li>
       </ul>
+    </template>
+    <template v-if="dedicatedTransportProfiles && dedicatedTransportProfiles.length > 0">
       <h2 class="list-section-title">{{ i18n.DEDICATED_TRANSPORT }}</h2>
       <ul class="list-profiles">
         <li
@@ -95,6 +99,8 @@
           </p>
         </li>
       </ul>
+    </template>
+    <template v-if="otherProfiles && otherProfiles.length > 0">
       <h2 class="list-section-title">{{ i18n.OTHER_DATASHEETS }}</h2>
       <ul class="list-profiles">
         <li
