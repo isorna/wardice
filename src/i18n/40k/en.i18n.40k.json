@@ -53,5 +53,6 @@
   "HELP_FACTION_STEP_4": "View or hide your gaming list.",
   "HELP_FACTION_STEP_5": "View or hide this faction's rules.",
   "HELP_FACTION_STEP_6": "View or hide this faction's detachments.",
-  "HELP_FACTION_STEP_7": "View or hide this faction's stratagems."
+  "HELP_FACTION_STEP_7": "View or hide this faction's stratagems.",
+  "NO_TITLE": "No saved list yet"
 }

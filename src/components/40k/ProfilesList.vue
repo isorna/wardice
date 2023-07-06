@@ -93,35 +93,65 @@ const dedicatedTransportProfiles = computed(() => {
 const isOtherProfilesVisible = ref(true)
 const otherProfiles = computed(() => {
   const keywords = ['CHARACTER', 'BATTLELINE', 'DEDICATED TRANSPORT']
-  return props.profiles.filter((item) => {
-    let returnValue = true
-    let itemsArray = item.keywords
-    if (typeof item.keywords[0] !== 'string') {
-      itemsArray = item.keywords
-        .map((composedKeywords) => composedKeywords.value)
-        .flat()
-    }
-    returnValue = itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[0]) === -1 &&
-        itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[1]) === -1 &&
-        itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[2]) === -1
-    return returnValue
-  })
+  return props.profiles
+    .filter((item) => {
+      let returnValue = true
+      let itemsArray = item.keywords
+      if (typeof item.keywords[0] !== 'string') {
+        itemsArray = item.keywords
+          .map((composedKeywords) => composedKeywords.value)
+          .flat()
+      }
+      returnValue = itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[0]) === -1 &&
+          itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[1]) === -1 &&
+          itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[2]) === -1
+      return returnValue
+    })
+    .sort((a, b) => {
+      const nameA = a.name.toUpperCase()
+      const nameB = b.name.toUpperCase()
+      if (nameA < nameB) {
+        return -1
+      }
+      if (nameA > nameB) {
+        return 1
+      }
+      return 0
+    })
 })
 const props = defineProps(['profiles'])
 
 function filterByKeyword (profiles, keyword) {
-  return profiles.filter((item) => {
-    let returnValue = true
-    if (typeof item.keywords[0] === 'string') {
-      returnValue = item.keywords.findIndex((value) => String(value).toUpperCase() === keyword) > -1
-    } else {
-      returnValue = item.keywords
-        .map((composedKeywords) => composedKeywords.value)
-        .flat()
-        .findIndex((value) => String(value).toUpperCase() === keyword) > -1
-    }
-    return returnValue
-  })
+  return profiles
+    .sort((a, b) => {
+      const nameA = a.name.toUpperCase()
+      const nameB = b.name.toUpperCase()
+      if (nameA < nameB) {
+        return -1
+      }
+      if (nameA > nameB) {
+        return 1
+      }
+      return 0
+    })
+    .map((item, index) => {
+      return {
+        ...item,
+        index
+      }
+    })
+    .filter((item) => {
+      let returnValue = true
+      if (typeof item.keywords[0] === 'string') {
+        returnValue = item.keywords.findIndex((value) => String(value).toUpperCase() === keyword) > -1
+      } else {
+        returnValue = item.keywords
+          .map((composedKeywords) => composedKeywords.value)
+          .flat()
+          .findIndex((value) => String(value).toUpperCase() === keyword) > -1
+      }
+      return returnValue
+    })
 }
 </script>
 

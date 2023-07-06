@@ -1,6 +1,6 @@
 <template>
   <div class="list-wrapper" v-if="appStore.activeListId === '' || activeList === undefined">
-    <h1 class="list-title">No saved list yet</h1>
+    <h1 class="list-title">{{ I18N.NO_TITLE }}</h1>
   </div>
   <section class="list-wrapper saved" ref="listContent" v-else>
     <h1 class="list-title">
@@ -9,7 +9,7 @@
         v-if="activeList.enhancements.length > 0 || activeList.profiles.length > 0"
         @click="editListName({ id: activeList.id })"
         :title="i18n.EDIT"><Icon icon="ic:baseline-edit" /></button>
-        {{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }} ({{ totalPoints }}p)
+        <span>{{ activeList?.name || activeList.id.replaceAll('-', ' ').toUpperCase() }}</span>&nbsp;<em>({{ totalPoints }}p)</em>
     </h1>
     <button
       class="copy-list"
@@ -35,16 +35,76 @@
       </ul>
     </template>
     <template v-if="activeList.profiles && activeList.profiles.length > 0">
-      <h2 class="list-section-title">{{ i18n.PROFILES }}</h2>
+      <h2 class="list-section-title">{{ i18n.CHARACTER }}</h2>
       <ul class="list-profiles">
         <li
           class="list-profile"
-          v-for="(profile, index) in activeList.profiles"
+          v-for="(profile, index) in characterProfiles"
           :key="`profile-${index}`">
           <button
             class="delete-profile"
             :title="i18n.REMOVE"
-            @click="listsStore.removeFromList({ id: appStore.activeListId, index, category: 'profiles' })">-</button>
+            @click="listsStore.removeFromList({ id: appStore.activeListId, index: profile.index, category: 'profiles' })">-</button>
+          <p class="profile">
+            <span class="item-title">
+              <strong class="name">{{ profile.name }}</strong>
+              <em class="points">{{ profile.points }}p</em>
+            </span>
+            <span class="info subtype" v-if="profile.subtype">{{ profile.subtype }}</span>
+            <span class="info qty">{{ profile.qty }}</span>
+          </p>
+        </li>
+      </ul>
+      <h2 class="list-section-title">{{ i18n.BATTLELINE }}</h2>
+      <ul class="list-profiles">
+        <li
+          class="list-profile"
+          v-for="(profile, index) in battlelineProfiles"
+          :key="`profile-${index}`">
+          <button
+            class="delete-profile"
+            :title="i18n.REMOVE"
+            @click="listsStore.removeFromList({ id: appStore.activeListId, index: profile.index, category: 'profiles' })">-</button>
+          <p class="profile">
+            <span class="item-title">
+              <strong class="name">{{ profile.name }}</strong>
+              <em class="points">{{ profile.points }}p</em>
+            </span>
+            <span class="info subtype" v-if="profile.subtype">{{ profile.subtype }}</span>
+            <span class="info qty">{{ profile.qty }}</span>
+          </p>
+        </li>
+      </ul>
+      <h2 class="list-section-title">{{ i18n.DEDICATED_TRANSPORT }}</h2>
+      <ul class="list-profiles">
+        <li
+          class="list-profile"
+          v-for="(profile, index) in dedicatedTransportProfiles"
+          :key="`profile-${index}`">
+          <button
+            class="delete-profile"
+            :title="i18n.REMOVE"
+            @click="listsStore.removeFromList({ id: appStore.activeListId, index: profile.index, category: 'profiles' })">-</button>
+          <p class="profile">
+            <span class="item-title">
+              <strong class="name">{{ profile.name }}</strong>
+              <em class="points">{{ profile.points }}p</em>
+            </span>
+            <span class="info subtype" v-if="profile.subtype">{{ profile.subtype }}</span>
+            <span class="info qty">{{ profile.qty }}</span>
+          </p>
+        </li>
+      </ul>
+      <h2 class="list-section-title">{{ i18n.OTHER_DATASHEETS }}</h2>
+      <ul class="list-profiles">
+        <li
+          class="list-profile"
+          v-for="(profile, index) in otherProfiles"
+          :key="`profile-${index}`">
+          <button
+            class="delete-profile"
+            :title="i18n.REMOVE"
+            @click="listsStore.removeFromList({ id: appStore.activeListId, index: profile.index, category: 'profiles' })">-</button>
           <p class="profile">
             <span class="item-title">
               <strong class="name">{{ profile.name }}</strong>
@@ -83,18 +143,39 @@ const activeList = computed(() => {
 const listContent = ref('')
 const textListContent = computed(() => {
   const headerFragment = `
-${activeList.value.name} (${totalPoints.value}p)
+${activeList.value?.name || activeList.value?.id || i18n.NO_TITLE} (${totalPoints.value}p)
   `
   const enhancementsFragment = (activeList.value?.enhancements?.length > 0)
     ? `
-# ENHANCEMENTS
+# ${i18n.ENHANCEMENTS}
 ${activeList.value.enhancements.map((item) => `  * ${item.name} (${item.points}p)`).join('\n')}`
     : ''
-  // TODO: SEPARAR POR KEYWORDS
+  const charactersFragment = (characterProfiles.value?.length > 0)
+    ? `
+# ${i18n.CHARACTER}
+${characterProfiles.value.map((item) => `  * ${item.name} ${(item.subtype !== undefined && item.subtype !== '') ? `- ${item.subtype}` : ''} (${item.qty}, ${item.points}p)`).join('\n')}`
+    : ''
+  const battlelineFragment = (battlelineProfiles.value?.length > 0)
+    ? `
+# ${i18n.BATTLELINE}
+${battlelineProfiles.value.map((item) => `  * ${item.name} ${(item.subtype !== undefined && item.subtype !== '') ? `- ${item.subtype}` : ''} (${item.qty}, ${item.points}p)`).join('\n')}`
+    : ''
+  const dedicatedTransportsFragment = (dedicatedTransportProfiles.value?.length > 0)
+    ? `
+# ${i18n.DEDICATED_TRANSPORT}
+${dedicatedTransportProfiles.value.map((item) => `  * ${item.name} ${(item.subtype !== undefined && item.subtype !== '') ? `- ${item.subtype}` : ''} (${item.qty}, ${item.points}p)`).join('\n')}`
+    : ''
+  const otherDatasheetsFragment = (otherProfiles.value?.length > 0)
+    ? `
+# ${i18n.OTHER_DATASHEETS}
+${otherProfiles.value.map((item) => `  * ${item.name} ${(item.subtype !== undefined && item.subtype !== '') ? `- ${item.subtype}` : ''} (${item.qty}, ${item.points}p)`).join('\n')}`
+    : ''
   const profilesFragment = (activeList.value?.profiles?.length > 0)
     ? `
-# PROFILES
-${activeList.value.profiles.map((item) => `  * ${item.name} ${(item.subtype !== undefined && item.subtype !== '') ? `- ${item.subtype}` : ''} (${item.qty}, ${item.points}p)`).join('\n')}`
+${charactersFragment}
+${battlelineFragment}
+${dedicatedTransportsFragment}
+${otherDatasheetsFragment}`
     : ''
   const footerFragment = `\n\n==========\n\n${i18n.CREATED_WITH_WARDICE}`
   return `
@@ -113,6 +194,47 @@ const totalPoints = computed(() => {
   const profilesPoints = (activeList.value?.profiles?.length === 0) ? 0 : addPoints(activeList.value.profiles)
 
   return profilesPoints + enhancementsPoints
+})
+
+const characterProfiles = computed(() => {
+  const keyword = 'CHARACTER'
+  return filterByKeyword(activeList.value?.profiles, keyword)
+})
+const battlelineProfiles = computed(() => {
+  const keyword = 'BATTLELINE'
+  return filterByKeyword(activeList.value?.profiles, keyword)
+})
+const dedicatedTransportProfiles = computed(() => {
+  const keyword = 'DEDICATED TRANSPORT'
+  return filterByKeyword(activeList.value?.profiles, keyword)
+})
+const otherProfiles = computed(() => {
+  const keywords = ['CHARACTER', 'BATTLELINE', 'DEDICATED TRANSPORT']
+  return activeList.value?.profiles
+    .filter((item) => {
+      let returnValue = true
+      let itemsArray = item.keywords
+      if (typeof item.keywords[0] !== 'string') {
+        itemsArray = item.keywords
+          .map((composedKeywords) => composedKeywords.value)
+          .flat()
+      }
+      returnValue = itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[0]) === -1 &&
+          itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[1]) === -1 &&
+          itemsArray.findIndex((value) => String(value).toUpperCase() === keywords[2]) === -1
+      return returnValue
+    })
+    .sort((a, b) => {
+      const nameA = a.name.toUpperCase()
+      const nameB = b.name.toUpperCase()
+      if (nameA < nameB) {
+        return -1
+      }
+      if (nameA > nameB) {
+        return 1
+      }
+      return 0
+    })
 })
 
 function addPoints (items) {
@@ -143,13 +265,44 @@ defineProps(['listid'])
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard
 // https://web.dev/i18n/en/async-clipboard/
 async function copyListToClipboard () {
-  // TODO: parsear resultado de la copia
   try {
-    console.log('copiado', textListContent.value)
     await navigator.clipboard.writeText(textListContent.value)
   } catch (err) {
-    console.error('fallo al copiar', err)
+    console.error('fallo al copiar', err, textListContent.value)
   }
+}
+
+function filterByKeyword (profiles, keyword) {
+  return profiles
+    .sort((a, b) => {
+      const nameA = a.name.toUpperCase()
+      const nameB = b.name.toUpperCase()
+      if (nameA < nameB) {
+        return -1
+      }
+      if (nameA > nameB) {
+        return 1
+      }
+      return 0
+    })
+    .map((item, index) => {
+      return {
+        ...item,
+        index
+      }
+    })
+    .filter((item) => {
+      let returnValue = true
+      if (typeof item.keywords[0] === 'string') {
+        returnValue = item.keywords.findIndex((value) => String(value).toUpperCase() === keyword) > -1
+      } else {
+        returnValue = item.keywords
+          .map((composedKeywords) => composedKeywords.value)
+          .flat()
+          .findIndex((value) => String(value).toUpperCase() === keyword) > -1
+      }
+      return returnValue
+    })
 }
 </script>
 
@@ -162,6 +315,11 @@ section.list-wrapper {
 .list-title,
 .list-section-title {
   color: var(--darkest-blue);
+}
+
+.list-title em {
+  font-family: var(--font-family-text);
+  font-style: normal;
 }
 
 /* .saved .list-title {
