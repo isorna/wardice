@@ -35,7 +35,9 @@ export default defineConfig({
       includeAssets: [
         '/icons/favicon.ico',
         '/icons/apple-touch-icon-180x180.png',
-        '/icons/safari-pinned-tab.svg'
+        '/icons/safari-pinned-tab.svg',
+        '/logo.v3.svg',
+        '/logo.animated.svg'
       ],
       manifest: {
         display_override: ['window-controls-overlay'],
@@ -110,12 +112,19 @@ export default defineConfig({
             './src/views/NotFoundPage.vue'
           ],
           'group-40k': [
+            './src/components/40k/DetachmentRulesCard.vue',
             './src/components/40k/EnhancementCard.vue',
             './src/components/40k/EnhancementsList.vue',
+            './src/components/40k/FactionMenu.vue',
+            './src/components/40k/FactionRulesList.vue',
             './src/components/40k/FilterForm.vue',
             './src/components/40k/ProfileCard.vue',
             './src/components/40k/ProfilesList.vue',
             './src/components/40k/SavedList.vue',
+            './src/components/40k/StratagemCard.vue',
+            './src/components/40k/StratagemsList.vue',
+            './src/components/40k/TauDroneCard.vue',
+            './src/components/40k/TauDrones.vue',
             './src/views/40k/FactionPage.vue',
             './src/views/40k/HomePage.vue'
           ]
