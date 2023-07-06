@@ -1,5 +1,6 @@
 {
   "lang": "en",
+  "TENTH_EDITION": "10th edition",
   "RANGED_WEAPONS": "RANGED WEAPONS",
   "MELEE_WEAPONS": "MELEE WEAPONS",
   "NAME": "NAME",
@@ -43,5 +44,14 @@
   "CHARACTER": "CHARACTER",
   "BATTLELINE": "BATTLELINE",
   "DEDICATED_TRANSPORT": "DEDICATED TRANSPORT",
-  "OTHER_DATASHEETS": "OTHER DATASHEETS"
+  "OTHER_DATASHEETS": "OTHER DATASHEETS",
+  "HELP_40K_HOME_STEP_1": "Choose your faction, then you'll be able to see its rules, profiles and create lists.",
+  "HELP_40K_HOME_STEP_2": "You can place a bookmark on your favorite factions, so that they'll be on top of the list.",
+  "HELP_FACTION_STEP_1": "View or hide this faction's profiles.",
+  "HELP_FACTION_STEP_2": "View or hide this faction's enhancements.",
+  "HELP_FACTION_STEP_3": "Enter play mode, list will not be editable and will filter profiles and enhancements by list content.",
+  "HELP_FACTION_STEP_4": "View or hide your gaming list.",
+  "HELP_FACTION_STEP_5": "View or hide this faction's rules.",
+  "HELP_FACTION_STEP_6": "View or hide this faction's detachments.",
+  "HELP_FACTION_STEP_7": "View or hide this faction's stratagems."
 }

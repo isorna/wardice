@@ -31,6 +31,7 @@
     <ol class="menu">
       <li class="menu-item">
         <button class="list-button"
+          data-step="1"
           :title="i18n.PROFILES"
           :class="{ 'active': appStore.isProfilesVisible }"
           @click="appStore.toggleProfiles()">
@@ -38,6 +39,7 @@
       </li>
       <li class="menu-item">
         <button class="list-button"
+          data-step="2"
           :title="i18n.ENHANCEMENTS"
           :class="{ 'active': appStore.isEnhancementsVisible }"
           @click="appStore.toggleEnhancements()">
@@ -45,6 +47,7 @@
       </li>
       <li class="menu-item">
         <button class="list-button filter-button"
+          data-step="3"
           :title="i18n.FILTER"
           :class="{ 'active': appStore.isFilterVisible }"
           @click="appStore.toggleFilter()">
@@ -53,6 +56,7 @@
       </li>
       <li class="menu-item">
         <button class="list-button"
+          data-step="4"
           :title="i18n.LIST"
           :class="{ 'active': appStore.isListVisible }"
           @click="appStore.toggleList()">
@@ -60,6 +64,7 @@
       </li>
       <li class="menu-item">
         <button class="list-button"
+          data-step="5"
           :title="i18n.RULES"
           :class="{ 'active': appStore.isRulesVisible }"
           @click="appStore.toggleRules()">
@@ -67,6 +72,7 @@
       </li>
       <li class="menu-item">
         <button class="list-button"
+          data-step="6"
           :title="i18n.DETACHMENTS"
           :class="{ 'active': appStore.isDetachmentsVisible }"
           @click="appStore.toggleDetachments()">
@@ -74,6 +80,7 @@
       </li>
       <li class="menu-item">
         <button class="list-button"
+          data-step="7"
           :title="i18n.STRATAGEMS"
           :class="{ 'active': appStore.isStratagemsVisible }"
           @click="appStore.toggleStratagems()">

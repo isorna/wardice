@@ -1,6 +1,6 @@
 <template>
   <article class="page">
-    <site-header path="/games" title="WH40k 10th edition" />
+    <site-header path="/games" :title="pageTitle" @show-help="tour.resetTour()" />
     <section class="factions-section">
       <h1 class="home-title">Select a faction</h1>
       <ul class="faction-list">
@@ -9,20 +9,25 @@
           ref="itemRefs"
           v-for="(faction, index) in filteredFactions"
           :key="`factions-${index}`">
-          <router-link :to="faction.link">{{ faction.name }}</router-link>
+          <router-link
+            :data-step="index === 0 ? '1' : undefined"
+            :to="faction.link">{{ faction.name }}</router-link>
           <Icon
             icon="ic:outline-bookmark"
             @click="removeBookmark(index, faction.id)"
+            :data-step="index === 0 ? '2' : undefined"
             v-if="faction.favorite"
             :title="i18n.FAVORITE" />
           <Icon
             @click="saveBookmark(index, faction.id)"
+            :data-step="index === 0 ? '2' : undefined"
             icon="ic:outline-bookmark-border"
             v-else
             :title="i18n.FAVORITE" />
         </li>
       </ul>
     </section>
+    <VTour ref="tour" :steps="steps" :buttonLabels="tourButtonLabels" autoStart highlight />
     <PageFooter />
   </article>
 </template>
@@ -43,6 +48,30 @@ const i18n = {
   ...i18n40k
 }
 const appStore = useAppStore()
+const pageTitle = computed(() => `WH40k: ${i18n.TENTH_EDITION}`)
+const tour = ref(null)
+const tourButtonLabels = computed(() => {
+  return {
+    next: i18n.NEXT,
+    prev: i18n.BACK,
+    finish: i18n.FINISH,
+    skip: i18n.SKIP
+  }
+})
+const steps = computed(() => {
+  return [
+    {
+      target: '[data-step="1"]',
+      content: i18n.HELP_40K_HOME_STEP_1,
+      placement: 'bottom'
+    },
+    {
+      target: '[data-step="2"]',
+      content: i18n.HELP_40K_HOME_STEP_2,
+      placement: 'left'
+    }
+  ]
+})
 const filteredFactions = computed(() => {
   let returnValue = factions
     .map((faction) => {

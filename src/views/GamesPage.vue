@@ -1,6 +1,6 @@
 <template>
   <article class="page">
-    <site-header path="/" :title="i18n.GAMES_TITLE" @show-help="resetHelp"/>
+    <site-header path="/" :title="i18n.GAMES_TITLE" @show-help="tour.resetTour()" />
     <section class="games-section">
       <h2>{{ i18n.GAMES_P1 }}</h2>
       <ul class="games-list">
@@ -43,22 +43,20 @@ const tourButtonLabels = computed(() => {
     skip: i18n.SKIP
   }
 })
-const steps = [
-  {
-    target: '[data-step="1"]',
-    content: 'Choose your favourite game, it\'s also accessible from the installed app menu.',
-    placement: 'bottom'
-  },
-  {
-    target: '[data-step="2"]',
-    content: 'If you\'ve any problem with local data, press this button to reset it and refresh the app.',
-    placement: 'top'
-  }
-]
-
-function resetHelp () {
-  tour.value.resetTour()
-}
+const steps = computed(() => {
+  return [
+    {
+      target: '[data-step="1"]',
+      content: i18n.HELP_HOME_STEP_1,
+      placement: 'bottom'
+    },
+    {
+      target: '[data-step="2"]',
+      content: i18n.HELP_HOME_STEP_2,
+      placement: 'top'
+    }
+  ]
+})
 
 function resetAppData () {
   if (window.confirm(i18n.RESET_APP_CONFIRM)) {

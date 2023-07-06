@@ -32,5 +32,7 @@
   "NEXT": "Next",
   "BACK": "Back",
   "SKIP": "Skip",
-  "FINISH": "Finish"
+  "FINISH": "Finish",
+  "HELP_HOME_STEP_1": "Choose your favourite game, it's also accessible from the installed app menu.",
+  "HELP_HOME_STEP_2": "If you've any problem with local data, press this button to reset it and refresh the app."
 }

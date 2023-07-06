@@ -1,6 +1,6 @@
 <template>
   <article class="page">
-    <site-header path="/40k" :title="pageTitle" />
+    <site-header path="/40k" :title="pageTitle" @show-help="tour.resetTour()" />
     <section v-if="error">
       <p class="error-message"><strong>{{ i18n.ERROR_TITLE }}:</strong> {{ error.message }}</p>
     </section>
@@ -25,6 +25,7 @@
     <section v-else>
       <p class="loading-message"><em>{{ i18n.LOADING }}...</em></p>
     </section>
+    <VTour ref="tour" :steps="steps" :buttonLabels="tourButtonLabels" autoStart highlight />
     <PageFooter />
   </article>
 </template>
@@ -122,6 +123,54 @@ const filteredDetachments = computed(() => {
   return returnValue
 })
 const pageTitle = computed(() => `WH40k: ${factions.filter((item) => item.slug === factionId)[0].name}`)
+const tour = ref(null)
+const tourButtonLabels = computed(() => {
+  return {
+    next: i18n.NEXT,
+    prev: i18n.BACK,
+    finish: i18n.FINISH,
+    skip: i18n.SKIP
+  }
+})
+const steps = computed(() => {
+  return [
+    {
+      target: '[data-step="1"]',
+      content: i18n.HELP_FACTION_STEP_1,
+      placement: 'bottom'
+    },
+    {
+      target: '[data-step="2"]',
+      content: i18n.HELP_FACTION_STEP_2,
+      placement: 'bottom'
+    },
+    {
+      target: '[data-step="3"]',
+      content: i18n.HELP_FACTION_STEP_3,
+      placement: 'bottom'
+    },
+    {
+      target: '[data-step="4"]',
+      content: i18n.HELP_FACTION_STEP_4,
+      placement: 'bottom'
+    },
+    {
+      target: '[data-step="5"]',
+      content: i18n.HELP_FACTION_STEP_5,
+      placement: 'bottom'
+    },
+    {
+      target: '[data-step="6"]',
+      content: i18n.HELP_FACTION_STEP_6,
+      placement: 'bottom'
+    },
+    {
+      target: '[data-step="7"]',
+      content: i18n.HELP_FACTION_STEP_7,
+      placement: 'bottom'
+    }
+  ]
+})
 </script>
 
 <style scoped>
