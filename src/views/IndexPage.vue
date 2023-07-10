@@ -9,16 +9,22 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
 import { router } from '@/router'
 import i18nApp from '@/i18n/en.i18n.json'
 
 const i18n = {
   ...i18nApp
 }
+const timerId = ref(null)
 
 onMounted(() => {
-  window.setTimeout(() => router.push('/games'), 5000)
+  timerId.value = window.setTimeout(() => router.push('/games'), 5000)
+})
+
+onBeforeRouteLeave((to, from) => {
+  clearTimeout(timerId.value)
 })
 </script>
 

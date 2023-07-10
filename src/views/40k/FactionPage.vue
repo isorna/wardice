@@ -61,7 +61,11 @@ const listsStore = useListsStore()
 const activeList = computed(() => {
   return listsStore.getListById(appStore.activeListId)
 })
-const API = computed(() => `https://raw.githubusercontent.com/isorna/wardice-40k-api/main/40k-index-${route.params.faction}.json?${Date.now()}`)
+const API = computed(() => {
+  return route?.params?.faction === undefined
+    ? undefined
+    : `https://raw.githubusercontent.com/isorna/wardice-40k-api/main/40k-index-${route.params.faction}.json?${Date.now()}`
+})
 const factionId = route.params.faction
 const nameFilter = ref('')
 const { data, error } = useFetch(API)

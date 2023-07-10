@@ -168,12 +168,37 @@
           v-for="(ability, index) in profile.abilities"
           :key="`${profile.id}-abilities-${index}`">
           <h2 class="profile-subtitle">{{ i18n[ability.title] || ability.title }}</h2>
-          <p
+          <template
             v-for="(abilityValue, abIndex) in ability.values"
             :key="`${profile.id}-abilities-${index}-value-${abIndex}`">
-            <strong>{{ abilityValue.title }}:&nbsp;</strong>
-            {{ abilityValue.text }}
-          </p>
+            <p v-if="abilityValue.title || abilityValue.text">
+              <strong>{{ abilityValue.title }}:&nbsp;</strong>
+              {{ abilityValue.text }}
+            </p>
+            <template v-if="abilityValue.list">
+              <ul class="profile-list">
+                <template
+                  v-for="(listItem, liIndex) in abilityValue.list"
+                  :key="`${profile.id}-wargearOptions-${index}-value-${abIndex}-LI-${liIndex}`">
+                  <template
+                    v-if="Array.isArray(listItem)">
+                      <li
+                        class="child-item"
+                        v-for="(childListItem, cliIndex) in listItem"
+                        :key="`${profile.id}-wargearOptions-${index}-value-${abIndex}-LI-${liIndex}-${cliIndex}`">
+                        <template v-if="childListItem?.startsWith('*')">
+                          <em>{{ childListItem }}</em>
+                        </template>
+                        <template v-else>{{ childListItem }}</template>
+                      </li>
+                  </template>
+                  <template v-else>
+                    <li class="parent-item">{{ listItem }}</li>
+                  </template>
+                </template>
+              </ul>
+            </template>
+          </template>
         </template>
       </div>
       <div class="profile-section" v-if="profile?.wargearAbilities">
