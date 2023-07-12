@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.9.0](https://github.com/isorna/wardice/compare/v0.8.0...v0.9.0) (2023-07-12)
+
+
+### Features
+
+* **components:** :sparkles: add help system, and improve profiles view with categories ([00e9e5a](https://github.com/isorna/wardice/commit/00e9e5a6bf0603a0a4e6a7606b8f6d24d4bc17f8))
+* **components:** :sparkles: filter profiles visibility ([6036193](https://github.com/isorna/wardice/commit/60361938b900f7c6b03f250acce540d673332087))
+* **components:** :sparkles: help system ([0487e21](https://github.com/isorna/wardice/commit/0487e215b8c496d804f1d1608041060bc862bc46))
+* **components:** :sparkles: sort profiles by keywords ([b98cc1d](https://github.com/isorna/wardice/commit/b98cc1d82695597e2fa07274713898aa7d15f168))
+
+
+### Bug Fixes
+
+* **components:** :bug: fix failing list content ([0dc0a58](https://github.com/isorna/wardice/commit/0dc0a5881f5097d20ef0b799cff0a1954aba1ff0))
+* **components:** :bug: fix wrong router behaviour ([9b3f5ec](https://github.com/isorna/wardice/commit/9b3f5ecc67b5f40ab200ded06f73eb2d1cf529ef))
+
 ## [0.8.0](https://github.com/isorna/wardice/compare/v0.7.0...v0.8.0) (2023-07-04)
 
 
