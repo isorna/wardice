@@ -51,7 +51,7 @@
     "@storybook/blocks": "^7.0.27",
     "@storybook/testing-library": "^0.2.0",
     "@storybook/vue3": "^7.0.24",
-    "@storybook/vue3-vite": "^7.0.26",
+    "@storybook/vue3-vite": "^7.4.1",
     "eslint": "^8.45.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.27.5",
