@@ -57,7 +57,7 @@
     "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-storybook": "^0.6.12",
-    "eslint-plugin-vue": "^9.15.1",
+    "eslint-plugin-vue": "^9.26.0",
     "jsdoc": "^4.0.2",
     "jsdoc-vuejs": "^4.0.0",
     "lint-staged": "^13.2.2",
