@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/isorna/wardice/compare/v0.9.0...v0.10.0) (2025-05-26)
+
+
+### Features
+
+* :sparkles: add ui for oauth ([2d4132a](https://github.com/isorna/wardice/commit/2d4132a1a546fd1ddc52ac0f72bb82dbe1f62cca))
+
 ## [0.9.0](https://github.com/isorna/wardice/compare/v0.8.0...v0.9.0) (2023-07-12)
 
 
