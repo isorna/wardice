@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.0](https://github.com/isorna/wardice/compare/v0.10.0...v0.11.0) (2025-05-27)
+
+
+### Features
+
+* :sparkles: update dependencies ([cb03a24](https://github.com/isorna/wardice/commit/cb03a24df8b181dcf20afecf63759975dc3d48c8))
+* :sparkles: update dependencies ([e5b4927](https://github.com/isorna/wardice/commit/e5b49272e26a02d95e466d6c435b815763cea404))
+
 ## [0.10.0](https://github.com/isorna/wardice/compare/v0.9.0...v0.10.0) (2025-05-26)
 
 
