@@ -1,6 +1,6 @@
 {
   "name": "wardice",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Online wargaming tools",
   "main": "main.js",
   "type": "module",
