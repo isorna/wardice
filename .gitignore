@@ -20,7 +20,7 @@ __hidden
 # ignored for the moment
 .firebase
 .firebaserc
-firebase.json
+# firebase.json
 firebase.init.js
 
 jsdoc
