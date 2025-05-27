@@ -4,10 +4,10 @@
     <section class="games-section">
       <h2>{{ i18n.GAMES_P1 }}</h2>
       <ul class="games-list">
-        <li>
+        <!-- <li>
           <strong><router-link data-step="1" to="/40k">Warhammer 40.000 10th edition</router-link></strong>
           &nbsp;property of <a href="https://www.games-workshop.com" target="_blank">&copy; Games Workshop Ltd.</a>
-        </li>
+        </li> -->
       </ul>
       <div class="reset-data">
         <p>
