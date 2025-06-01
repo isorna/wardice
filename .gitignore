@@ -22,6 +22,9 @@ __hidden
 .firebaserc
 # firebase.json
 firebase.init.js
+/functions
+/functions_wardice
+/functions.old
 
 jsdoc
 .jsdoc.json
