@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.13.0](https://github.com/isorna/wardice/compare/v0.12.0...v0.13.0) (2025-06-01)
+
+
+### Features
+
+* **warmachine data:** :sparkles: steamroller scenarios ([f5c1a09](https://github.com/isorna/wardice/commit/f5c1a0902fb40eb4b5461198a865b0e89e9e0e19))
+* **warmachine data:** :sparkles: steamroller scenarios ([511d446](https://github.com/isorna/wardice/commit/511d4463c5023223ea3e68d1c9e52fdae1ae37ca))
+* **warmachine data:** :sparkles: steamroller scenarios ([ad79088](https://github.com/isorna/wardice/commit/ad79088c1bcc265ddcef75372301dd4a850d08d1))
+* **warmachine data:** :sparkles: steamroller scenarios ([b994f98](https://github.com/isorna/wardice/commit/b994f986f58831b161231c20831ac5e4d08d5f5b))
+* **warmachine data:** :sparkles: steamroller scenarios ([4617399](https://github.com/isorna/wardice/commit/46173992ee75c082a560243d3f22093d88fbe92e))
+* **warmachine data:** :sparkles: trying to read warmachine app data ([02b3243](https://github.com/isorna/wardice/commit/02b32438a0f080075f81875eb073d7a36ac220b0))
+
+
+### Bug Fixes
+
+* :arrow_up: fix firebase dependencies ([6def002](https://github.com/isorna/wardice/commit/6def002723f4ad9aae173e967603903611bb196f))
+
 ## [0.12.0](https://github.com/isorna/wardice/compare/v0.11.0...v0.12.0) (2025-05-27)
 
 
