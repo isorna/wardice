@@ -68,7 +68,7 @@
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import i18nApp from '@/i18n/en.i18n.json'
-import i18n40k from '@/i18n/40k/en.i18n.40k.json'
+import i18n40k from '@/i18n/40k/en.i18n..json'
 import ProfileCard from '@/components/40k/ProfileCard.vue'
 
 const i18n = {
