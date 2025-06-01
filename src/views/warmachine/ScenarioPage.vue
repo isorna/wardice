@@ -52,6 +52,11 @@ const scenarioRules = computed(() => {
 .scenario-map {
   margin-top: 2rem;
   text-align: center;
+
+  svg {
+    height: auto;
+    width: 100%;
+  }
 }
 .scenario-rule {
   margin-top: 1rem;

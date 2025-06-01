@@ -1,5 +1,5 @@
 <template>
-  <component :is="svgComponent"/>
+  <component :is="svgComponent" viewBox="0 0 600 720" />
 </template>
 
 <script setup>

@@ -2,15 +2,23 @@
   <article class="page">
     <site-header path="/games" :title="pageTitle" @show-help="tour.resetTour()" />
     <section class="rules-section">
-      <h1 class="home-title">Steamroller 2025 scenarios</h1>
-      <ul class="scenarios-section">
-        <li class="scenario-item"
-          v-for="(scenario, index) in filteredScenarios"
-          :key="`scenarios-${index}`">
-          <router-link
-            :to="scenario.link">{{ scenario.name }}</router-link>
-        </li>
-      </ul>
+      <h1 class="home-title">Steamroller 2025</h1>
+      <template v-for="(section, index) in steamroller.sections" :key="`section-${index}`">
+        <template v-if="index !== 5">
+          <RulesList v-if="section.content" :rules="section.content" :title="section.title" :subsections="section.sub_sections" />
+        </template>
+        <template v-else>
+          <h2>{{ section.title }}</h2>
+          <ul class="scenarios-list">
+            <li class="scenario-item"
+              v-for="(scenario, index) in filteredScenarios"
+              :key="`scenarios-${index}`">
+              <router-link
+                :to="scenario.link">{{ scenario.name }}</router-link>
+            </li>
+          </ul>
+        </template>
+      </template>
     </section>
     <section class="factions-section">
       <h1 class="home-title">Select a faction</h1>
@@ -46,13 +54,14 @@
 <script setup>
 import SiteHeader from '@/components/SiteHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import RulesList from '@/components/warmachine/RulesList.vue'
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useAppStore } from '@/store/app.store'
 import factions from '@/data/warmachine/factions.json'
 import steamroller from '@/data/warmachine/steamroller.json'
 // section 1: Player responsibilities
-// section 2: Armuy lists
+// section 2: Army lists
 // section 3: Setup and deployment
 // section 4: Scenario elements
 // section 5: Objectives
@@ -65,6 +74,8 @@ import steamroller from '@/data/warmachine/steamroller.json'
 // Section 12: Prizes
 import i18nApp from '@/i18n/en.i18n.json'
 import i18nGame from '@/i18n/warmachine/en.i18n.json'
+
+console.log(steamroller.sections)
 
 const filteredScenarios = computed(() => {
   return steamroller
@@ -161,6 +172,21 @@ function removeBookmark (index, factionId) {
 .home-title {
   font-size: 30px;
   line-height: 40px;
+}
+
+.scenarios-list {
+  display: flex;
+  flex-flow: column;
+  font-size: 30px;
+  line-height: 40px;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  padding-left: 2rem;
+  gap: 1rem;
+
+  li {
+    list-style-type: decimal;
+  }
 }
 
 .faction-list {
