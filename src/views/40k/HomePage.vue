@@ -40,7 +40,7 @@ import PageFooter from '@/components/PageFooter.vue'
 import { useAppStore } from '@/store/app.store'
 import factions from '@/data/40k/factions.json'
 import i18nApp from '@/i18n/en.i18n.json'
-import i18n40k from '@/i18n/40k/en.i18n.40k.json'
+import i18n40k from '@/i18n/40k/en.i18n..json'
 
 const itemRefs = ref([])
 const i18n = {
