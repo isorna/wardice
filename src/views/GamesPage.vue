@@ -8,6 +8,10 @@
           <strong><router-link data-step="1" to="/40k">Warhammer 40.000 10th edition</router-link></strong>
           &nbsp;property of <a href="https://www.games-workshop.com" target="_blank">&copy; Games Workshop Ltd.</a>
         </li> -->
+        <li>
+          <strong><router-link data-step="1" to="/warmachine">Warmachine MK4</router-link></strong>
+          &nbsp;property of <a href="https://www.steamforged.com" target="_blank">&copy; Steamforged Gamess Ltd.</a>
+        </li>
       </ul>
       <div class="reset-data">
         <p>

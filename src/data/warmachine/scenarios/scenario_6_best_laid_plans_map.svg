@@ -1,0 +1,69 @@
+<svg width="600" height="720" viewBox="0 0 600 720" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg-player1 { fill: #E0B0B0; }
+    .bg-player2 { fill: #B0B0E0; }
+    .bg-neutral { fill: #D0D0D0; }
+    .objective { fill: #505050; stroke: black; stroke-width: 1; }
+    .objective-text { fill: white; font-family: Arial, sans-serif; font-size: 20px; text-anchor: middle; dominant-baseline: central; }
+    .objective-40-text { fill: white; font-family: Arial, sans-serif; font-size: 18px; text-anchor: middle; dominant-baseline: central; }
+    .flag-cache { fill: #303030; stroke: black; stroke-width: 1; }
+    .flag-cache-text { fill: white; font-family: Arial, sans-serif; font-size: 18px; text-anchor: middle; dominant-baseline: central; }
+    .label-text { fill: black; font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; }
+    .measurement-text { fill: black; font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+  </style>
+
+  <!-- Backgrounds -->
+  <rect class="bg-player1" x="0" y="0" width="600" height="180" />
+  <rect class="bg-neutral" x="0" y="180" width="600" height="360" />
+  <rect class="bg-player2" x="0" y="540" width="600" height="180" />
+
+  <!-- Deployment Zone Labels -->
+  <text class="label-text" x="500" y="30">Player 1</text>
+  <text class="label-text" x="500" y="50">Deployment Zone</text>
+  <text class="label-text" x="500" y="690">Player 2</text>
+  <text class="label-text" x="500" y="710">Deployment Zone</text>
+
+  <!-- Measurements (approximate) -->
+  <text class="measurement-text" x="30" y="100">6"</text>
+  <text class="measurement-text" x="200" y="200">21"</text> <!-- P1 edge to F -->
+  <text class="measurement-text" x="450" y="200">21"</text> <!-- P1 edge to C -->
+  <text class="measurement-text" x="80" y="300">8"</text> <!-- P1 left edge to P1 40 -->
+  <text class="measurement-text" x="480" y="300">8"</text> <!-- P1 right edge to P1 50 -->
+  <text class="measurement-text" x="200" y="380">21"</text> <!-- P1/P2 edge to P2 40 -->
+  <text class="measurement-text" x="300" y="500">23"</text> <!-- P2 edge to F -->
+  <text class="measurement-text" x="30" y="620">11"</text>
+  <text class="measurement-text" x="300" y="600">15"</text> <!-- P2 edge to P2 50 -->
+
+  <!-- Scenario Elements -->
+  <!-- P1 Flag (Top-Center Left) -->
+  <circle class="flag-cache" cx="250" cy="280" r="15" />
+  <text class="flag-cache-text" x="250" y="280">F</text>
+
+  <!-- P1 Cache (Top-Center Right) -->
+  <circle class="flag-cache" cx="450" cy="280" r="15" />
+  <text class="flag-cache-text" x="450" y="280">C</text>
+
+  <!-- P1 40 Obj (Mid-Left) -->
+  <circle class="objective" cx="150" cy="330" r="20" />
+  <text class="objective-40-text" x="150" y="330">40</text>
+
+  <!-- P1 50 Obj (Mid-Right) -->
+  <circle class="objective" cx="350" cy="330" r="25" />
+  <text class="objective-text" x="350" y="330">50</text>
+
+  <!-- P2 40 Obj (Mid-Left) -->
+  <circle class="objective" cx="250" cy="400" r="20" />
+  <text class="objective-40-text" x="250" y="400">40</text>
+
+  <!-- P2 Cache (Mid-Center Right) -->
+  <circle class="flag-cache" cx="450" cy="380" r="15" />
+  <text class="flag-cache-text" x="450" y="380">C</text>
+
+  <!-- P2 Flag (Bottom-Center) -->
+  <circle class="flag-cache" cx="300" cy="480" r="15" />
+  <text class="flag-cache-text" x="300" y="480">F</text>
+
+  <!-- P2 50 Obj (Bottom-Center) -->
+  <circle class="objective" cx="300" cy="530" r="25" />
+  <text class="objective-text" x="300" y="530">50</text>
+</svg>

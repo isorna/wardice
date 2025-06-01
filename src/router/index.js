@@ -1,13 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from './routes'
-import { routes40k } from './40k/routes'
+import { routesWarmachine } from './warmachine/routes'
+// import { routes40k } from './40k/routes'
 
 const NotFoundPage = () => import('@/views/NotFoundPage.vue')
 
 export const router = createRouter({
   routes: [
     ...routes,
-    ...routes40k,
+    ...routesWarmachine,
+    // ...routes40k,
     { name: 'NotFound', path: '/404', component: NotFoundPage },
     { path: '/:pathMatch(.*)', component: NotFoundPage }
   ],
