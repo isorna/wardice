@@ -63,7 +63,7 @@
 <script setup>
 import { ref } from 'vue'
 import i18nApp from '@/i18n/en.i18n.json'
-import i18n40k from '@/i18n/40k/en.i18n..json'
+import i18n40k from '@/i18n/40k/en.i18n.json'
 
 const i18n = {
   ...i18nApp,
