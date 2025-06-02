@@ -24,11 +24,12 @@
 
   <!-- Measurements (approximate visual placement) -->
   <text class="measurement-text" x="30" y="100">6"</text>
-  <text class="measurement-text" x="150" y="210">18"</text>
-  <text class="measurement-text" x="300" y="160">16"</text> <!-- Top center F -->
-  <text class="measurement-text" x="450" y="210">12"</text> <!-- Top right C -->
-  <text class="measurement-text" x="150" y="370">16"</text> <!-- Center left 50 -->
-  <text class="measurement-text" x="300" y="560">23"</text> <!-- Bottom center C -->
+  <text class="measurement-text" x="150" y="230">18"</text>
+  <text class="measurement-text" x="230" y="160">16"</text> <!-- Top center F -->
+  <text class="measurement-text" x="430" y="160">16"</text> <!-- Top right C -->
+  <text class="measurement-text" x="460" y="230">12"</text> <!-- Top right C -->
+  <text class="measurement-text" x="130" y="390">16"</text> <!-- Center left 50 -->
+  <text class="measurement-text" x="200" y="560">23"</text> <!-- Bottom center C -->
   <text class="measurement-text" x="30" y="620">11"</text>
 
   <!-- Scenario Elements (coordinates are illustrative and need adjustment for precision) -->
@@ -55,4 +56,13 @@
   <!-- Flag (Bottom Rightish) -->
   <circle class="flag-cache" cx="400" cy="470" r="15" />
   <text class="flag-cache-text" x="400" y="470">F</text>
+  <!-- lines -->
+  <line x1="50" y1="0" x2="50" y2="180" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- P1 deploy -->
+  <line x1="50" y1="540" x2="50" y2="720" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- P2 deploy -->
+  <line x1="0" y1="250" x2="180" y2="250" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- LEFT 18 top 16 -->
+  <line x1="200" y1="0" x2="200" y2="230" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- left 18 TOP 16 -->
+  <line x1="420" y1="250" x2="600" y2="250" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- RIGHT 12 top 16 -->
+  <line x1="400" y1="0" x2="400" y2="230" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- right 12 TOP 16 -->
+  <line x1="0" y1="360" x2="150" y2="360" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- LEFT 16 bottom 23 -->
+  <line x1="180" y1="390" x2="180" y2="720" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- left 16 BOTTOM 23 -->
 </svg>
