@@ -26,10 +26,10 @@
   <!-- Measurements (approximate) -->
   <text class="measurement-text" x="30" y="100">6"</text>
   <text class="measurement-text" x="300" y="200">23"</text> <!-- Top center P1 to 40 -->
-  <text class="measurement-text" x="480" y="360">12"</text> <!-- Centerline right F -->
-  <text class="measurement-text" x="120" y="300">19"</text> <!-- Centerline left F -->
+  <text class="measurement-text" x="520" y="380">12"</text> <!-- Centerline right F -->
+  <text class="measurement-text" x="120" y="350">19"</text> <!-- Centerline left F -->
   <text class="measurement-text" x="100" y="460">8"</text> <!-- P2 edge to 40 -->
-  <text class="measurement-text" x="150" y="560">15"</text> <!-- P2 edge to 40 -->
+  <text class="measurement-text" x="130" y="560">15"</text> <!-- P2 edge to 40 -->
   <text class="measurement-text" x="30" y="620">11"</text>
   <text class="measurement-text" x="480" y="560">20"</text> <!-- P2 edge to F -->
 
@@ -58,4 +58,14 @@
   <!-- 40 Obj (Bottom Left) -->
   <circle class="objective" cx="150" cy="480" r="20" />
   <text class="objective-40-text" x="150" y="480">40</text>
+
+  <!-- lines -->
+  <line x1="50" y1="0" x2="50" y2="180" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" />
+  <line x1="50" y1="540" x2="50" y2="720" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" />
+  <line x1="280" y1="0" x2="280" y2="335" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" />
+  <line x1="150" y1="500" x2="150" y2="720" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" />
+  <line x1="450" y1="420" x2="450" y2="720" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" />
+  <line x1="0" y1="360" x2="250" y2="360" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" />
+  <line x1="0" y1="480" x2="130" y2="480" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" />
+  <line x1="470" y1="400" x2="600" y2="400" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" />
 </svg>
