@@ -25,19 +25,20 @@
 
   <!-- Measurements (approximate) -->
   <text class="measurement-text" x="30" y="100">6"</text>
-  <text class="measurement-text" x="300" y="200">12"</text> <!-- Top center -->
-  <text class="measurement-text" x="120" y="260">22"</text> <!-- Top left 40 -->
-  <text class="measurement-text" x="480" y="260">23"</text> <!-- Top right F -->
-  <text class="measurement-text" x="100" y="340">30"</text> <!-- Mid left 50 -->
-  <text class="measurement-text" x="500" y="370">12"</text> <!-- Mid right 50 -->
-  <text class="measurement-text" x="30" y="500">6"</text> <!-- Bottom left F -->
-  <text class="measurement-text" x="300" y="520">20"</text> <!-- Bottom center 40-->
+  <text class="measurement-text" x="310" y="140">12"</text> <!-- Top center -->
+  <text class="measurement-text" x="200" y="280">22"</text> <!-- Top left 40 -->
+  <text class="measurement-text" x="440" y="260">23"</text> <!-- Top right F -->
+  <text class="measurement-text" x="100" y="440">30"</text> <!-- Mid left 50 -->
+  <text class="measurement-text" x="480" y="380">12"</text> <!-- Mid right 50 -->
+  <text class="measurement-text" x="70" y="480">6"</text> <!-- Bottom left F -->
+  <text class="measurement-text" x="400" y="520">20"</text> <!-- Bottom center 40-->
+  <text class="measurement-text" x="480" y="460">20"</text> <!-- Bottom center 40-->
   <text class="measurement-text" x="30" y="620">11"</text>
 
   <!-- Scenario Elements -->
   <!-- 40 Obj (Top Leftish) -->
-  <circle class="objective" cx="200" cy="280" r="20" />
-  <text class="objective-40-text" x="200" y="280">40</text>
+  <circle class="objective" cx="290" cy="250" r="20" />
+  <text class="objective-40-text" x="290" y="250">40</text>
 
   <!-- Flag (Top Rightish) -->
   <circle class="flag-cache" cx="480" cy="300" r="15" />
@@ -56,14 +57,25 @@
   <text class="objective-text" x="420" y="390">50</text>
 
   <!-- Cache (Mid-Bottom Center) -->
-  <circle class="flag-cache" cx="300" cy="450" r="15" />
-  <text class="flag-cache-text" x="300" y="450">C</text>
+  <circle class="flag-cache" cx="370" cy="430" r="15" />
+  <text class="flag-cache-text" x="370" y="430">C</text>
 
   <!-- Flag (Bottom Leftish) -->
   <circle class="flag-cache" cx="120" cy="500" r="15" />
   <text class="flag-cache-text" x="120" y="500">F</text>
 
   <!-- 40 Obj (Bottom Center) -->
-  <circle class="objective" cx="300" cy="550" r="20" />
-  <text class="objective-40-text" x="300" y="550">40</text>
+  <circle class="objective" cx="310" cy="480" r="20" />
+  <text class="objective-40-text" x="310" y="480">40</text>
+  <!-- lines -->
+  <line x1="50" y1="0" x2="50" y2="180" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- P1 deploy -->
+  <line x1="50" y1="540" x2="50" y2="720" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- P2 deploy -->
+  <line x1="0" y1="250" x2="270" y2="250" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- LEFT 22 top 12 -->
+  <line x1="290" y1="0" x2="290" y2="230" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- left 22 TOP 12 -->
+  <line x1="0" y1="500" x2="100" y2="500" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- LEFT 6 top 30 -->
+  <line x1="120" y1="0" x2="120" y2="480" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- left 6 TOP 30 -->
+  <line x1="450" y1="390" x2="600" y2="390" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- RIGHT 12 top 23 -->
+  <line x1="420" y1="0" x2="420" y2="360" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- right 12 TOP 23 -->
+  <line x1="390" y1="430" x2="600" y2="430" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- RIGHT 20 bottom 20 -->
+  <line x1="370" y1="450" x2="370" y2="720" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- right 20 BOTTOM 20 -->
 </svg>
