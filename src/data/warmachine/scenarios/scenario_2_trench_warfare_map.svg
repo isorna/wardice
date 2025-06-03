@@ -10,6 +10,8 @@
     .flag-cache-text { fill: white; font-family: Arial, sans-serif; font-size: 18px; text-anchor: middle; dominant-baseline: central; }
     .label-text { fill: black; font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; }
     .measurement-text { fill: black; font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+    .p1 { fill: orange; }
+    .p2 { fill: lightblue; }
   </style>
 
   <!-- Backgrounds -->
@@ -38,35 +40,35 @@
   <!-- Scenario Elements -->
   <!-- 40 Obj (Top Leftish) -->
   <circle class="objective" cx="295" cy="170" r="20" />
-  <text class="objective-40-text" x="295" y="170">40</text>
+  <text class="objective-40-text p1" x="295" y="170">40</text>
 
   <!-- Flag (Top Rightish) -->
   <circle class="flag-cache" cx="510" cy="210" r="15" />
-  <text class="flag-cache-text" x="510" y="210">F</text>
+  <text class="flag-cache-text p1" x="510" y="210">F</text>
 
   <!-- Cache (Top-Mid Leftish) -->
   <circle class="flag-cache" cx="265" cy="265" r="15" />
-  <text class="flag-cache-text" x="265" y="265">C</text>
+  <text class="flag-cache-text p1" x="265" y="265">C</text>
 
   <!-- 50 Obj (Mid Left) -->
   <circle class="objective" cx="175" cy="302" r="25" />
-  <text class="objective-text" x="175" y="302">50</text>
+  <text class="objective-text p1" x="175" y="302">50</text>
 
   <!-- 50 Obj (Mid Right) -->
   <circle class="objective" cx="420" cy="312" r="25" />
-  <text class="objective-text" x="420" y="312">50</text>
+  <text class="objective-text p2" x="420" y="312">50</text>
 
   <!-- Cache (Mid-Bottom Center) -->
   <circle class="flag-cache" cx="335" cy="335" r="15" />
-  <text class="flag-cache-text" x="335" y="335">C</text>
+  <text class="flag-cache-text p2" x="335" y="335">C</text>
 
   <!-- Flag (Bottom Leftish) -->
   <circle class="flag-cache" cx="90" cy="380" r="15" />
-  <text class="flag-cache-text" x="90" y="380">F</text>
+  <text class="flag-cache-text p2" x="90" y="380">F</text>
 
   <!-- 40 Obj (Bottom Center) -->
   <circle class="objective" cx="305" cy="430" r="20" />
-  <text class="objective-40-text" x="305" y="430">40</text>
+  <text class="objective-40-text p2" x="305" y="430">40</text>
 
 
   <!-- lines -->

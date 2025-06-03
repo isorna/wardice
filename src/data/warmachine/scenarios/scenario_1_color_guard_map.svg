@@ -9,6 +9,8 @@
     .flag-cache-text { fill: white; font-family: Arial, sans-serif; font-size: 18px; text-anchor: middle; dominant-baseline: central; }
     .label-text { fill: black; font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; }
     .measurement-text { fill: black; font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+    .p1 { fill: orange; }
+    .p2 { fill: lightblue; }
   </style>
 
   <!-- Backgrounds -->
@@ -35,27 +37,27 @@
   <!-- Scenario Elements (coordinates are illustrative and need adjustment for precision) -->
   <!-- Flag (Top Leftish) -->
   <circle class="flag-cache" cx="240" cy="215" r="15" />
-  <text class="flag-cache-text" x="240" y="215">F</text>
+  <text class="flag-cache-text p1" x="240" y="215">F</text>
 
   <!-- Cache (Top Rightish) -->
   <circle class="flag-cache" cx="435" cy="215" r="15" />
-  <text class="flag-cache-text" x="435" y="215">C</text>
+  <text class="flag-cache-text p1" x="435" y="215">C</text>
 
   <!-- Objective 50 (Mid Left) -->
   <circle class="objective" cx="225" cy="312" r="25" />
-  <text class="objective-text" x="225" y="312">50</text>
+  <text class="objective-text p2" x="225" y="312">50</text>
 
   <!-- Objective 50 (Mid Right) -->
   <circle class="objective" cx="400" cy="287" r="25" />
-  <text class="objective-text" x="400" y="287">50</text>
+  <text class="objective-text p1" x="400" y="287">50</text>
 
   <!-- Cache (Bottom Leftish) -->
   <circle class="flag-cache" cx="150" cy="370" r="15" />
-  <text class="flag-cache-text" x="150" y="370">C</text>
+  <text class="flag-cache-text p2" x="150" y="370">C</text>
 
   <!-- Flag (Bottom Rightish) -->
   <circle class="flag-cache" cx="345" cy="370" r="15" />
-  <text class="flag-cache-text" x="345" y="370">F</text>
+  <text class="flag-cache-text p2" x="345" y="370">F</text>
 
   <!-- lines -->
   <line x1="50" y1="0" x2="50" y2="75" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- P1 deploy -->
