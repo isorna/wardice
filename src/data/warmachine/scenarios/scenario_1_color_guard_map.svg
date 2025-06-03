@@ -56,9 +56,11 @@
   <!-- Flag (Bottom Rightish) -->
   <circle class="flag-cache" cx="345" cy="370" r="15" />
   <text class="flag-cache-text" x="345" y="370">F</text>
+
   <!-- lines -->
   <line x1="50" y1="0" x2="50" y2="75" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- P1 deploy -->
   <line x1="50" y1="463" x2="50" y2="600" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- P2 deploy -->
+
   <line x1="0" y1="215" x2="225" y2="215" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- LEFT 18 top 16 -->
   <line x1="240" y1="0" x2="240" y2="200" stroke="white" stroke-width="4"  style="stroke-dasharray: 10 5;" /><!-- left 18 TOP 16 -->
 
