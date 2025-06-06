@@ -19,6 +19,13 @@
           </ul>
         </template>
       </template>
+      <h2 class="home-title">Custom Scenarios</h2>
+      <ul class="scenarios-list">
+        <li class="scenario-item">
+          <router-link
+            :to="'/warmachine/scenario/king-of-the-hill'">King of the Hill</router-link>
+        </li>
+      </ul>
     </section>
     <section class="factions-section">
       <h1 class="home-title">Select a faction</h1>

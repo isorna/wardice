@@ -1,5 +1,6 @@
 import factions from '@/data/warmachine/factions.json'
 import steamroller from '@/data/warmachine/steamroller.json'
+import scenarios from '@/data/warmachine/scenarios.json'
 
 const HomePage = () => import('@/views/warmachine/HomePage.vue')
 const FactionPage = () => import('@/views/warmachine/FactionPage.vue')
@@ -20,7 +21,12 @@ export const routesWarmachine = [
         .toLowerCase()
         .replace(/ /g, '-')
         .replace(/[^\w-]+/g, ''))
-      if (to?.params?.scenario && slugs.indexOf(to.params.scenario) >= 0) {
+      const customScenarioSlugs = scenarios.map((item) => item.name
+        .toLowerCase()
+        .replace(/ /g, '-')
+        .replace(/[^\w-]+/g, ''))
+      if (to?.params?.scenario &&
+        (slugs.indexOf(to.params.scenario) >= 0 || customScenarioSlugs.indexOf(to.params.scenario) >= 0)) {
         // console.log(to?.params?.scenario)
       } else {
         return { name: 'NotFound' }
@@ -30,7 +36,9 @@ export const routesWarmachine = [
       scenario: steamroller.sections[5].scenarios.find((item) => item.name
         .toLowerCase()
         .replace(/ /g, '-')
-        .replace(/[^\w-]+/g, '') === scenario.params.scenario)
+        .replace(/[^\w-]+/g, '') === scenario.params.scenario) || scenarios.find((item) => item.name
+        .toLowerCase()
+        .replace(/ /g, '-') === scenario.params.scenario)
     })
   },
   {
