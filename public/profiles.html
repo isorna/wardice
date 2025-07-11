@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warmachine Profiles Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 900px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); min-height: 100vh; }
+        h1, h2, h3, h4 { color: #5a2a2a; }
+        h1 { text-align: center; }
+        .controls { text-align: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #eee; }
+        .load-button { font-size: 16px; padding: 10px 20px; margin: 5px; cursor: pointer; border: 1px solid #5a2a2a; background-color: #fff; color: #5a2a2a; border-radius: 5px; }
+        .load-button:hover, .load-button.active { background-color: #5a2a2a; color: white; }
+        .card-section { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #fdfdfd; }
+        .card-title { background-color: #e0e0e0; padding: 5px 10px; border-radius: 3px; margin-top: 0; }
+        .stat-block, .weapon-block, .ability-block, .spell-block { margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #8c6239; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f0f0f0; }
+        .life-indicators { margin-bottom: 15px; padding: 10px; border: 1px dashed #ccc; }
+        .life-box { display: inline-block; width: 20px; height: 20px; border: 1px solid #555; margin: 2px; cursor: pointer; text-align: center; line-height: 20px; font-size: 10px; user-select: none; }
+        .marked { background-color: #ff7675 !important; color: white; }
+        .reset-button { padding: 5px 10px; background-color: #5a2a2a; color: white; border: none; border-radius: 3px; cursor: pointer; margin-top: 5px; }
+        .reset-button:hover { background-color: #8c6239; }
+        .back-link { display: inline-block; margin-bottom: 15px; padding: 8px 15px; background-color: #777; color: white; text-decoration: none; border-radius: 4px; }
+        .back-link:hover { background-color: #555; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Warmachine Profiles Viewer</h1>
+
+        <div class="controls">
+            <h2>Select Army File</h2>
+            <button class="load-button" data-file="data/warmachine/profiles/cryx/cryx.dark-host.profiles.json">Cryx - Dark Host</button>
+            <button class="load-button" data-file="data/warmachine/profiles/skorne/skorne.exalted.profiles.json">Skorne - Exalted</button>
+        </div>
+
+        <div id="army-list-container">
+            <p style="text-align:center;">Please select an army file to view its profiles.</p>
+        </div>
+
+        <div id="card-details-container"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let abilitiesData = {};
+            let spellsData = {};
+
+            // --- DATA LOADING ---
+            async function loadCoreData() {
+                try {
+                    const [abilitiesRes, spellsRes] = await Promise.all([
+                        fetch('data/warmachine/abilities/abilities.json'),
+                        fetch('data/warmachine/spells/spells.json')
+                    ]);
+                    abilitiesData = await abilitiesRes.json();
+                    spellsData = await spellsRes.json();
+                } catch (error) {
+                    console.error("Error loading core data (abilities.json/spells.json):", error);
+                    document.getElementById('army-list-container').innerHTML = `<p style="color:red; text-align:center;">Error: Could not load core files (abilities.json, spells.json). Make sure they are in the same directory and you are running a local server.</p>`;
+                }
+            }
+
+            async function loadAndDisplayArmy(fileName) {
+                try {
+                    const response = await fetch(fileName);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const armyData = await response.json();
+
+                    document.querySelectorAll('.load-button').forEach(b => b.classList.remove('active'));
+                    document.querySelector(`[data-file="${fileName}"]`).classList.add('active');
+
+                    displayArmyList(armyData, fileName);
+                    displayCardDetails(armyData, fileName);
+                    rebindInteractivity();
+                    showView('list');
+                } catch (error) {
+                    console.error(`Error loading army file (${fileName}):`, error);
+                    document.getElementById('army-list-container').innerHTML = `<p style="color:red; text-align:center;">Error: Could not load ${fileName}. Make sure it is in the same directory and you are running a local server.</p>`;
+                    document.getElementById('card-details-container').innerHTML = '';
+                }
+            }
+
+            // --- DISPLAY LOGIC ---
+            function displayArmyList(armyData, fileName) {
+                const container = document.getElementById('army-list-container');
+                const armyName = fileName.replace('.json', '').replace(/^\w/, c => c.toUpperCase());
+
+                const groupedProfiles = {};
+                for (const key in armyData) {
+                    const profile = armyData[key];
+                    const type = profile.type || 'unknown';
+                    if (!groupedProfiles[type]) {
+                        groupedProfiles[type] = [];
+                    }
+                    groupedProfiles[type].push({ key, data: profile });
+                }
+
+                const groupOrder = ['warcaster', 'warlock', 'warjack', 'warbeast', 'battleEngine', 'unit', 'commandAttachment', 'solo'];
+
+                let html = `<h2>${armyName.replace('-', ' ')} Profiles</h2>
+                            <table>
+                                <thead>
+                                    <tr><th>PC</th><th>FA</th><th>Card</th><th>View</th></tr>
+                                </thead>
+                                <tbody>`;
+
+                groupOrder.forEach(groupType => {
+                    const profilesOfType = groupedProfiles[groupType];
+                    if (profilesOfType && profilesOfType.length > 0) {
+                        const headerText = groupType.charAt(0).toUpperCase() + groupType.slice(1) + 's';
+                        html += `<tr class="group-header"><td colspan="4">${headerText}</td></tr>`;
+
+                        profilesOfType.forEach(item => {
+                            const points = item.data.points || '—';
+                            const fa = (item.data.fieldAllowance || '—').toString().toUpperCase();
+                            html += `
+                                <tr>
+                                    <td>${points}</td>
+                                    <td>${fa}</td>
+                                    <td>${item.data.name}</td>
+                                    <td><a href="#card-${item.key}" class="view-card-link" data-card-id="${item.key}">View Card</a></td>
+                                </tr>`;
+                        });
+                    }
+                });
+
+                html += `</tbody></table>`;
+                container.innerHTML = html;
+            }
+
+            function displayCardDetails(armyData, fileName) {
+                const container = document.getElementById('card-details-container');
+                let html = '';
+
+                for (const key in armyData) {
+                    const profile = armyData[key];
+                    let cardHtml = `<div id="card-${key}" class="card-section hidden">
+                        <a href="#" class="back-link">← Back to Army List</a>`;
+
+                    // Handle single profile vs multiple (e.g., dragoons)
+                    if (profile.profiles) {
+                         cardHtml += buildMultiProfileCard(profile);
+                    } else {
+                         cardHtml += buildSingleProfileCard(profile);
+                    }
+
+                    cardHtml += `</div>`;
+                    html += cardHtml;
+                }
+                container.innerHTML = html;
+            }
+
+            // --- HTML BUILDERS ---
+            function buildSingleProfileCard(profile) {
+                const keywords = profile.keywords ? profile.keywords.join(', ') : 'N/A';
+                let cardHtml = `<h3 class="card-title">${profile.name} (${keywords})</h3>
+                    <p>Field Allowance: ${profile.fieldAllowance || 'N/A'} | Point Cost: ${profile.points || 'N/A'}</p>`;
+
+                if (profile.statistics && profile.statistics.health) {
+                    cardHtml += buildHealthTracker(profile.name, profile.statistics.health);
+                }
+
+                // cardHtml += buildStatBlock(profile.statistics);
+                cardHtml += `<div class="stat-block">${buildStatBlock(profile.statistics)}</div>`;
+                cardHtml += buildAbilitiesBlock(profile.abilities);
+                cardHtml += buildFeatBlock(profile.feat);
+                cardHtml += buildWeaponsBlock(profile.weapons);
+                cardHtml += buildSpellsBlock(profile.spells, "Spells");
+                cardHtml += buildSpellsBlock(profile.animus ? [profile.animus] : [], "Animus");
+
+                return cardHtml;
+            }
+
+             function buildMultiProfileCard(profile) {
+                const keywords = profile.keywords ? profile.keywords.join(', ') : 'N/A';
+                let cardHtml = `<h3 class="card-title">${profile.name} (${keywords})</h3>
+                     <p>Field Allowance: ${profile.fieldAllowance || 'N/A'} | Point Cost: ${profile.points || 'N/A'}</p>`;
+
+                for (const profileKey in profile.profiles) {
+                    const subProfile = profile.profiles[profileKey];
+                    cardHtml += `<h4>${profileKey.charAt(0).toUpperCase() + profileKey.slice(1)} Profile</h4>`;
+                    if (subProfile.health) {
+                         cardHtml += buildHealthTracker(`${profile.name}-${profileKey}`, subProfile.health);
+                    }
+                    // cardHtml += buildStatBlock(subProfile.statistics);
+                    cardHtml += `<div class="stat-block">${buildStatBlock(subProfile.statistics)}</div>`;
+                }
+
+                // Shared sections
+                cardHtml += buildAbilitiesBlock(profile.abilities);
+                cardHtml += buildWeaponsBlock(profile.weapons);
+                cardHtml += buildSpellsBlock(profile.spells, "Spells");
+
+                return cardHtml;
+            }
+
+            function buildHealthTracker(id, health) {
+                let healthHtml = `<div class="life-indicators" data-card-id="${id.replace(/\s+/g, '-')}"><h4>Health: ${health}</h4>`;
+                for (let i = 0; i < health; i++) {
+                    healthHtml += `<div class="life-box"></div>`;
+                }
+                healthHtml += `<br><button class="reset-button">Reset Health</button></div>`;
+                return healthHtml;
+            }
+
+            function buildStatBlock(stats) {
+                if (!stats) return '';
+
+                const statKeys = Object.keys(stats);
+                if (statKeys.length === 0) return '';
+
+                // A preferred order to make stats look consistent. Others will be appended.
+                const preferredOrder = [
+                    'speed', 'meleeAttack', 'rangedAttack', 'arcaneAttack', 'defense', 'armour',
+                    'fury', 'threshold', 'controlRange', 'health',
+                    'range', 'rateOfFire', 'areaOfEffect', 'power'
+                ];
+
+                statKeys.sort((a, b) => {
+                    const indexA = preferredOrder.indexOf(a);
+                    const indexB = preferredOrder.indexOf(b);
+                    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+                    if (indexA !== -1) return -1;
+                    if (indexB !== -1) return 1;
+                    return a.localeCompare(b); // Sort alphabetically if not in preferred list
+                });
+
+                let statHtml = '';
+                statKeys.forEach(statKey => {
+                    // Don't display health here, it has its own section
+                    if (statKey === 'health') return;
+
+                    const formattedKey = statKey.replace(/([A-Z])/g, ' $1').toUpperCase();
+                    statHtml += `<strong>${formattedKey}:</strong> ${stats[statKey]} | `;
+                });
+
+                return statHtml.slice(0, -3); // Remove trailing ' | '
+            }
+
+            function buildAbilitiesBlock(abilities) {
+                if (!abilities || abilities.length === 0) return '';
+                let blockHtml = '<div class="ability-block"><h4>Abilities</h4>';
+                abilities.forEach(abilityItem => {
+                    const abilityKey = Array.isArray(abilityItem) ? abilityItem[0] : abilityItem;
+                    const ability = abilitiesData[abilityKey];
+                    if (ability) {
+                         blockHtml += `<p><strong>${ability.name}:</strong> ${ability.description}</p>`;
+                    } else {
+                         blockHtml += `<p><strong>${abilityKey.replace(/([A-Z])/g, ' $1')}:</strong> (Full text not found)</p>`;
+                    }
+                });
+                return blockHtml + '</div>';
+            }
+
+            function buildFeatBlock(feat) {
+                if (!feat) return '';
+                return `<div class="ability-block"><h4>FEAT - ${feat.name}</h4><p>${feat.rules}</p></div>`;
+            }
+
+            function buildWeaponsBlock(weapons) {
+                if (!weapons) return '';
+                let blockHtml = '';
+                for (const weaponKey in weapons) {
+                    const weapon = weapons[weaponKey];
+                    blockHtml += `<div class="weapon-block"><h4>${weapon.name} ${weapon.quantity > 1 ? `x${weapon.quantity}` : ''}</h4>`;
+                    blockHtml += `<p>${buildStatBlock(weapon.statistics)}</p>`;
+                    if (weapon.abilities) {
+                        weapon.abilities.forEach(abilityKey => {
+                            const ability = abilitiesData[abilityKey];
+                            if(ability) {
+                                blockHtml += `<p><strong>${ability.name}:</strong> ${ability.description}</p>`;
+                            }
+                        });
+                    }
+                    blockHtml += '</div>';
+                }
+                return blockHtml;
+            }
+
+            function buildSpellsBlock(spells, title) {
+                if (!spells || spells.length === 0) return '';
+                let blockHtml = `<div class="spell-block"><h4>${title}</h4>`;
+                 spells.forEach(spellKey => {
+                    // Animus are stored in abilities.json, spells in spells.json
+                    const spell = title === "Animus" ? abilitiesData[spellKey] : spellsData[spellKey];
+                    if (spell) {
+                        blockHtml += `<p><strong>${spell.name}:</strong> ${spell.description}</p>`;
+                    } else {
+                        blockHtml += `<p><strong>${spellKey.replace(/([A-Z])/g, ' $1')}:</strong> (Full text not found)</p>`;
+                    }
+                });
+                return blockHtml + '</div>';
+            }
+
+
+            // --- INTERACTIVITY ---
+            function rebindInteractivity() {
+                // Damage markers
+                document.querySelectorAll('.life-box').forEach(el => {
+                    el.addEventListener('click', () => el.classList.toggle('marked'));
+                });
+
+                // Reset buttons
+                document.querySelectorAll('.reset-button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const parent = e.target.closest('.life-indicators');
+                        parent.querySelectorAll('.life-box').forEach(box => box.classList.remove('marked'));
+                    });
+                });
+
+                // View card links
+                document.querySelectorAll('.view-card-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        showView(e.target.dataset.cardId);
+                    });
+                });
+
+                // Back to list links
+                 document.querySelectorAll('.back-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        showView('list');
+                    });
+                });
+            }
+
+            function showView(viewId) {
+                if (viewId === 'list') {
+                    document.getElementById('army-list-container').classList.remove('hidden');
+                    document.getElementById('card-details-container').classList.add('hidden');
+                    document.querySelectorAll('.card-section').forEach(card => card.classList.add('hidden'));
+                } else {
+                    document.getElementById('army-list-container').classList.add('hidden');
+                    document.getElementById('card-details-container').classList.remove('hidden');
+                    document.querySelectorAll('.card-section').forEach(card => card.classList.add('hidden'));
+                    document.getElementById(`card-${viewId}`).classList.remove('hidden');
+                }
+                 window.scrollTo(0, 0);
+            }
+
+            // --- INITIALIZATION ---
+            function init() {
+                loadCoreData();
+                document.querySelectorAll('.load-button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        loadAndDisplayArmy(e.target.dataset.file);
+                    });
+                });
+            }
+
+            init();
+        });
+    </script>
+</body>
+</html>
