@@ -23,7 +23,7 @@
       <ul class="scenarios-list">
         <li class="scenario-item">
           <router-link
-            :to="'/warmachine/scenario/king-of-the-hill'">King of the Hill</router-link>
+            :to="'/warmachine/scenario/king-of-the-hill'">King of the Hill (3 players)</router-link>
         </li>
       </ul>
     </section>

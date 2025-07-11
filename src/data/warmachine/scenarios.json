@@ -1,7 +1,7 @@
 [
   {
     "id": "custom_scenario_1",
-    "name": "KING OF THE HILL",
+    "name": "KING OF THE HILL (3 players)",
     "page": 0,
     "map_image_filename": "custom_scenario_1_king_of_the_hill_map.svg",
     "rules": {
