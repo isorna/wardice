@@ -16,6 +16,7 @@
   "WARGEAR_ABILITIES": "WARGEAR ABILITIES",
   "CORE": "CORE",
   "FACTION": "FACTION",
+  "FACTION_TITLE": "Faction",
   "INVULNERABLE": "INVULNERABLE",
   "INVULNERABLE_SAVE": "INVULNERABLE SAVE",
   "DAMAGED": "DAMAGED",
@@ -31,6 +32,7 @@
   "DETACHMENT": "DETACHMENT",
   "DETACHMENTS": "DETACHMENTS",
   "RULES": "RULES",
+  "RULES_TITLE": "Rules",
   "STRATAGEMS": "STRATAGEMS",
   "CHARGE": "CHARGE",
   "FIGHT": "FIGHT",
@@ -55,5 +57,11 @@
   "HELP_FACTION_STEP_5": "View or hide this faction's rules.",
   "HELP_FACTION_STEP_6": "View or hide this faction's detachments.",
   "HELP_FACTION_STEP_7": "View or hide this faction's stratagems.",
-  "NO_TITLE": "No saved list yet"
+  "NO_TITLE": "No saved list yet",
+	"STEAMROLLER_2025": "Steamroller 2025",
+	"SR2025_TITLE": "SR 2025",
+	"SCENARIO_TITLE": "Scenario",
+	"ARMY_BUILDER_TITLE": "Army Builder",
+	"LORE_TITLE": "Lore",
+	"ARMIES": "Armies"
 }

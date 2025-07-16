@@ -1,9 +1,26 @@
 <template>
   <article class="page">
-    <site-header path="/warmachine" :title="pageTitle" @show-help="tour.resetTour()" />
-    <section>
-      <h1>WORK IN PROGRESS</h1>
+    <site-header path="/warmachine/army-builder" :title="pageTitle" @show-help="tour.resetTour()" />
+    <section class="faction-section">
+      <h1 class="section-title">{{ factionName }}</h1>
+			<p>{{ selectedFactionData.description }}</p>
+			<h2 class="section-title__secondary">{{ i18n.ARMIES }}</h2>
+			<ul class="faction-list">
+				<li class="faction-list__item faction-list__item--horizontal" v-for="army in selectedFactionData.armies" :key="army.id">
+          <router-link
+            :to="`/warmachine/faction/${factionId}/${army.slug}`"><h3>{{ army.name }}</h3></router-link>
+					<p>{{ army.description }}</p>
+				</li>
+			</ul>
     </section>
+		<router-view v-slot="{ Component }">
+			<transition
+				name="custom-classes"
+				enter-active-class="animate__animated animate__fadeIn"
+				leave-active-class="animate__animated animate__fadeOut">
+				<component :is="Component" />
+			</transition>
+		</router-view>
     <PageFooter />
   </article>
 </template>
@@ -104,7 +121,9 @@ const factionId = route.params.faction
 //     : []
 //   return returnValue
 // })
-const pageTitle = computed(() => `Warmachine: ${factions.filter((item) => item.slug === factionId)[0].name}`)
+const selectedFactionData = computed(() => factions.filter((item) => item.slug === factionId)[0])
+const factionName = computed(() => selectedFactionData.value.name)
+const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.FACTION_TITLE}`)
 // const tour = ref(null)
 // const tourButtonLabels = computed(() => {
 //   return {

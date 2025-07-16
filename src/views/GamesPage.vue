@@ -2,8 +2,8 @@
   <article class="page">
     <site-header path="/" :title="i18n.GAMES_TITLE" @show-help="tour.resetTour()" />
     <section class="games-section">
-      <h2>{{ i18n.GAMES_P1 }}</h2>
-      <ul class="games-list">
+      <h2 class="section-title">{{ i18n.GAMES_P1 }}</h2>
+      <ul class="links-list">
         <!-- <li>
           <strong><router-link data-step="1" to="/40k">Warhammer 40.000 10th edition</router-link></strong>
           &nbsp;property of <a href="https://www.games-workshop.com" target="_blank">&copy; Games Workshop Ltd.</a>
@@ -77,16 +77,6 @@ function resetAppData () {
 
 .games-section {
   position: relative;
-}
-
-.games-list {
-  margin-top: 20px;
-  font-size: 20px;
-  line-height: 40px;
-}
-
-.games-list li {
-  list-style-type: square;
 }
 
 .reset-data {

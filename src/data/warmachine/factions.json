@@ -1,6 +1,26 @@
 [
   {
     "name": "Skorne",
-    "slug": "skorne"
-  }
+    "slug": "skorne",
+		"description": "TODO: Skorne faction description",
+		"armies": [
+			{
+				"name": "Exalted",
+				"slug": "exalted",
+				"description": "TODO: Exalted army description"
+			}
+		]
+  },
+	{
+		"name": "Cryx",
+		"slug": "cryx",
+		"description": "TODO: Cryx faction description",
+		"armies": [
+			{
+				"name": "Dark Host",
+				"slug": "dark-host",
+				"description": "TODO: Dark Host army description"
+			}
+		]
+	}
 ]

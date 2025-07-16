@@ -183,6 +183,75 @@ footer {
   width: 100vw;
 }
 
+/* UI Components */
+
+.section-title {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.section-title__secondary {
+	font-size: 24px;
+	line-height: 32px;
+}
+
+.links-list {
+  display: flex;
+  flex-flow: column;
+  font-size: 24px;
+  line-height: 40px;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  padding-left: 2rem;
+  gap: 1rem;
+
+	li {
+		list-style-type: disc;
+	}
+
+  &:is(ol) > li {
+    list-style-type: decimal;
+  }
+}
+
+.faction-list {
+  display: flex;
+  flex-flow: column;
+  font-size: 30px;
+  line-height: 40px;
+  margin-top: 20px;
+  gap: 1rem;
+
+	.faction-list__item {
+		background: linear-gradient(var(--medium-blue), var(--dark-turquoise-gradient));
+		border: 1px dotted var(--border-color);
+		border-radius: 10px;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		padding: 20px;
+		gap: 20px;
+
+		a:hover,
+		a:focus,
+		a:active {
+			text-decoration: underline;
+			text-decoration-color: var(--brand-color-light);
+			text-decoration-style: dotted;
+		}
+
+		&.faction-list__item--horizontal {
+			flex-flow: column;
+
+			/*
+			background: linear-gradient(var(--dark-turquoise-gradient), var(--medium-blue));
+			border: 2px solid var(--brand-color); */
+		}
+	}
+
+}
+
+
 /*
 * dark mode image styles
 html.dark Icon {
