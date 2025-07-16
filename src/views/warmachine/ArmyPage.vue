@@ -1,60 +1,127 @@
 <template>
-	<section class="army-section">
-		<section v-if="error">
-      <p class="error-message"><strong>{{ i18n.ERROR_TITLE }}:</strong> {{ error.message }}</p>
+  <section class="army-section">
+    <section v-if="error">
+      <p class="error-message"><strong>Error:</strong> {{ error.message }}</p>
     </section>
-    <template v-else-if="data">
-			<ul class="items-list">
-				<li class="items-list__item" v-for="profile in filteredProfiles" :key="profile.id">
-					<h2>{{ profile.data.name }}</h2>
-				</li>
-			</ul>
-		</template>
-	</section>
+    <template v-else-if="profiles">
+      <div class="builder-view-container">
+        <div id="army-list-container">
+          <ProfileList
+            :profiles="profiles"
+            :army-list="armyList"
+            @add-to-army="addToArmy"
+            @view-profile="viewProfile"
+          />
+        </div>
+        <div id="builder-container">
+          <ArmyBuilder
+            :army-list="armyList"
+            :profiles="profiles"
+            @remove-from-army="removeFromArmy"
+            @save-list="saveArmyList"
+            v-model:armyList="armyList"
+          />
+        </div>
+      </div>
+      <div id="card-details-container" v-if="selectedProfileKey">
+        <ProfileCard
+          :profile="profiles[selectedProfileKey]"
+          :profile-key="selectedProfileKey"
+          :abilities-data="abilities"
+          :spells-data="spells"
+          @close-card="selectedProfileKey = null"
+        />
+      </div>
+    </template>
+  </section>
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useFetch } from '@/helpers/useFetch.js'
-const route = useRoute()
-const factionId = route.params.faction
-const armyId = route.params.army
-const dataHost = 'https://raw.githubusercontent.com/isorna/wardice/refs/heads/army-builder/src/data/warmachine/profiles'
-const API = computed(() => {
-  return route?.params?.faction === undefined || route?.params?.army === undefined
-    ? undefined
-    : `${dataHost}/${factionId}/${factionId}.${armyId}.profiles.json?${Date.now()}`
-		// TODO: averiguar porqué no carga desde local:
-    // : `@/data/warmachine/profiles/${factionId}.${armyId}.profiles.json?${Date.now()}`
-})
-const { data, error } = useFetch(API)
+import { computed, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import { useFetch } from '@/helpers/useFetch.js';
+import ProfileList from '@/components/warmachine/ProfileList.vue';
+import ArmyBuilder from '@/components/warmachine/ArmyBuilder.vue';
+import ProfileCard from '@/components/warmachine/ProfileCard.vue';
 
-const filteredProfiles = computed(() => {
-	// data.value is an keyed object, translate to an array of objects
-	const parsedDataValue =  Object.entries(data.value).map(([key, value]) => ({ id: key, data: value }))
-  const returnValue = (Array.isArray(parsedDataValue) && parsedDataValue.length > 0)
-    ? parsedDataValue
-      // .filter((profile) => profile.name.toLowerCase().indexOf(nameFilter.value.toLowerCase()) >= 0)
-      // .map((profile, index) => {
-      //   return {
-      //     // TODO: crear este dato directamente en los JSON?
-      //     faction: factionId,
-      //     ...profile
-      //     // TODO: transformar el array de puntos para que incluya las opciones de wargear?
-      //   }
-      // })
-      // .filter((profile) => {
-      //   return activeList.value === undefined ||
-      //     activeList.value.profiles === undefined ||
-      //     activeList.value.profiles.length === 0 ||
-      //     !appStore.isFilterVisible ||
-      //     (activeList.value.profiles.length > 0 &&
-      //     appStore.isFilterVisible &&
-      //     activeList.value.profiles
-      //       .findIndex((item) => item.id === profile.id) > -1)
-      // })
-    : []
-  return returnValue
-})
+const route = useRoute();
+const factionId = route.params.faction;
+const armyId = route.params.army;
+
+const dataHost = 'https://raw.githubusercontent.com/isorna/wardice/refs/heads/army-builder/src/data/warmachine';
+const profilesApi = computed(() => `${dataHost}/profiles/${factionId}/${factionId}.${armyId}.profiles.json?${Date.now()}`);
+const abilitiesApi = computed(() => `${dataHost}/abilities/${factionId}.${armyId}.abilities.json?${Date.now()}`);
+const spellsApi = computed(() => `${dataHost}/spells/${factionId}.${armyId}.spells.json?${Date.now()}`);
+
+const { data: profiles, error } = useFetch(profilesApi);
+const { data: abilities } = useFetch(abilitiesApi);
+const { data: spells } = useFetch(spellsApi);
+
+const armyList = ref({
+  id: `list_${Date.now()}`,
+  name: 'Untitled List',
+  faction: factionId,
+  theme: armyId,
+  totalPoints: 0,
+  profiles: {},
+});
+const selectedProfileKey = ref(null);
+
+const addToArmy = (profileKey) => {
+  const profile = profiles.value[profileKey];
+  if (!profile) return;
+
+  const currentCount = armyList.value.profiles[profileKey] || 0;
+  armyList.value.profiles[profileKey] = currentCount + 1;
+  armyList.value.totalPoints += profile.points || 0;
+};
+
+const removeFromArmy = (profileKey) => {
+  const profile = profiles.value[profileKey];
+  if (!profile) return;
+
+  const currentCount = armyList.value.profiles[profileKey];
+  if (currentCount > 0) {
+    armyList.value.profiles[profileKey] = currentCount - 1;
+    armyList.value.totalPoints -= profile.points || 0;
+    if (armyList.value.profiles[profileKey] === 0) {
+      delete armyList.value.profiles[profileKey];
+    }
+  }
+};
+
+const viewProfile = (profileKey) => {
+  selectedProfileKey.value = profileKey;
+};
+
+const saveArmyList = () => {
+  const savedLists = JSON.parse(localStorage.getItem('warmachine_lists')) || {};
+  const listKey = `${armyList.value.faction}_${armyList.value.theme}`.toLowerCase().replace(/\s+/g, '_');
+  if (!savedLists[listKey]) {
+    savedLists[listKey] = [];
+  }
+  const listIndex = savedLists[listKey].findIndex(l => l.id === armyList.value.id);
+  if (listIndex > -1) {
+    savedLists[listKey][listIndex] = { ...armyList.value };
+  } else {
+    savedLists[listKey].push({ ...armyList.value });
+  }
+  localStorage.setItem('warmachine_lists', JSON.stringify(savedLists));
+  alert(`List "${armyList.value.name}" saved!`);
+};
+
+// TODO: Implement load list functionality
 </script>
+
+<style scoped>
+.builder-view-container {
+  display: flex;
+  gap: 20px;
+}
+#army-list-container {
+  flex: 2;
+}
+#builder-container {
+  flex: 1;
+}
+</style>
