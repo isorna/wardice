@@ -77,19 +77,7 @@
       "rangedAttack": 5,
       "defense": 13,
       "armour": 17,
-      "health": {
-        "total": 30,
-        "grid": {
-          "columns": [
-            { "boxes": 4, "systems": { "4": "L" } },
-            { "boxes": 5, "systems": { "3": "L", "4": "L", "5": "M" } },
-            { "boxes": 6, "systems": { "5": "M", "6": "M" } },
-            { "boxes": 6, "systems": { "5": "C", "6": "C" } },
-            { "boxes": 5, "systems": { "3": "R", "4": "R", "5": "C" } },
-            { "boxes": 4, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 30
     },
     "advantages": [
       "construct",
@@ -106,7 +94,11 @@
           "rateOfFire": 1,
           "power": 14
         },
-        "abilities": [["attackType", "burster", "distillation", "psychoVenom"]]
+        "abilities": [
+          "attackTypeBurster",
+          "attackTypeDistillation",
+          "attackTypePsychoVenom"
+        ]
       },
       "necrojector": {
         "type": "melee",
@@ -117,7 +109,11 @@
           "range": 2,
           "power": 16
         },
-        "abilities": [["attackType", "burster", "distillation", "psychoVenom"]]
+        "abilities": [
+          "attackTypeBurster",
+          "attackTypeDistillation",
+          "attackTypePsychoVenom"
+        ]
       }
     }
   },
@@ -142,19 +138,7 @@
       "meleeAttack": 5,
       "defense": 14,
       "armour": 14,
-      "health": {
-        "total": 22,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "2": "F", "3": "F" } },
-            { "boxes": 3, "systems": { "2": "F", "3": "C" } },
-            { "boxes": 4, "systems": { "3": "C", "4": "C" } },
-            { "boxes": 4, "systems": { "3": "A", "4": "M" } },
-            { "boxes": 3, "systems": { "2": "A", "3": "M" } },
-            { "boxes": 3, "systems": { "2": "M", "3": "M" } }
-          ]
-        }
-      }
+      "health": 22
     },
     "advantages": [
       "construct",
@@ -198,19 +182,7 @@
       "rangedAttack": 5,
       "defense": 14,
       "armour": 14,
-      "health": {
-        "total": 22,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "2": "F", "3": "F" } },
-            { "boxes": 3, "systems": { "2": "F", "3": "C" } },
-            { "boxes": 4, "systems": { "3": "C", "4": "C" } },
-            { "boxes": 4, "systems": { "3": "A", "4": "M" } },
-            { "boxes": 3, "systems": { "2": "A", "3": "M" } },
-            { "boxes": 3, "systems": { "2": "M", "3": "M" } }
-          ]
-        }
-      }
+      "health": 22
     },
     "advantages": [
       "construct",
@@ -261,19 +233,7 @@
       "rangedAttack": 5,
       "defense": 12,
       "armour": 18,
-      "health": {
-        "total": 30,
-        "grid": {
-          "columns": [
-            { "boxes": 4, "systems": { "4": "L" } },
-            { "boxes": 5, "systems": { "3": "L", "4": "L", "5": "M" } },
-            { "boxes": 6, "systems": { "5": "M", "6": "M" } },
-            { "boxes": 6, "systems": { "5": "C", "6": "C" } },
-            { "boxes": 5, "systems": { "3": "R", "4": "R", "5": "C" } },
-            { "boxes": 4, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 30
     },
     "advantages": [
       "construct",
@@ -334,19 +294,7 @@
       "meleeAttack": 7,
       "defense": 14,
       "armour": 18,
-      "health": {
-        "total": 30,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "3": "L" } },
-            { "boxes": 5, "systems": { "3": "L", "4": "L", "5": "M" } },
-            { "boxes": 6, "systems": { "5": "M", "6": "M" } },
-            { "boxes": 6, "systems": { "5": "C", "6": "C" } },
-            { "boxes": 5, "systems": { "3": "R", "4": "R", "5": "C" } },
-            { "boxes": 3, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 30
     },
     "advantages": [
       "construct",
@@ -395,19 +343,7 @@
       "meleeAttack": 7,
       "defense": 13,
       "armour": 17,
-      "health": {
-        "total": 30,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "3": "L" } },
-            { "boxes": 5, "systems": { "3": "L", "4": "L", "5": "M" } },
-            { "boxes": 6, "systems": { "5": "M", "6": "M" } },
-            { "boxes": 6, "systems": { "5": "C", "6": "C" } },
-            { "boxes": 5, "systems": { "3": "R", "4": "R", "5": "C" } },
-            { "boxes": 3, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 30
     },
     "advantages": [
       "construct",
@@ -464,31 +400,7 @@
       "rangedAttack": 5,
       "defense": 10,
       "armour": 19,
-      "health": {
-        "total": 68,
-        "grid": {
-          "L": {
-            "columns": [
-              { "boxes": 4, "systems": { "3": "L", "4": "L" } },
-              { "boxes": 4, "systems": { "3": "L", "4": "C" } },
-              { "boxes": 4, "systems": { "2": "L", "3": "C", "4": "M" } },
-              { "boxes": 5, "systems": { "3": "L", "4": "C", "5": "M" } },
-              { "boxes": 6, "systems": { "3": "S", "4": "S", "5": "C", "6": "M" } },
-              { "boxes": 6, "systems": { "3": "S", "4": "C", "5": "C", "6": "M" } }
-            ]
-          },
-          "R": {
-            "columns": [
-              { "boxes": 6, "systems": { "3": "S", "4": "C", "5": "C", "6": "M" } },
-              { "boxes": 6, "systems": { "3": "S", "4": "S", "5": "C", "6": "M" } },
-              { "boxes": 5, "systems": { "3": "R", "4": "C", "5": "M" } },
-              { "boxes": 4, "systems": { "2": "R", "3": "C", "4": "M" } },
-              { "boxes": 4, "systems": { "3": "R", "6": "C" } },
-              { "boxes": 4, "systems": { "3": "R", "6": "R" } }
-            ]
-          }
-        }
-      }
+      "health": 68
     },
     "advantages": [
       "construct",
@@ -564,19 +476,7 @@
       "meleeAttack": 8,
       "defense": 13,
       "armour": 18,
-      "health": {
-        "total": 30,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "3": "L" } },
-            { "boxes": 5, "systems": { "3": "L", "4": "L", "5": "M" } },
-            { "boxes": 6, "systems": { "5": "M", "6": "M" } },
-            { "boxes": 6, "systems": { "5": "C", "6": "C" } },
-            { "boxes": 5, "systems": { "3": "R", "4": "R", "5": "C" } },
-            { "boxes": 3, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 30
     },
     "advantages": [
       "construct",
@@ -635,19 +535,7 @@
       "rangedAttack": 5,
       "defense": 14,
       "armour": 14,
-      "health": {
-        "total": 22,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "2": "F", "3": "F" } },
-            { "boxes": 3, "systems": { "2": "F", "3": "C" } },
-            { "boxes": 4, "systems": { "3": "C", "4": "C" } },
-            { "boxes": 4, "systems": { "3": "A", "4": "M" } },
-            { "boxes": 3, "systems": { "2": "A", "3": "M" } },
-            { "boxes": 3, "systems": { "2": "M", "3": "M" } }
-          ]
-        }
-      }
+      "health": 22
     },
     "advantages": [
       "construct",
@@ -699,19 +587,7 @@
       "rangedAttack": 6,
       "defense": 13,
       "armour": 17,
-      "health": {
-        "total": 30,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "3": "L" } },
-            { "boxes": 5, "systems": { "3": "L", "4": "L", "5": "M" } },
-            { "boxes": 6, "systems": { "5": "M", "6": "M" } },
-            { "boxes": 6, "systems": { "5": "C", "6": "C" } },
-            { "boxes": 5, "systems": { "3": "R", "4": "R", "5": "C" } },
-            { "boxes": 3, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 30
     },
     "advantages": [
       "construct",
@@ -777,19 +653,7 @@
       "meleeAttack": 5,
       "defense": 14,
       "armour": 14,
-      "health": {
-        "total": 22,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "2": "F", "3": "F" } },
-            { "boxes": 3, "systems": { "2": "F", "3": "C" } },
-            { "boxes": 4, "systems": { "3": "C", "4": "C" } },
-            { "boxes": 4, "systems": { "3": "A", "4": "M" } },
-            { "boxes": 3, "systems": { "2": "A", "3": "M" } },
-            { "boxes": 3, "systems": { "2": "M", "3": "M" } }
-          ]
-        }
-      }
+      "health": 22
     },
     "advantages": [
       "construct",
@@ -833,19 +697,7 @@
       "meleeAttack": 8,
       "defense": 12,
       "armour": 18,
-      "health": {
-        "total": 30,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "3": "L" } },
-            { "boxes": 5, "systems": { "3": "L", "4": "L", "5": "M" } },
-            { "boxes": 6, "systems": { "5": "M", "6": "M" } },
-            { "boxes": 6, "systems": { "5": "C", "6": "C" } },
-            { "boxes": 5, "systems": { "3": "R", "4": "R", "5": "C" } },
-            { "boxes": 3, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 30
     },
     "advantages": [
       "construct",
@@ -900,31 +752,7 @@
       "rangedAttack": 5,
       "defense": 10,
       "armour": 19,
-      "health": {
-        "total": 68,
-        "grid": {
-          "L": {
-            "columns": [
-              { "boxes": 4, "systems": { "3": "L", "4": "L" } },
-              { "boxes": 4, "systems": { "3": "L", "4": "C" } },
-              { "boxes": 4, "systems": { "2": "L", "3": "C", "4": "M" } },
-              { "boxes": 5, "systems": { "3": "L", "4": "C", "5": "M" } },
-              { "boxes": 6, "systems": { "3": "S", "4": "S", "5": "C", "6": "M" } },
-              { "boxes": 6, "systems": { "3": "S", "4": "C", "5": "C", "6": "M" } }
-            ]
-          },
-          "R": {
-            "columns": [
-              { "boxes": 6, "systems": { "3": "S", "4": "C", "5": "C", "6": "M" } },
-              { "boxes": 6, "systems": { "3": "S", "4": "S", "5": "C", "6": "M" } },
-              { "boxes": 5, "systems": { "3": "R", "4": "C", "5": "M" } },
-              { "boxes": 4, "systems": { "2": "R", "3": "C", "4": "M" } },
-              { "boxes": 4, "systems": { "3": "R", "6": "C" } },
-              { "boxes": 4, "systems": { "3": "R", "6": "R" } }
-            ]
-          }
-        }
-      }
+      "health": 68
     },
     "advantages": [
       "construct",
@@ -1005,19 +833,7 @@
       "meleeAttack": 7,
       "defense": 13,
       "armour": 17,
-      "health": {
-        "total": 28,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "3": "L" } },
-            { "boxes": 5, "systems": { "3": "L", "4": "L", "5": "M" } },
-            { "boxes": 6, "systems": { "5": "M", "6": "M" } },
-            { "boxes": 6, "systems": { "5": "C", "6": "C" } },
-            { "boxes": 5, "systems": { "3": "R", "4": "R", "5": "C" } },
-            { "boxes": 3, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 30
     },
     "advantages": [
       "construct",
@@ -1070,19 +886,7 @@
       "meleeAttack": 7,
       "defense": 15,
       "armour": 13,
-      "health": {
-        "total": 22,
-        "grid": {
-          "columns": [
-            { "boxes": 3, "systems": { "3": "L" } },
-            { "boxes": 4, "systems": { "2": "L", "3": "L", "4": "M" } },
-            { "boxes": 3, "systems": { "2": "M", "3": "M" } },
-            { "boxes": 3, "systems": { "2": "C", "3": "C" } },
-            { "boxes": 4, "systems": { "2": "R", "3": "R", "4": "C" } },
-            { "boxes": 3, "systems": { "3": "R" } }
-          ]
-        }
-      }
+      "health": 22
     },
     "advantages": [
       "construct",
@@ -1509,7 +1313,9 @@
           "power": 12
         },
         "abilities": [
-          ["attackType", "criticalGrievousWounds", "incendiary", "phantomSeeker"]
+          "attackTypeCriticalGrievousWounds",
+          "attackTypeIncendiary",
+          "attackTypePhantomSeeker"
         ]
       }
     }

@@ -83,19 +83,7 @@
       "armour": 13,
       "fury": 2,
       "threshold": 8,
-      "health": {
-        "total": 12,
-        "grid": {
-          "columns": [
-            { "boxes": 2 },
-            { "boxes": 1 },
-            { "boxes": 3 },
-            { "boxes": 1 },
-            { "boxes": 4 },
-            { "boxes": 1 }
-          ]
-        }
-      }
+      "health": 18
     },
     "abilities": [
       [
@@ -142,19 +130,7 @@
       "armour": 12,
       "fury": 2,
       "threshold": 7,
-      "health": {
-        "total": 13,
-        "grid": {
-          "columns": [
-            { "boxes": 2 },
-            { "boxes": 1 },
-            { "boxes": 4 },
-            { "boxes": 1 },
-            { "boxes": 3 },
-            { "boxes": 1 }
-          ]
-        }
-      }
+      "health": 16
     },
     "abilities": [
       "carapace",
@@ -202,19 +178,7 @@
       "armour": 19,
       "fury": 3,
       "threshold": 9,
-      "health": {
-        "total": 28,
-        "grid": {
-          "columns": [
-            { "boxes": 5 },
-            { "boxes": 2 },
-            { "boxes": 8 },
-            { "boxes": 6 },
-            { "boxes": 5 },
-            { "boxes": 3 }
-          ]
-        }
-      }
+      "health": 28
     },
     "abilities": [
       "carapace",
@@ -273,19 +237,7 @@
       "armour": 19,
       "fury": 4,
       "threshold": 9,
-      "health": {
-        "total": 28,
-        "grid": {
-          "columns": [
-            { "boxes": 5 },
-            { "boxes": 2 },
-            { "boxes": 8 },
-            { "boxes": 6 },
-            { "boxes": 5 },
-            { "boxes": 3 }
-          ]
-        }
-      }
+      "health": 28
     },
     "abilities": [
       "carapace",
@@ -341,19 +293,7 @@
       "armour": 16,
       "fury": 3,
       "threshold": 9,
-      "health": {
-        "total": 25,
-        "grid": {
-          "columns": [
-            { "boxes": 5 },
-            { "boxes": 2 },
-            { "boxes": 6 },
-            { "boxes": 4 },
-            { "boxes": 5 },
-            { "boxes": 3 }
-          ]
-        }
-      }
+      "health": 28
     },
     "abilities": [
       "extendedControlRange"
@@ -399,19 +339,7 @@
       "armour": 14,
       "fury": 3,
       "threshold": 9,
-      "health": {
-        "total": 22,
-        "grid": {
-          "columns": [
-            { "boxes": 5 },
-            { "boxes": 2 },
-            { "boxes": 5 },
-            { "boxes": 3 },
-            { "boxes": 5 },
-            { "boxes": 2 }
-          ]
-        }
-      }
+      "health": 22
     },
     "weapons": {
       "witheringGaze": {
@@ -461,19 +389,7 @@
       "armour": 14,
       "fury": 3,
       "threshold": 8,
-      "health": {
-        "total": 22,
-        "grid": {
-          "columns": [
-            { "boxes": 5 },
-            { "boxes": 2 },
-            { "boxes": 4 },
-            { "boxes": 1 },
-            { "boxes": 6 },
-            { "boxes": 4 }
-          ]
-        }
-      }
+      "health": 22
     },
     "weapons": {
       "spiritualParalysis": {
@@ -524,19 +440,7 @@
       "armour": 19,
       "fury": 5,
       "threshold": 7,
-      "health": {
-        "total": 34,
-        "grid": {
-          "columns": [
-            { "boxes": 6 },
-            { "boxes": 4 },
-            { "boxes": 8 },
-            { "boxes": 6 },
-            { "boxes": 6 },
-            { "boxes": 4 }
-          ]
-        }
-      }
+      "health": 28
     },
     "abilities": [
       "hyperAggressive",
@@ -595,19 +499,7 @@
       "armour": 18,
       "fury": 4,
       "threshold": 9,
-      "health": {
-        "total": 30,
-        "grid": {
-          "columns": [
-            { "boxes": 5 },
-            { "boxes": 3 },
-            { "boxes": 7 },
-            { "boxes": 5 },
-            { "boxes": 6 },
-            { "boxes": 4 }
-          ]
-        }
-      }
+      "health": 28
     },
     "abilities": [
       "bondXekaar",
@@ -664,19 +556,7 @@
       "armour": 15,
       "fury": 3,
       "threshold": 9,
-      "health": {
-        "total": 21,
-        "grid": {
-          "columns": [
-            { "boxes": 4 },
-            { "boxes": 2 },
-            { "boxes": 4 },
-            { "boxes": 2 },
-            { "boxes": 6 },
-            { "boxes": 3 }
-          ]
-        }
-      }
+      "health": 22
     },
     "abilities": [
       "craftTalismanAction",
@@ -732,19 +612,7 @@
       "armour": 19,
       "fury": 4,
       "threshold": 8,
-      "health": {
-        "total": 55,
-        "grid": {
-          "columns": [
-            { "boxes": 8 },
-            { "boxes": 6 },
-            { "boxes": 12 },
-            { "boxes": 10 },
-            { "boxes": 11 },
-            { "boxes": 8 }
-          ]
-        }
-      }
+      "health": 42
     },
     "abilities": [
       "bulldoze",
@@ -802,19 +670,7 @@
       "armour": 18,
       "fury": 4,
       "threshold": 10,
-      "health": {
-        "total": 27,
-        "grid": {
-          "columns": [
-            { "boxes": 4 },
-            { "boxes": 3 },
-            { "boxes": 6 },
-            { "boxes": 4 },
-            { "boxes": 6 },
-            { "boxes": 4 }
-          ]
-        }
-      }
+      "health": 28
     },
     "abilities": [
       "blackArts",
@@ -870,19 +726,7 @@
       "armour": 20,
       "fury": 5,
       "threshold": 9,
-      "health": {
-        "total": 56,
-        "grid": {
-          "columns": [
-            { "boxes": 8 },
-            { "boxes": 5 },
-            { "boxes": 13 },
-            { "boxes": 11 },
-            { "boxes": 11 },
-            { "boxes": 8 }
-          ]
-        }
-      }
+      "health": 42
     },
     "abilities": [
       "bulldoze",
@@ -951,19 +795,7 @@
       "armour": 15,
       "fury": 3,
       "threshold": 8,
-      "health": {
-        "total": 21,
-        "grid": {
-          "columns": [
-            { "boxes": 4 },
-            { "boxes": 1 },
-            { "boxes": 5 },
-            { "boxes": 3 },
-            { "boxes": 5 },
-            { "boxes": 3 }
-          ]
-        }
-      }
+      "health": 22
     },
     "abilities": [
       "digInAction",
@@ -1007,19 +839,7 @@
       "armour": 18,
       "fury": 3,
       "threshold": 9,
-      "health": {
-        "total": 27,
-        "grid": {
-          "columns": [
-            { "boxes": 4 },
-            { "boxes": 3 },
-            { "boxes": 6 },
-            { "boxes": 4 },
-            { "boxes": 6 },
-            { "boxes": 4 }
-          ]
-        }
-      }
+      "health": 28
     },
     "weapons": {
       "tail": {
@@ -1073,19 +893,7 @@
       "armour": 14,
       "fury": 2,
       "threshold": 8,
-      "health": {
-        "total": 14,
-        "grid": {
-          "columns": [
-            { "boxes": 3 },
-            { "boxes": 1 },
-            { "boxes": 4 },
-            { "boxes": 1 },
-            { "boxes": 4 },
-            { "boxes": 1 }
-          ]
-        }
-      }
+      "health": 18
     },
     "abilities": [
       "painResponse"
@@ -1159,19 +967,7 @@
       "armour": 19,
       "fury": 4,
       "threshold": 9,
-      "health": {
-        "total": 32,
-        "grid": {
-          "columns": [
-            { "boxes": 6 },
-            { "boxes": 4 },
-            { "boxes": 7 },
-            { "boxes": 5 },
-            { "boxes": 6 },
-            { "boxes": 4 }
-          ]
-        }
-      }
+      "health": 28
     },
     "abilities": [
       "bullheaded",
@@ -1225,19 +1021,7 @@
       "armour": 19,
       "fury": 3,
       "threshold": 9,
-      "health": {
-        "total": 32,
-        "grid": {
-          "columns": [
-            { "boxes": 6 },
-            { "boxes": 4 },
-            { "boxes": 7 },
-            { "boxes": 5 },
-            { "boxes": 6 },
-            { "boxes": 4 }
-          ]
-        }
-      }
+      "health": 28
     },
     "abilities": [
       "immovableObject",
