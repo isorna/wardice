@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warmachine Army Builder</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 1200px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); min-height: 100vh; }
+        h1, h2, h3, h4 { color: #5a2a2a; }
+        h1, h2 { text-align: center; }
+        .controls { text-align: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #eee; }
+        .load-button, .action-button { font-size: 16px; padding: 10px 20px; margin: 5px; cursor: pointer; border: 1px solid #5a2a2a; background-color: #fff; color: #5a2a2a; border-radius: 5px; }
+        .load-button:hover, .load-button.active, .action-button:hover { background-color: #5a2a2a; color: white; }
+        .card-section { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #fdfdfd; }
+        .card-title { background-color: #e0e0e0; padding: 5px 10px; border-radius: 3px; margin-top: 0; }
+        .stat-block, .weapon-block, .ability-block, .spell-block { margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #8c6239; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: middle; }
+        th { background-color: #f0f0f0; }
+        th.center-col, td.center-col { text-align: center; width: 50px; }
+        .group-header td { background-color: #eee; font-weight: bold; }
+        .add-btn, .remove-btn { padding: 3px 8px; font-size: 12px; cursor: pointer; border-radius: 3px; border: 1px solid; }
+        .add-btn { background-color: #d4edda; border-color: #c3e6cb; color: #155724; }
+        .add-btn:disabled { background-color: #e2e6ea; border-color: #dae0e5; color: #6c757d; cursor: not-allowed; }
+        .remove-btn { background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; }
+
+        /* Builder & Saved Lists */
+        .builder-view-container { display: flex; gap: 20px; }
+        #army-list-container { flex: 2; }
+        #builder-container { flex: 1; border-left: 2px solid #eee; padding-left: 20px; }
+        #builder-list { list-style-type: none; padding: 0; }
+        #builder-list li { display: flex; justify-content: space-between; align-items: center; padding: 5px; border-bottom: 1px solid #f0f0f0; }
+        #builder-header { margin-bottom: 15px; }
+        #builder-header input { width: calc(100% - 10px); padding: 5px; margin-bottom: 10px; }
+        #saved-lists-container { border-top: 2px solid #eee; margin-top: 20px; padding-top: 10px; }
+        .saved-list-item { display: flex; justify-content: space-between; align-items: center; background: #f9f9f9; padding: 10px; border: 1px solid #eee; margin-bottom: 5px; border-radius: 4px; }
+        .saved-list-item button { margin-left: 5px; }
+
+        /* Damage Grid Styles */
+        .damage-grid-container, .life-indicators { margin-top: 15px; }
+        .colossal-grid-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .damage-grid-table { border-collapse: separate; border-spacing: 2px; margin: 5px auto; }
+        .damage-box { width: 30px; height: 30px; border: 1px solid #aaa; text-align: center; vertical-align: middle; font-weight: bold; cursor: pointer; background-color: #fff; -webkit-user-select: none; user-select: none; }
+        .damage-box.damaged, .life-box.damaged { background-color: #d9534f; color: white; }
+        .empty-box { width: 30px; height: 30px; border: none; background-color: transparent; }
+        .life-box { display: inline-block; width: 20px; height: 20px; border: 1px solid #aaa; background-color: #fff; margin: 2px; cursor: pointer; }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Warmachine Army Builder</h1>
+
+        <div id="saved-lists-container">
+            <h2>Saved Lists</h2>
+            <div id="saved-lists-content">
+                <p>No saved lists found.</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <h2>Start a New List</h2>
+            <button class="load-button"
+                data-faction="Skorne"
+                data-theme="Exalted"
+                data-file="data/warmachine/skorne/skorne.exalted.profiles.json"
+                data-abilities-file="data/warmachine/skorne/skorne.exalted.abilities.json"
+                data-spells-file="data/warmachine/skorne/skorne.exalted.spells.json">Skorne - Exalted</button>
+            <button class="load-button"
+                data-faction="Cryx"
+                data-theme="Dark Host"
+                data-file="data/warmachine/cryx/cryx.dark-host.profiles.json"
+                data-abilities-file="data/warmachine/cryx/cryx.dark-host.abilities.json"
+                data-spells-file="data/warmachine/cryx/cryx.dark-host.spells.json">Cryx - Dark Host</button>
+        </div>
+
+        <div id="main-view" class="hidden">
+            <div class="builder-view-container">
+                <div id="army-list-container"></div>
+                <div id="builder-container"></div>
+            </div>
+            <div id="card-details-container"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- STATE MANAGEMENT ---
+            let abilitiesData = {};
+            let spellsData = {};
+            let allProfilesData = {};
+            let currentList = {};
+
+            const initialListState = () => ({
+                id: `list_${Date.now()}`,
+                name: "Untitled List",
+                faction: "",
+                theme: "",
+                totalPoints: 0,
+                profiles: {}
+            });
+
+            // --- DATA LOADING & INITIALIZATION ---
+            async function loadFaction(button) {
+                const { faction, theme, file, abilitiesFile, spellsFile } = button.dataset;
+                try {
+                    const [profiles, abilities, spells] = await Promise.all([
+                        fetch(file).then(res => { if (!res.ok) throw new Error(`Failed to load ${file}`); return res.json(); }),
+                        fetch(abilitiesFile).then(res => { if (!res.ok) throw new Error(`Failed to load ${abilitiesFile}`); return res.json(); }),
+                        fetch(spellsFile).then(res => { if (!res.ok) throw new Error(`Failed to load ${spellsFile}`); return res.json(); })
+                    ]);
+                    allProfilesData = profiles;
+                    abilitiesData = abilities;
+                    spellsData = spells;
+                    document.querySelectorAll('.load-button').forEach(b => b.classList.remove('active'));
+                    button.classList.add('active');
+                    currentList = initialListState();
+                    currentList.faction = faction;
+                    currentList.theme = theme;
+                    displayFullBuilderUI();
+                } catch (error) {
+                    console.error(`Error loading army files for ${faction} - ${theme}:`, error);
+                    alert(`Failed to load data for ${faction} - ${theme}. Check the console for details.`);
+                }
+            }
+
+            function init() {
+                renderSavedLists();
+                document.querySelectorAll('.load-button').forEach(button => {
+                    button.addEventListener('click', (e) => loadFaction(e.target));
+                });
+            }
+
+            // --- UI RENDERING ---
+            function displayFullBuilderUI() {
+                showView('builder');
+                displayProfileList();
+                displayCardDetails();
+                renderBuilderView();
+                rebindAllInteractivity();
+            }
+
+            function displayProfileList() {
+                const container = document.getElementById('army-list-container');
+                const groupedProfiles = {};
+                for (const key in allProfilesData) {
+                    const profile = allProfilesData[key];
+                    const type = profile.type || 'unknown';
+                    if (!groupedProfiles[type]) groupedProfiles[type] = [];
+                    groupedProfiles[type].push({ key, data: profile });
+                }
+                const groupOrder = ['warcaster', 'warlock', 'warjack', 'warbeast', 'battleEngine', 'unit', 'commandAttachment', 'solo'];
+                let html = `<h2>Available Profiles</h2>
+                            <table><thead><tr><th class="center-col">PC</th><th class="center-col">FA</th><th>Card</th><th class="center-col">View</th><th class="center-col">Add</th></tr></thead><tbody>`;
+                groupOrder.forEach(groupType => {
+                    const profilesOfType = groupedProfiles[groupType];
+                    if (profilesOfType && profilesOfType.length > 0) {
+                        const headerText = groupType.charAt(0).toUpperCase() + groupType.slice(1) + 's';
+                        html += `<tr class="group-header"><td colspan="5">${headerText}</td></tr>`;
+                        profilesOfType.sort((a,b) => a.data.name.localeCompare(b.data.name)).forEach(item => {
+                            const points = item.data.points || '—';
+                            const fa = (item.data.fieldAllowance || '—').toString().toUpperCase();
+                            const currentCount = currentList.profiles[item.key] || 0;
+                            let faLimit = Infinity;
+                            if (fa === 'C' || fa === 'c') faLimit = 1;
+                            else if (!isNaN(parseInt(fa, 10))) faLimit = parseInt(fa, 10);
+                            const isDisabled = currentCount >= faLimit;
+                            html += `<tr><td class="center-col">${points}</td><td class="center-col">${fa}</td><td>${item.data.name}</td><td class="center-col"><a href="#" class="view-card-link" data-card-id="${item.key}">View</a></td><td class="center-col"><button class="add-btn" data-card-id="${item.key}" ${isDisabled ? 'disabled' : ''}>+</button></td></tr>`;
+                        });
+                    }
+                });
+                html += `</tbody></table>`;
+                container.innerHTML = html;
+            }
+
+            function renderBuilderView() {
+                const container = document.getElementById('builder-container');
+                let listHtml = '';
+                const sortedKeys = Object.keys(currentList.profiles).sort((a, b) => {
+                    const nameA = allProfilesData[a] ? allProfilesData[a].name : '';
+                    const nameB = allProfilesData[b] ? allProfilesData[b].name : '';
+                    return nameA.localeCompare(nameB);
+                });
+                for(const key of sortedKeys) {
+                    const count = currentList.profiles[key];
+                    const profile = allProfilesData[key];
+                    if (profile) listHtml += `<li><span>${profile.name} (${profile.points || 0}pts) x${count}</span><button class="remove-btn" data-card-id="${key}">-</button></li>`;
+                }
+                container.innerHTML = `<div id="builder-header"><h2>Current Army List</h2><input type="text" id="list-name-input" value="${currentList.name}"><h3>Total Points: <span id="total-points">${currentList.totalPoints}</span> / 100</h3><button id="save-list-btn" class="action-button">Save List</button></div><ul id="builder-list">${listHtml}</ul>`;
+            }
+
+            // --- LOCAL STORAGE & LIST MANAGEMENT ---
+            function getSavedLists() { return JSON.parse(localStorage.getItem('warmachine_lists')) || {}; }
+            function saveCurrentList() {
+                currentList.name = document.getElementById('list-name-input').value.trim() || "Untitled List";
+                const savedLists = getSavedLists();
+                const listKey = `${currentList.faction}_${currentList.theme}`.toLowerCase().replace(/\s+/g, '_');
+                if (!savedLists[listKey]) savedLists[listKey] = [];
+                const listIndex = savedLists[listKey].findIndex(l => l.id === currentList.id);
+                if (listIndex > -1) savedLists[listKey][listIndex] = { ...currentList };
+                else savedLists[listKey].push({ ...currentList });
+                localStorage.setItem('warmachine_lists', JSON.stringify(savedLists));
+                alert(`List "${currentList.name}" saved!`);
+                renderSavedLists();
+            }
+            function loadList(listId) {
+                const savedLists = getSavedLists();
+                for (const key in savedLists) {
+                    const foundList = savedLists[key].find(l => l.id === listId);
+                    if (foundList) {
+                        const button = document.querySelector(`button[data-faction="${foundList.faction}"][data-theme="${foundList.theme}"]`);
+                        if (button) loadFaction(button).then(() => { currentList = JSON.parse(JSON.stringify(foundList)); displayFullBuilderUI(); });
+                        return;
+                    }
+                }
+            }
+            function deleteList(listId) {
+                if (!confirm("Are you sure you want to delete this list?")) return;
+                const savedLists = getSavedLists();
+                for (const key in savedLists) {
+                    const listIndex = savedLists[key].findIndex(l => l.id === listId);
+                    if (listIndex > -1) {
+                        savedLists[key].splice(listIndex, 1);
+                        if (savedLists[key].length === 0) delete savedLists[key];
+                        break;
+                    }
+                }
+                localStorage.setItem('warmachine_lists', JSON.stringify(savedLists));
+                renderSavedLists();
+            }
+            function renderSavedLists() {
+                const container = document.getElementById('saved-lists-content');
+                const savedLists = getSavedLists();
+                if (Object.keys(savedLists).length === 0) { container.innerHTML = `<p>No saved lists found.</p>`; return; }
+                let html = '';
+                for (const key in savedLists) {
+                    const [faction, ...themeParts] = key.split('_');
+                    const theme = themeParts.join(' ').replace(/\b\w/g, char => char.toUpperCase());
+                    html += `<h4>${faction.toUpperCase()} - ${theme}</h4>`;
+                    savedLists[key].forEach(list => {
+                        html += `<div class="saved-list-item"><span><strong>${list.name}</strong> (${list.totalPoints} pts)</span><div><button class="load-list-btn action-button" data-list-id="${list.id}">Load</button><button class="delete-list-btn remove-btn" data-list-id="${list.id}">Delete</button></div></div>`;
+                    });
+                }
+                container.innerHTML = html;
+                rebindSavedListButtons();
+            }
+
+            // --- EVENT HANDLERS & BINDING ---
+            function handleAddProfile(e) {
+                const profileKey = e.target.dataset.cardId, profile = allProfilesData[profileKey], currentCount = currentList.profiles[profileKey] || 0, fa = (profile.fieldAllowance || 'U').toString().toUpperCase();
+                let faLimit = Infinity;
+                if (fa === 'C' || fa === 'c') faLimit = 1;
+                else if (!isNaN(parseInt(fa, 10))) faLimit = parseInt(fa, 10);
+                if (currentCount < faLimit) { currentList.profiles[profileKey] = currentCount + 1; currentList.totalPoints += profile.points || 0; displayProfileList(); renderBuilderView(); rebindAllInteractivity(); }
+            }
+            function handleRemoveProfile(e) {
+                const profileKey = e.target.dataset.cardId, profile = allProfilesData[profileKey], currentCount = currentList.profiles[profileKey];
+                if (currentCount > 0) { currentList.profiles[profileKey] = currentCount - 1; currentList.totalPoints -= profile.points || 0; if (currentList.profiles[profileKey] === 0) delete currentList.profiles[profileKey]; displayProfileList(); renderBuilderView(); rebindAllInteractivity(); }
+            }
+            function rebindAllInteractivity() {
+                document.querySelectorAll('.add-btn').forEach(btn => btn.onclick = handleAddProfile);
+                document.querySelectorAll('.remove-btn').forEach(btn => btn.onclick = handleRemoveProfile);
+                document.getElementById('save-list-btn').onclick = saveCurrentList;
+                document.querySelectorAll('.view-card-link').forEach(link => link.onclick = (e) => { e.preventDefault(); showView(e.target.dataset.cardId); });
+            }
+            function rebindSavedListButtons() {
+                document.querySelectorAll('.load-list-btn').forEach(btn => btn.onclick = (e) => loadList(e.target.dataset.listId));
+                document.querySelectorAll('.delete-list-btn').forEach(btn => btn.onclick = (e) => deleteList(e.target.dataset.listId));
+            }
+
+            function showView(viewId) {
+                const mainView = document.getElementById('main-view'), cardDetailContainer = document.getElementById('card-details-container'), builderView = document.querySelector('.builder-view-container');
+                mainView.classList.remove('hidden');
+                builderView.classList.add('hidden');
+                cardDetailContainer.classList.add('hidden');
+                document.querySelectorAll('.card-section').forEach(card => card.classList.add('hidden'));
+
+                if (viewId === 'builder') builderView.classList.remove('hidden');
+                else {
+                    cardDetailContainer.classList.remove('hidden');
+                    const cardElement = document.getElementById(`card-${viewId}`);
+                    if (cardElement) {
+                        cardElement.classList.remove('hidden');
+                        cardElement.querySelector('.back-link').onclick = (e) => { e.preventDefault(); showView('builder'); };
+                        // Bind damage grid interactivity
+                        cardElement.querySelectorAll('.damage-box, .life-box').forEach(box => { box.onclick = () => box.classList.toggle('damaged'); });
+                        cardElement.querySelectorAll('.reset-button').forEach(button => {
+                            button.onclick = (e) => {
+                                const container = e.target.closest('.damage-grid-container, .life-indicators');
+                                container.querySelectorAll('.damage-box, .life-box').forEach(box => box.classList.remove('damaged'));
+                            };
+                        });
+                    }
+                }
+                window.scrollTo(0, 0);
+            }
+
+            // --- HTML BUILDER FUNCTIONS ---
+            function displayCardDetails() {
+                const container = document.getElementById('card-details-container');
+                let html = '';
+                for (const key in allProfilesData) {
+                    const profile = allProfilesData[key];
+                    html += `<div id="card-${key}" class="card-section hidden"><a href="#" class="back-link">← Back to Builder</a>`;
+                    if (profile.profiles) html += buildMultiProfileCard(profile, key);
+                    else html += buildSingleProfileCard(profile, key);
+                    html += `</div>`;
+                }
+                container.innerHTML = html;
+            }
+
+            function buildSingleProfileCard(profile, profileKey) {
+                const keywords = profile.keywords ? profile.keywords.join(', ') : 'N/A';
+                let cardHtml = `<h3 class="card-title">${profile.name} (${keywords})</h3><p>Field Allowance: ${profile.fieldAllowance || 'N/A'} | Point Cost: ${profile.points || 'N/A'}</p>`;
+                if (profile.statistics && profile.statistics.health) cardHtml += buildHealthTracker(profileKey, profile.statistics.health);
+                cardHtml += `<div class="stat-block">${buildStatBlock(profile.statistics)}</div>`;
+                cardHtml += buildAbilitiesBlock(profile.abilities);
+                cardHtml += buildFeatBlock(profile.feat);
+                cardHtml += buildWeaponsBlock(profile.weapons);
+                cardHtml += buildSpellsBlock(profile.spells, "Spells");
+                cardHtml += buildSpellsBlock(profile.animus ? [profile.animus] : [], "Animus");
+                return cardHtml;
+            }
+
+            function buildMultiProfileCard(profile, profileKey) {
+                const keywords = profile.keywords ? profile.keywords.join(', ') : 'N/A';
+                let cardHtml = `<h3 class="card-title">${profile.name} (${keywords})</h3><p>Field Allowance: ${profile.fieldAllowance || 'N/A'} | Point Cost: ${profile.points || 'N/A'}</p>`;
+                for (const subProfileKey in profile.profiles) {
+                    const subProfile = profile.profiles[subProfileKey];
+                    cardHtml += `<h4>${subProfileKey.charAt(0).toUpperCase() + subProfileKey.slice(1)} Profile</h4>`;
+                    if (subProfile.statistics && subProfile.statistics.health) cardHtml += buildHealthTracker(`${profileKey}-${subProfileKey}`, subProfile.statistics.health);
+                    cardHtml += `<div class="stat-block">${buildStatBlock(subProfile.statistics)}</div>`;
+                    cardHtml += buildAbilitiesBlock(subProfile.abilities);
+                    cardHtml += buildWeaponsBlock(subProfile.weapons);
+                }
+                cardHtml += buildAbilitiesBlock(profile.abilities);
+                cardHtml += buildWeaponsBlock(profile.weapons);
+                cardHtml += buildSpellsBlock(profile.spells, "Spells");
+                return cardHtml;
+            }
+
+            function buildHealthTracker(id, health) {
+                // Case 1: Simple health (number) for solos, units, etc.
+                if (typeof health === 'number') {
+                    let healthHtml = `<h4>Health: ${health}</h4>`;
+                    for (let i = 0; i < health; i++) { healthHtml += `<div class="life-box"></div>`; }
+                    return `<div class="life-indicators" data-card-id="${id.replace(/\s+/g, '-')}">${healthHtml}<br><button class="reset-button">Reset Health</button></div>`;
+                }
+
+                // Case 2: Complex health (object) for warjacks/warbeasts
+                if (typeof health === 'object' && health !== null && health.grid) {
+                    let gridHtml = '';
+                    const uniqueId = id.replace(/\s+/g, '-');
+
+                    if (health.grid.L && health.grid.R) { // Colossal
+                        gridHtml = `<div class="colossal-grid-container"><div><h4>Left Grid</h4>${buildGrid(health.grid.L, `${uniqueId}-L`)}</div><div><h4>Right Grid</h4>${buildGrid(health.grid.R, `${uniqueId}-R`)}</div></div>`;
+                    } else if (health.grid.columns) { // Standard Warjack
+                        gridHtml = buildGrid(health.grid, uniqueId);
+                    }
+
+                    return `<div class="damage-grid-container" data-card-id="${uniqueId}"><h4>Damage Grid (Total: ${health.total})</h4>${gridHtml}<button class="reset-button">Reset Damage</button></div>`;
+                }
+                return ''; // Fallback
+            }
+
+            function buildGrid(gridData, uniqueIdPrefix) {
+                let gridTable = `<table class="damage-grid-table"><tbody>`;
+                const maxRows = Math.max(...gridData.columns.map(c => c.boxes));
+
+                for (let row = 1; row <= maxRows; row++) {
+                    gridTable += '<tr>';
+                    for (let col = 0; col < gridData.columns.length; col++) {
+                        const column = gridData.columns[col];
+                        if (row <= column.boxes) {
+                            const system = column.systems[row] || '';
+                            gridTable += `<td class="damage-box" data-grid-id="${uniqueIdPrefix}" data-row="${row}" data-col="${col}">${system}</td>`;
+                        } else {
+                            gridTable += '<td class="empty-box"></td>';
+                        }
+                    }
+                    gridTable += '</tr>';
+                }
+                gridTable += '</tbody></table>';
+                return gridTable;
+            }
+
+            function buildStatBlock(stats) {
+                if (!stats) return '';
+                const statKeys = Object.keys(stats), preferredOrder = ['speed', 'meleeAttack', 'rangedAttack', 'arcaneAttack', 'defense', 'armour', 'fury', 'threshold', 'controlRange', 'health', 'range', 'rateOfFire', 'areaOfEffect', 'power'];
+                statKeys.sort((a, b) => { const indexA = preferredOrder.indexOf(a), indexB = preferredOrder.indexOf(b); if (indexA !== -1 && indexB !== -1) return indexA - indexB; if (indexA !== -1) return -1; if (indexB !== -1) return 1; return a.localeCompare(b); });
+                let statHtml = '';
+                statKeys.forEach(statKey => {
+                    if (statKey === 'health') return;
+                    const formattedKey = statKey.replace(/([A-Z])/g, ' $1').toUpperCase();
+                    statHtml += `<strong>${formattedKey}:</strong> ${stats[statKey]} | `;
+                });
+                return statHtml.slice(0, -3);
+            }
+
+            function buildAbilitiesBlock(abilities) {
+                if (!abilities || abilities.length === 0) return '';
+                let blockHtml = '<div class="ability-block"><h4>Abilities</h4>';
+                abilities.flat().forEach(abilityKey => {
+                    const ability = abilitiesData[abilityKey];
+                    if (ability) blockHtml += `<p><strong>${ability.name}:</strong> ${ability.description}</p>`;
+                    else if (typeof abilityKey === 'string') blockHtml += `<p><strong>${abilityKey.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^\w/, c => c.toUpperCase())}:</strong> (Full text not found)</p>`;
+                });
+                return blockHtml + '</div>';
+            }
+
+            function buildFeatBlock(feat) {
+                if (!feat) return '';
+                return `<div class="ability-block"><h4>FEAT - ${feat.name}</h4><p>${feat.rules}</p></div>`;
+            }
+
+            // function buildWeaponsBlock(weapons) {
+            //     if (!weapons) return '';
+            //     let blockHtml = '';
+            //     for (const weaponKey in weapons) {
+            //         const weapon = weapons[weaponKey];
+            //         blockHtml += `<div class="weapon-block"><h4>${weapon.name} ${weapon.quantity > 1 ? `x${weapon.quantity}` : ''}</h4><p>${buildStatBlock(weapon.statistics)}</p>`;
+            //         if (weapon.abilities) weapon.abilities.flat().forEach(abilityKey => { const ability = abilitiesData[abilityKey]; if (ability) blockHtml += `<p><strong>${ability.name}:</strong> ${ability.description}</p>`; });
+            //         blockHtml += '</div>';
+            //     }
+            //     return blockHtml;
+            // }
+            function buildWeaponsBlock(weapons) {
+              if (!weapons) return '';
+              let blockHtml = '';
+              for (const weaponKey in weapons) {
+                  const weapon = weapons[weaponKey];
+                  blockHtml += `<div class="weapon-block"><h4>${weapon.name} ${weapon.quantity > 1 ? `x${weapon.quantity}` : ''}</h4><p>${buildStatBlock(weapon.statistics)}</p>`;
+                  if (weapon.abilities) {
+                      weapon.abilities.forEach(abilityItem => {
+                          if (Array.isArray(abilityItem)) {
+                              const groupKey = abilityItem[0];
+                              const groupAbility = abilitiesData[groupKey];
+                              if (groupAbility) {
+                                  blockHtml += `<p><strong>${groupAbility.name}:</strong> ${groupAbility.description}</p>`;
+                              }
+                              blockHtml += `<ul class="attack-type-options">`;
+                              for (let i = 1; i < abilityItem.length; i++) {
+                                  const optionKey = abilityItem[i];
+                                  const optionAbility = abilitiesData[optionKey];
+                                  if(optionAbility) {
+                                      blockHtml += `<li><strong>${optionAbility.name}:</strong> ${optionAbility.description}</li>`;
+                                  }
+                              }
+                              blockHtml += `</ul>`;
+                          } else {
+                              const ability = abilitiesData[abilityItem];
+                              if (ability) {
+                                  blockHtml += `<p><strong>${ability.name}:</strong> ${ability.description}</p>`;
+                              }
+                          }
+                      });
+                  }
+                  blockHtml += '</div>';
+              }
+              return blockHtml;
+            }
+
+            function buildSpellsBlock(spells, title) {
+                if (!spells || spells.length === 0) return '';
+                let blockHtml = `<div class="spell-block"><h4>${title}</h4>`;
+                spells.forEach(spellKey => { const spell = title === "Animus" ? abilitiesData[spellKey] : spellsData[spellKey]; if (spell) blockHtml += `<p><strong>${spell.name}:</strong> ${spell.description}</p>`; else blockHtml += `<p><strong>${spellKey.replace(/([A-Z])/g, ' $1')}:</strong> (Full text not found)</p>`; });
+                return blockHtml + '</div>';
+            }
+
+            // --- START THE APP ---
+            init();
+        });
+    </script>
+</body>
+</html>

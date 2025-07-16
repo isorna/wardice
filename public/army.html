@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xekaar 75p Torneo Army Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #5a2a2a; /* Skorne-ish color */
+        }
+        h1 { text-align: center; }
+        .card-section {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #fdfdfd;
+        }
+        .card-title {
+            background-color: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-top: 0;
+        }
+        .stat-block, .weapon-block, .ability-block, .spell-block {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-left: 3px solid #8c6239; /* Another Skorne-ish color */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .life-indicators {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px dashed #ccc;
+        }
+        .life-box, .life-spiral-dot {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #555;
+            margin: 2px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 20px;
+            font-size: 10px;
+            user-select: none; /* Prevent text selection on click */
+        }
+        .life-spiral-dot {
+            border-radius: 50%;
+        }
+        .marked {
+            background-color: #ff7675 !important; /* Red for marked */
+            color: white;
+        }
+        .reset-button {
+            padding: 5px 10px;
+            background-color: #5a2a2a;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .reset-button:hover {
+            background-color: #8c6239;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 8px 15px;
+            background-color: #777;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .back-link:hover {
+            background-color: #555;
+        }
+        .command-card-list, .defense-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .command-card-list li, .defense-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            background-color: #f9f9f9;
+        }
+        .spiral-branch { margin-bottom: 5px; }
+        .spiral-branch-label { font-weight: bold; display: inline-block; width: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="army-list-summary">
+            <h1>Xekaar 75p Torneo</h1>
+            <p style="text-align: center;">EXALTED PRIME - 75/75 PTS</p>
+
+            <h2>PC / CARD</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>PC</th>
+                        <th>Card</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="3" style="background-color:#eee;"><strong>Warcaster & Battlegroup</strong></td></tr>
+                    <tr><td></td><td>Beast Master Xekaar</td><td><a href="#card-xekaar">View Card</a></td></tr>
+                    <tr><td>12</td><td>Aradus Sentinel</td><td><a href="#card-aradus-sentinel">View Card</a></td></tr>
+                    <tr><td>6</td><td>Basilisk Krea</td><td><a href="#card-basilisk-krea">View Card</a></td></tr>
+                    <tr><td>16</td><td>Chiron</td><td><a href="#card-chiron">View Card</a></td></tr>
+                    <tr><td>15</td><td>Despoiler</td><td><a href="#card-despoiler">View Card</a></td></tr>
+                    <tr><td colspan="3" style="background-color:#eee;"><strong>Solos</strong></td></tr>
+                    <tr><td>3</td><td>Paingiver Bloodrunner Master Tormentor 1</td><td><a href="#card-tormentor1">View Card</a></td></tr>
+                    <tr><td>3</td><td>Paingiver Bloodrunner Master Tormentor 2</td><td><a href="#card-tormentor2">View Card</a></td></tr>
+                    <tr><td>3</td><td>Void Spirit 1</td><td><a href="#card-voidspirit1">View Card</a></td></tr>
+                    <tr><td>3</td><td>Void Spirit 2</td><td><a href="#card-voidspirit2">View Card</a></td></tr>
+                    <tr><td colspan="3" style="background-color:#eee;"><strong>Units</strong></td></tr>
+                    <tr><td>3</td><td>Paingiver Beast Handlers 1 (3 Grunts)</td><td><a href="#card-beasthandlers1">View Card</a></td></tr>
+                    <tr><td>3</td><td>Paingiver Beast Handlers 2 (3 Grunts)</td><td><a href="#card-beasthandlers2">View Card</a></td></tr>
+                    <tr><td>4</td><td>Paingiver Bloodrunners 1 (3 Grunts)</td><td><a href="#card-bloodrunners1">View Card</a></td></tr>
+                    <tr><td>4</td><td>Paingiver Bloodrunners 2 (3 Grunts)</td><td><a href="#card-bloodrunners2">View Card</a></td></tr>
+                    <tr><td colspan="3" style="background-color:#eee;"><strong>Selected Card Options (Defenses)</strong></td></tr>
+                    <tr><td></td><td>DEFENSE 1 - Barrier</td><td><a href="#defense-details">View Details</a></td></tr>
+                    <tr><td></td><td>DEFENSE 2 - Fire Pit</td><td><a href="#defense-details">View Details</a></td></tr>
+                    <tr><td></td><td>DEFENSE 1 - Spike Trap (Typo, should be 3?)</td><td><a href="#defense-details">View Details</a></td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="command-cards-summary">COMMAND CARDS</h2>
+            <ul class="command-card-list">
+                <li><strong>Blessing of the Gods:</strong> Play any time during your activation on one of your models. That model's weapons gain Blessed and Damage Type: Magical this activation.</li>
+                <li><strong>Defenses:</strong> Play at the start of the game after turn order, terrain, and objectives are placed, but before deploying. First player: up to two Defenses. Second player: up to three Defenses. If both play, take turns placing, starting with second player. Place within 24" of rear edge of Deployment Zone. Cannot be placed within 3" of an objective, obstruction, obstacle, or another Defense.</li>
+                <li><strong>Duck and Cover!:</strong> Play any time during activation of one of your warrior units. Models gain cover and Resistance: Blast for one round.</li>
+                <li><strong>Lucky Penny:</strong> Play at the start of a friendly model's activation. Give model one corpse, essence, focus, fury, rage, or soul token.</li>
+                <li><strong>Old Faithful:</strong> Play during Control Phase before allocating focus. Remove d3+1 damage from a friendly Cohort model or battle engine.</li>
+            </ul>
+
+            <h2 id="defense-details">Defenses Details</h2>
+            <p><strong>General:</strong> A Defense is removed if contacted by a model with an extra-large or huge base.</p>
+            <div class="defense-list">
+                <li>
+                    <h4>Barrier</h4>
+                    <p><strong>Obstacle:</strong> This terrain feature is an obstacle.</p>
+                    <p><strong>Barrier Rule:</strong> When a large- or smaller-based model without Flight or Pathfinder attempts to cross, reduce movement by 2".</p>
+                </li>
+                <li>
+                    <h4>Fire Pit</h4>
+                    <p><strong>Obstacle:</strong> This terrain feature is an obstacle.</p>
+                    <p><strong>Cover:</strong> This terrain feature grants cover.</p>
+                    <p><strong>Fire Hazard:</strong> Hazard. Model without Flight entering suffers Fire continuous effect. If a trooper model without Flight advances through as part of Normal Movement, all models in unit suffer fire continuous effect.</p>
+                    <p><strong>Illumination:</strong> Models lose Stealth while within 5".</p>
+                </li>
+                <li>
+                    <h4>Spike Trap</h4>
+                    <p><strong>Spike Hazard:</strong> Hazard. Enemy model without Flight entering or ending activation within 1" suffers POW 10 damage. Enemy warjack without Flight entering also suffers 1 damage to first available Movement System box. Your models don't suffer if you placed them.</p>
+                    <p><strong>Rough Terrain:</strong> This terrain feature is rough terrain.</p>
+                </li>
+            </div>
+        </div>
+        <hr style="margin: 30px 0;">
+
+        <!-- Individual Card Sections -->
+
+        <div id="card-xekaar" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Beast Master Xekaar (Skorne Exalted Paingiver Scout Warlock)</h3>
+            <p>Field Allowance: 1/C | CTRL: 12</p>
+            <div class="life-indicators" data-card-id="xekaar">
+                <h4>Life (30 WB Points):</h4>
+                <div class="life-box"></div><div class="life-box"></div><div class="life-box"></div><div class="life-box"></div><div class="life-box"></div>
+                <div class="life-box"></div><div class="life-box"></div> <!-- 7 boxes -->
+                <button class="reset-button">Reset Health</button>
+            </div>
+            <div class="stat-block">
+                SPD: 7 | AAT: 7 | MAT: 7 | DEF: 15 | ARM: 15 | ARC: 6
+            </div>
+            <div class="ability-block">
+                <p><strong>Field Marshal [Pathfinder]:</strong> Cohort models in this model's battlegroup gain Pathfinder.</p>
+                <p><strong>Maltreatment:</strong> Once per turn, any time during activation, remove 1 fury from a warbeast in battlegroup (in control range), add 1 fury to self. Warbeast suffers d3 damage.</p>
+                <p><strong>Side Step:</strong> When hits an enemy with initial melee attack/special attack, can advance up to 2" after attack resolved.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Barbed Whip x2</h4>
+                <p>MAT: 7 | RNG: 2 | POW: 9</p>
+                <p><strong>Inflict Pain:</strong> When hits a warbeast, can place 1 fury on or remove 1 fury from the warbeast.</p>
+                <p><strong>Witch Mark:</strong> If hits enemy during activation, until end of activation, can target and auto-hit that enemy with spells, ignoring RNG and LOS.</p>
+            </div>
+            <div class="ability-block">
+                <h4>FEAT - Whispers of Torment</h4>
+                <p>While in Xekaar's control range, enemy models suffer -3 MAT, RAT, THR. Affected models suffer -3 to melee attack damage rolls. Lasts one round.</p>
+            </div>
+            <h4>Spells:</h4>
+            <div class="spell-block"><strong>Deadweight:</strong> AAT 7, COST 2, RNG 8, POW 12, DUR *, OFF Yes. When destroys enemy living/undead, choose enemy model within 2". Chosen model forfeits Normal Movement or Combat Action next activation.</div>
+            <div class="spell-block"><strong>Mortality:</strong> AAT 7, COST 3, RNG 10, DUR Rnd, OFF Yes. Target model/unit suffers -2 DEF/ARM, loses Tough, cannot have damage removed.</div>
+            <div class="spell-block"><strong>Psycho Surgery:</strong> AAT 7, COST 2, RNG Self, AOE Ctrl, DUR -, OFF No. Each model in battlegroup in control range removes d3+1 damage. Once per activation.</div>
+            <div class="spell-block"><strong>Pursuit:</strong> AAT 7, COST 2, RNG 10, DUR Up, OFF Yes. If target enemy model/unit advances, one model in spellcaster's battlegroup in control range can make full advance.</div>
+            <div class="spell-block"><strong>Silence of Death:</strong> AAT 7, COST 2, RNG 6, DUR Up, OFF No. Target friendly Faction model/unit gains +2 melee attack damage rolls & Take Down. (Models disabled by melee with Take Down cannot Tough. Models boxed by melee with Take Down removed from play.)</div>
+        </div>
+
+        <div id="card-aradus-sentinel" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Aradus Sentinel (Skorne Exalted Heavy Warbeast)</h3>
+            <p>Field Allowance: 1/4 | Point Cost: 12</p>
+            <div class="life-indicators" data-card-id="aradus-sentinel">
+                <h4>Damage Spiral (50):</h4>
+                <!-- Approximating spiral points based on typical heavy warbeast spirals -->
+                <div class="spiral-branch"><span class="spiral-branch-label">1:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">2:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">3:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">4:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">5:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">6:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <button class="reset-button">Reset Health</button>
+            </div>
+            <div class="stat-block">
+                SPD: 4 | MAT: 6 | RAT: 5 | DEF: 11 | ARM: 19 | FURY: 3 | THR: 9
+            </div>
+            <div class="ability-block">
+                <p><strong>Carapace:</strong> +4 ARM against ranged attack damage rolls.</p>
+                <p><strong>Snacking:</strong> When boxes a living model with melee attack, can choose to remove boxed model from play. If so, remove d3 damage points.</p>
+                <p><strong>Steady:</strong> Cannot be knocked down.</p>
+                <p><strong>Sturdy:</strong> Cannot be pushed.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Venom Blaster</h4>
+                <p>RAT: 5 | RNG: Sp 12 | ROF: 1 | POW: 14</p>
+                <p><strong>Poison:</strong> Gain additional die on damage rolls against living models.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Claw x2</h4>
+                <p>MAT: 6 | RNG: 1 | POW: 14</p>
+            </div>
+            <div class="ability-block">
+                <h4>Animus: Acidic Touch</h4>
+                <p>AAT: - | COST: 1 | RNG: Self | DUR: Rnd | OFF: No</p>
+                <p>Spellcaster gains Resistance: Corrosion and its melee weapons gain Continuous Effect: Corrosion. Lasts one round.</p>
+            </div>
+        </div>
+        
+        <div id="card-basilisk-krea" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Basilisk Krea (Skorne Army of the Western Reaches Exalted Light Warbeast)</h3>
+            <p>Field Allowance: 1/4 | Point Cost: 6</p>
+            <div class="life-indicators" data-card-id="basilisk-krea">
+                <h4>Damage Spiral (40):</h4>
+                 <!-- Approximating spiral points based on typical light warbeast spirals -->
+                <div class="spiral-branch"><span class="spiral-branch-label">1:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">2:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">3:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">4:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">5:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">6:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <button class="reset-button">Reset Health</button>
+            </div>
+            <div class="stat-block">
+                SPD: 6 | MAT: 4 | RAT: 4 | DEF: 12 | ARM: 14 | FURY: 3 | THR: 8
+            </div>
+            <div class="weapon-block">
+                <h4>Spiritual Paralysis</h4>
+                <p>RAT: 4 | RNG: Sp 8 | ROF: 1 | POW: -</p>
+                <p><strong>Paralysis:</strong> Living model hit has base DEF reduced to 5, cannot run, charge, or make slam/trample power attacks. Lasts one round.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Bite</h4>
+                <p>MAT: 4 | RNG: 1 | POW: 12</p>
+            </div>
+            <div class="ability-block">
+                <h4>Animus: Force Aura</h4>
+                <p>AAT: - | COST: 2 | RNG: Self | DUR: Rnd | OFF: No</p>
+                <p>While within 3" of spellcaster, friendly Faction models gain +2 DEF and ARM against ranged attacks. Lasts one round.</p>
+            </div>
+        </div>
+
+        <div id="card-chiron" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Chiron (Skorne Basilisk Exalted Heavy Warbeast)</h3>
+            <p>Field Allowance: 1/C | Point Cost: 16</p>
+            <div class="life-indicators" data-card-id="chiron">
+                 <h4>Damage Spiral (50):</h4>
+                <div class="spiral-branch"><span class="spiral-branch-label">1:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">2:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">3:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">4:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">5:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">6:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <button class="reset-button">Reset Health</button>
+            </div>
+            <div class="stat-block">
+                SPD: 6 | MAT: 7 | RAT: 6 | DEF: 12 | ARM: 18 | FURY: 4 | THR: 9
+            </div>
+            <div class="ability-block">
+                <p><strong>Bond [Xekaar]:</strong> If begins game in Xekaar's battlegroup, bonded to him. Not bonded if under opponent's control. While bonded to Xekaar and in his control range, gains boosted ranged attack rolls.</p>
+                <p><strong>Dig In (*Action):</strong> Gains cover, Resistance: Blast, does not block LOS. Remains dug in until moves, placed, or engaged. Can begin game dug in.</p>
+                <p><strong>Leadership [Basilisks]:</strong> When another friendly Basilisk ends activation within 10", can remove 1 fury point from that model.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Destructive Gaze</h4>
+                <p>RAT: 6 | RNG: Sp 10 | ROF: 1 | POW: 15</p>
+                <p><strong>Inflict Pain:</strong> When hits warbeast, can place 1 fury on or remove 1 fury from warbeast.</p>
+            </div>
+             <div class="weapon-block">
+                <h4>Bite</h4>
+                <p>MAT: 7 | RNG: 1 | POW: 16</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Claw x2</h4>
+                <p>MAT: 7 | RNG: 1 | POW: 14</p>
+            </div>
+            <div class="ability-block">
+                <h4>Animus: Counterblast</h4>
+                <p>AAT: - | COST: 1 | RNG: Self | DUR: Rnd | OFF: No</p>
+                <p>When enemy model advances and ends movement or is placed within 5" of spellcaster, spellcaster can make one basic melee or ranged attack targeting that model, then Counterblast expires. Lasts one round.</p>
+            </div>
+        </div>
+        
+        <div id="card-despoiler" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Despoiler (Skorne Exalted Heavy Warbeast)</h3>
+            <p>Field Allowance: 1/C | Point Cost: 15</p>
+            <div class="life-indicators" data-card-id="despoiler">
+                <h4>Damage Spiral (50):</h4>
+                <div class="spiral-branch"><span class="spiral-branch-label">1:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">2:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">3:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">4:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">5:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <div class="spiral-branch"><span class="spiral-branch-label">6:</span> <div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div><div class="life-spiral-dot"></div></div>
+                <button class="reset-button">Reset Health</button>
+            </div>
+            <div class="stat-block">
+                SPD: 5 | MAT: 7 | DEF: 11 | ARM: 18 | FURY: 4 | THR: 10
+            </div>
+            <div class="ability-block">
+                <p><strong>Black Arts:</strong> Friendly Faction Leader model with this model in its control range can upkeep one spell without spending focus/fury.</p>
+                <p><strong>Bond [Mordikaar]:</strong> If begins game in Mordikaar's battlegroup, bonded to him. Not bonded if under opponent's control. While bonded to Mordikaar and in his control range, once per turn when a living enemy warrior model is boxed within 5", remove boxed model from play and replace with friendly Void Spirit model.</p>
+                <p><strong>Dark Shroud:</strong> While within 2" of this model, enemy models suffer -2 ARM.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Tail</h4>
+                <p>MAT: 7 | RNG: 2 | POW: 15</p>
+                <p><strong>Critical Brutal Damage:</strong> On critical hit, gain additional die on damage rolls against target directly hit.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Claw x2</h4>
+                <p>MAT: 7 | RNG: 1 | POW: 13</p>
+            </div>
+             <div class="ability-block">
+                <h4>Animus: Arcane Suppression</h4>
+                <p>AAT: - | COST: 2 | RNG: Self | DUR: Rnd | OFF: No</p>
+                <p>While within 10" of spellcaster, when enemy model casts a spell, increase COST by 1. Additionally, while within 10", enemy models must pay double to upkeep spells. Lasts one round.</p>
+            </div>
+        </div>
+
+        <!-- SOLOS -->
+        <div id="card-tormentor1" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Paingiver Bloodrunner Master Tormentor 1 (Skorne Exalted Solo)</h3>
+            <p>Field Allowance: 1/2 | Point Cost: 3</p>
+            <div class="life-indicators" data-card-id="tormentor1">
+                <h4>Health (Box indicated by 30):</h4>
+                <div class="life-box"></div> <button class="reset-button">Reset Health</button>
+            </div>
+            <div class="stat-block">
+                SPD: 7 | MAT: 8 | DEF: 14 | ARM: 13
+            </div>
+            <div class="ability-block">
+                <p><strong>Anatomical Precision:</strong> When melee damage roll fails to exceed ARM of living model hit, model suffers 1 damage. Model disabled by melee attack from this model cannot Tough.</p>
+                <p><strong>Sprint:</strong> End of activation where destroyed/removed one+ enemy models with melee, can make full advance, then activation ends.</p>
+                <p><strong>Veteran Leader [Paingiver Bloodrunners]:</strong> While within 10", other friendly Paingiver Bloodrunner models gain +1 to attack rolls.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Barbed Whip</h4>
+                <p>MAT: 8 | RNG: 2 | POW: 8</p>
+                <p><strong>Thresher (*Attack):</strong> Makes one melee attack with this weapon against each model in LOS in melee range, regardless of friendly/enemy. Simultaneous.</p>
+            </div>
+        </div>
+        <div id="card-tormentor2" class="card-section">
+             <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+             <h3 class="card-title">Paingiver Bloodrunner Master Tormentor 2 (Skorne Exalted Solo)</h3>
+             <p>Field Allowance: 2/2 | Point Cost: 3</p>
+             <div class="life-indicators" data-card-id="tormentor2">
+                 <h4>Health (Box indicated by 30):</h4>
+                 <div class="life-box"></div> <button class="reset-button">Reset Health</button>
+             </div>
+             <div class="stat-block">
+                 SPD: 7 | MAT: 8 | DEF: 14 | ARM: 13
+             </div>
+             <div class="ability-block">
+                 <p><strong>Anatomical Precision:</strong> When melee damage roll fails to exceed ARM of living model hit, model suffers 1 damage. Model disabled by melee attack from this model cannot Tough.</p>
+                 <p><strong>Sprint:</strong> End of activation where destroyed/removed one+ enemy models with melee, can make full advance, then activation ends.</p>
+                 <p><strong>Veteran Leader [Paingiver Bloodrunners]:</strong> While within 10", other friendly Paingiver Bloodrunner models gain +1 to attack rolls.</p>
+             </div>
+             <div class="weapon-block">
+                 <h4>Barbed Whip</h4>
+                 <p>MAT: 8 | RNG: 2 | POW: 8</p>
+                 <p><strong>Thresher (*Attack):</strong> Makes one melee attack with this weapon against each model in LOS in melee range, regardless of friendly/enemy. Simultaneous.</p>
+             </div>
+        </div>
+
+        <div id="card-voidspirit1" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Void Spirit 1 (Skorne Exalted Solo)</h3>
+            <p>Field Allowance: 1/2 | Point Cost: 3</p>
+            <div class="life-indicators" data-card-id="voidspirit1">
+                <h4>Health (Box indicated by 30):</h4>
+                <div class="life-box"></div> <button class="reset-button">Reset Health</button>
+            </div>
+            <div class="stat-block">
+                SPD: 6 | MAT: 6 | DEF: 14 | ARM: 12
+            </div>
+            <div class="ability-block">
+                <p><strong>Annihilator:</strong> Gains additional die on melee attack/damage rolls against living models. When living model destroyed within 3", never generates soul token.</p>
+                <p><strong>Poltergeist:</strong> When enemy model misses this model with attack, immediately after attack resolved, can push enemy model d3" directly away.</p>
+                <p><strong>Void Walk:</strong> Once per activation, after resolving attack where destroyed living/undead enemy with attack during Combat Action, can place this model anywhere completely within 8" of current location.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Rend</h4>
+                <p>MAT: 6 | RNG: 1 | POW: 12</p>
+            </div>
+        </div>
+        <div id="card-voidspirit2" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Void Spirit 2 (Skorne Exalted Solo)</h3>
+            <p>Field Allowance: 2/2 | Point Cost: 3</p>
+            <div class="life-indicators" data-card-id="voidspirit2">
+                <h4>Health (Box indicated by 30):</h4>
+                <div class="life-box"></div> <button class="reset-button">Reset Health</button>
+            </div>
+            <div class="stat-block">
+                SPD: 6 | MAT: 6 | DEF: 14 | ARM: 12
+            </div>
+            <div class="ability-block">
+                <p><strong>Annihilator:</strong> Gains additional die on melee attack/damage rolls against living models. When living model destroyed within 3", never generates soul token.</p>
+                <p><strong>Poltergeist:</strong> When enemy model misses this model with attack, immediately after attack resolved, can push enemy model d3" directly away.</p>
+                <p><strong>Void Walk:</strong> Once per activation, after resolving attack where destroyed living/undead enemy with attack during Combat Action, can place this model anywhere completely within 8" of current location.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Rend</h4>
+                <p>MAT: 6 | RNG: 1 | POW: 12</p>
+            </div>
+        </div>
+
+        <!-- UNITS -->
+        <div id="card-beasthandlers1" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Paingiver Beast Handlers 1 (Skorne Army of the Western Reaches Exalted Unit - 3 Grunts)</h3>
+            <p>Field Allowance: 1/3 | Point Cost: 3</p>
+            <h4>Grunt Stats & Abilities (per Grunt):</h4>
+            <div class="life-indicators" data-card-id="beasthandlers1_g1">Grunt 1: <div class="life-box"></div></div>
+            <div class="life-indicators" data-card-id="beasthandlers1_g2">Grunt 2: <div class="life-box"></div></div>
+            <div class="life-indicators" data-card-id="beasthandlers1_g3">Grunt 3: <div class="life-box"></div></div>
+            <button class="reset-button" data-unit-prefix="beasthandlers1_g">Reset All Grunts</button>
+
+            <div class="stat-block">
+                SPD: 6 | MAT: 5 | DEF: 13 | ARM: 11
+            </div>
+            <div class="ability-block">
+                <p><strong>Anatomical Precision:</strong> When melee damage roll fails to exceed ARM of living model hit, model suffers 1 damage. Model disabled by melee attack from this model cannot Tough.</p>
+                <p><strong>Condition (*Action):</strong> RNG 6. Target friendly warbeast. If in range, can place 1 fury on it or remove 1 fury from it.</p>
+                <p><strong>Enrage (*Action):</strong> RNG 3. Target friendly warbeast. If in range, gains +2 to melee attack damage rolls. Enrage lasts one turn.</p>
+                <p><strong>Medicate [d3] (*Action):</strong> RNG 1. Target friendly living warbeast. If in range, remove d3 damage points.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Barbed Whip</h4>
+                <p>MAT: 5 | RNG: 2 | POW: 8</p>
+                <p><strong>Inflict Pain:</strong> When hits warbeast, can place 1 fury on or remove 1 fury from warbeast.</p>
+            </div>
+        </div>
+         <div id="card-beasthandlers2" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Paingiver Beast Handlers 2 (Skorne Army of the Western Reaches Exalted Unit - 3 Grunts)</h3>
+            <p>Field Allowance: 2/3 | Point Cost: 3</p>
+            <h4>Grunt Stats & Abilities (per Grunt):</h4>
+            <div class="life-indicators" data-card-id="beasthandlers2_g1">Grunt 1: <div class="life-box"></div></div>
+            <div class="life-indicators" data-card-id="beasthandlers2_g2">Grunt 2: <div class="life-box"></div></div>
+            <div class="life-indicators" data-card-id="beasthandlers2_g3">Grunt 3: <div class="life-box"></div></div>
+            <button class="reset-button" data-unit-prefix="beasthandlers2_g">Reset All Grunts</button>
+
+            <div class="stat-block">
+                SPD: 6 | MAT: 5 | DEF: 13 | ARM: 11
+            </div>
+             <div class="ability-block">
+                 <p><strong>Anatomical Precision:</strong> As above.</p>
+                 <p><strong>Condition (*Action):</strong> As above.</p>
+                 <p><strong>Enrage (*Action):</strong> As above.</p>
+                 <p><strong>Medicate [d3] (*Action):</strong> As above.</p>
+             </div>
+             <div class="weapon-block">
+                 <h4>Barbed Whip</h4>
+                 <p>MAT: 5 | RNG: 2 | POW: 8</p>
+                 <p><strong>Inflict Pain:</strong> As above.</p>
+             </div>
+        </div>
+
+        <div id="card-bloodrunners1" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Paingiver Bloodrunners 1 (Skorne Exalted Unit - 3 Grunts)</h3>
+            <p>Field Allowance: 1/4 | Point Cost: 4</p>
+            <h4>Grunt Stats & Abilities (per Grunt):</h4>
+            <div class="life-indicators" data-card-id="bloodrunners1_g1">Grunt 1: <div class="life-box"></div></div>
+            <div class="life-indicators" data-card-id="bloodrunners1_g2">Grunt 2: <div class="life-box"></div></div>
+            <div class="life-indicators" data-card-id="bloodrunners1_g3">Grunt 3: <div class="life-box"></div></div>
+            <button class="reset-button" data-unit-prefix="bloodrunners1_g">Reset All Grunts</button>
+
+            <div class="stat-block">
+                SPD: 7 | MAT: 7 | DEF: 14 | ARM: 11
+            </div>
+            <div class="ability-block">
+                <p><strong>Anatomical Precision:</strong> When melee damage roll fails to exceed ARM of living model hit, model suffers 1 damage. Model disabled by melee attack from this model cannot Tough.</p>
+                <p><strong>Gang:</strong> When making melee attack targeting enemy model in melee range of another model in this unit, this model gains +2 to melee attack and melee damage rolls.</p>
+                <p><strong>Reposition [3"]:</strong> At end of model/unit's activation in which it did not run or fail charge, can advance up to 3", then activation ends.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Assassin's Blade</h4>
+                <p>MAT: 7 | RNG: 1 | POW: 8</p>
+            </div>
+        </div>
+        <div id="card-bloodrunners2" class="card-section">
+            <a href="#army-list-summary" class="back-link">← Back to Army List</a>
+            <h3 class="card-title">Paingiver Bloodrunners 2 (Skorne Exalted Unit - 3 Grunts)</h3>
+            <p>Field Allowance: 2/4 | Point Cost: 4</p>
+            <h4>Grunt Stats & Abilities (per Grunt):</h4>
+            <div class="life-indicators" data-card-id="bloodrunners2_g1">Grunt 1: <div class="life-box"></div></div>
+            <div class="life-indicators" data-card-id="bloodrunners2_g2">Grunt 2: <div class="life-box"></div></div>
+            <div class="life-indicators" data-card-id="bloodrunners2_g3">Grunt 3: <div class="life-box"></div></div>
+            <button class="reset-button" data-unit-prefix="bloodrunners2_g">Reset All Grunts</button>
+            <div class="stat-block">
+                SPD: 7 | MAT: 7 | DEF: 14 | ARM: 11
+            </div>
+            <div class="ability-block">
+                <p><strong>Anatomical Precision:</strong> As above.</p>
+                <p><strong>Gang:</strong> As above.</p>
+                <p><strong>Reposition [3"]:</strong> As above.</p>
+            </div>
+            <div class="weapon-block">
+                <h4>Assassin's Blade</h4>
+                <p>MAT: 7 | RNG: 1 | POW: 8</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lifeElements = document.querySelectorAll('.life-box, .life-spiral-dot');
+            lifeElements.forEach(el => {
+                el.addEventListener('click', () => {
+                    el.classList.toggle('marked');
+                });
+            });
+
+            const resetButtons = document.querySelectorAll('.reset-button');
+            resetButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const unitPrefix = button.dataset.unitPrefix;
+                    let indicatorsToReset;
+
+                    if (unitPrefix) {
+                        // For units with multiple grunts, find all indicators for that unit
+                        indicatorsToReset = [];
+                        const parentCardSection = button.closest('.card-section');
+                        parentCardSection.querySelectorAll('.life-indicators').forEach(indicatorSet => {
+                            if (indicatorSet.dataset.cardId && indicatorSet.dataset.cardId.startsWith(unitPrefix)) {
+                                indicatorSet.querySelectorAll('.life-box, .life-spiral-dot').forEach(dot => indicatorsToReset.push(dot));
+                            }
+                        });
+                    } else {
+                        // For single models or warbeasts
+                        const parentIndicatorDiv = button.closest('.life-indicators');
+                        indicatorsToReset = parentIndicatorDiv.querySelectorAll('.life-box, .life-spiral-dot');
+                    }
+                    
+                    indicatorsToReset.forEach(indicator => {
+                        indicator.classList.remove('marked');
+                    });
+                });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const hrefAttribute = this.getAttribute('href');
+                    if (hrefAttribute.length > 1 && document.querySelector(hrefAttribute)) { // Check if it's a valid internal link
+                        e.preventDefault();
+                        document.querySelector(hrefAttribute).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                         // If it's a card link, update history for back button functionality
+                        if (hrefAttribute.startsWith('#card-') || hrefAttribute.startsWith('#defense-details')) {
+                            history.pushState(null, null, hrefAttribute);
+                        } else if (hrefAttribute === '#army-list-summary') {
+                             history.pushState(null, null, ' '); // Or window.location.pathname
+                        }
+                    }
+                });
+            });
+             // Handle browser back/forward buttons for section navigation
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash;
+                if (hash && document.querySelector(hash)) {
+                    document.querySelector(hash).scrollIntoView({ behavior: 'smooth' });
+                } else if (!hash || hash === '#') {
+                     document.querySelector('#army-list-summary').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            // Initial scroll to hash if present
+            if (window.location.hash && document.querySelector(window.location.hash)) {
+                document.querySelector(window.location.hash).scrollIntoView();
+            }
+
+        });
+    </script>
+</body>
+</html>

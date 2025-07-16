@@ -39,7 +39,7 @@ const i18n = {
   ...i18nApp,
   ...i18nGame
 }
-const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: Scenario`)
+const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.SCENARIO_TITLE}`)
 const fileName = computed(() => {
   return props.scenario.map_image_filename.replace(/^.*\/|\.svg$/g, '')
 })
