@@ -48,7 +48,7 @@ const route = useRoute();
 const factionId = route.params.faction;
 const armyId = route.params.army;
 
-const dataHost = 'https://raw.githubusercontent.com/isorna/wardice/refs/heads/army-builder/src/data/warmachine';
+const dataHost = 'https://raw.githubusercontent.com/isorna/wardice/refs/heads/main/src/data/warmachine';
 const profilesApi = computed(() => `${dataHost}/profiles/${factionId}/${factionId}.${armyId}.profiles.json?${Date.now()}`);
 const abilitiesApi = computed(() => `${dataHost}/abilities/${factionId}.${armyId}.abilities.json?${Date.now()}`);
 const spellsApi = computed(() => `${dataHost}/spells/${factionId}.${armyId}.spells.json?${Date.now()}`);
