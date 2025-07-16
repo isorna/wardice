@@ -148,7 +148,8 @@ const spellsBlock = (spells, title) => {
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 5px;
-  background-color: #fdfdfd;
+  /* background-color: #fdfdfd; */
+	background: linear-gradient(var(--dark-turquoise-gradient), var(--medium-blue));
 }
 .card-title {
   background-color: #e0e0e0;

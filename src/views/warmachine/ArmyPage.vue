@@ -115,13 +115,16 @@ const saveArmyList = () => {
 
 <style scoped>
 .builder-view-container {
+	margin-top: 2rem;
   display: flex;
   gap: 20px;
 }
 #army-list-container {
+	margin-top: 2rem;
   flex: 2;
 }
 #builder-container {
+	margin-top: 2rem;
   flex: 1;
 }
 </style>

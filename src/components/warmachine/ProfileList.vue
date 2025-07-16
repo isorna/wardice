@@ -96,7 +96,8 @@ const isAddDisabled = (profileKey) => {
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 5px;
-  background-color: #fdfdfd;
+  /* background-color: #fdfdfd; */
+	background: linear-gradient(var(--dark-turquoise-gradient), var(--medium-blue));
 }
 table {
   width: 100%;
@@ -111,7 +112,8 @@ td {
   vertical-align: middle;
 }
 th {
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  background-color: var(--medium-blue);
 }
 th.center-col,
 td.center-col {
@@ -119,7 +121,8 @@ td.center-col {
   width: 50px;
 }
 .group-header td {
-  background-color: #eee;
+  /* background-color: #eee; */
+  background-color: var(--medium-blue);
   font-weight: bold;
 }
 </style>
