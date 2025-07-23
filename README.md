@@ -12,16 +12,16 @@
 * [x] APP: create home page and adapt loading transition.
 * [x] APP: update app footer.
 * [ ] APP: move api files outside of application, and use git hosting to improve cache and loading times.
-* [ ] APP: Update manifest shortcuts accordingly to previous changes.
+* [x] APP: Update manifest shortcuts accordingly to previous changes.
 * [ ] Warmachine:
   * [ ] Add warmachine-data files.
-  * [ ] Refactor faction views to a single dynamic view.
+  * [x] Refactor faction views to a single dynamic view.
   * [ ] Add Command Cards & Terrain rules.
-  * [ ] Set as favorite faction on index.
+  * [x] Set as favorite faction on index.
   * [ ] Develop a more robust and complete list builder.
   * [ ] Save more than one list (with list name).
   * [ ] Share list.
-  * [ ] Filter visible profiles.
+  * [x] Filter visible profiles.
   * [ ] Play game (with all rules used).
 * [ ] APP: add translations to Spanish language.
 * [x] APP: add help system.
@@ -29,4 +29,5 @@
 ## Credits
 
 * [Game Icons](https://game-icons.net/) for creating awesome free icons for games.
+* [Iconify](https://icon-sets.iconify.design/) for creating awesome free icons.
 * [Kirk Bushell](https://github.com/kirkbushell/warmachine-data) for his amazing warmachine-data repository.

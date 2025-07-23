@@ -131,7 +131,11 @@ const pageHeaderLink = computed(() => {
 // })
 const selectedFactionData = computed(() => factions.filter((item) => item.slug === factionId)[0])
 const factionName = computed(() => selectedFactionData.value.name)
-const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.FACTION_TITLE}`)
+const pageTitle = computed(() => {
+  return route.params.army
+    ? `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.ARMY_TITLE}`
+    : `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.FACTION_TITLE}`
+})
 // const tour = ref(null)
 // const tourButtonLabels = computed(() => {
 //   return {

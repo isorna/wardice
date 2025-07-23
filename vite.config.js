@@ -90,11 +90,25 @@ export default defineConfig({
         prefer_related_applications: false,
         shortcuts: [
           {
-            name: '40k 10th edition',
-            short_name: 'WH40k',
-            url: '/40k',
-            description: 'Warhammer 40k 10th edition',
-            icons: [{ src: '/icons/manifest-icon-192.png', sizes: '192x192' }]
+            name: 'Steamroller 2025',
+            short_name: 'SR2025',
+            url: '/warmachine/steamroller',
+            description: 'Warmachine Steamroller 2025',
+            icons: [{ src: '/icons/facion-general-bw.png', sizes: '192x192' }]
+          },
+          {
+            name: 'Cryx',
+            short_name: 'Cryx',
+            url: '/warmachine/faction/cryx',
+            description: 'Cryx Faction',
+            icons: [{ src: '/icons/facion-cryx-color.png', sizes: '192x192' }]
+          },
+          {
+            name: 'Skorne',
+            short_name: 'Skorne',
+            url: '/warmachine/faction/skorne',
+            description: 'Skorne Faction',
+            icons: [{ src: '/icons/facion-skorne-color.png', sizes: '192x192' }]
           }
         ]
       }

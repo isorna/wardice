@@ -2,9 +2,13 @@
   <header>
     <h1><router-link :to="path" >{{ title }}</router-link></h1>
     <button
-      class="help-button"
+      class="icon-button icon-button __translate"
+      :title="i18n.TRANSLATE"
+      @click="$emit('translate')"><Icon icon="material-symbols:translate" /></button>
+    <!-- <button
+      class="icon-button icon-button__help"
       :title="i18n.HELP"
-      @click="$emit('showHelp')"><Icon icon="ic:baseline-live-help" /></button>
+      @click="$emit('showHelp')"><Icon icon="ic:baseline-live-help" /></button> -->
   </header>
 </template>
 
@@ -34,7 +38,7 @@ h1 {
   line-height: 40px;
 }
 
-.help-button {
+.icon-button {
   align-items: center;
   background-color: var(--darkest-blue);
   border: 2px dotted var(--brand-color);
@@ -47,7 +51,7 @@ h1 {
   width: 40px;
 }
 
-.help-button:hover {
+.icon-button:hover {
   border-style: solid;
 }
 
