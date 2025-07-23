@@ -1,12 +1,14 @@
 <template>
   <article class="page">
-    <site-header path="/warmachine/army-builder" :title="pageTitle" @show-help="tour.resetTour()" />
+    <site-header :path="pageHeaderLink" :title="pageTitle" @show-help="tour.resetTour()" />
     <section class="faction-section">
       <h1 class="section-title">{{ factionName }}</h1>
 			<p>{{ selectedFactionData.description }}</p>
 			<h2 class="section-title__secondary">{{ i18n.ARMIES }}</h2>
 			<ul class="faction-list">
-				<li class="faction-list__item faction-list__item--horizontal" v-for="army in selectedFactionData.armies" :key="army.id">
+				<li class="faction-list__item faction-list__item--horizontal"
+        :class="{'faction-list__item--selected': route.params.army === army.slug}"
+          v-for="army in selectedFactionData.armies" :key="army.id">
           <router-link
             :to="`/warmachine/faction/${factionId}/${army.slug}`"><h3>{{ army.name }}</h3></router-link>
 					<p>{{ army.description }}</p>
@@ -61,7 +63,13 @@ const route = useRoute()
 //     ? undefined
 //     : `https://raw.githubusercontent.com/isorna/wardice-40k-api/main/40k-index-${route.params.faction}.json?${Date.now()}`
 // })
-const factionId = route.params.faction
+const factionId = route.params.faction;
+// const armyId = route.params.army;
+const pageHeaderLink = computed(() => {
+  return route.params.army
+    ? `/warmachine/faction/${route.params.faction}`
+    : `/warmachine/army-builder`
+})
 // const nameFilter = ref('')
 // const { data, error } = useFetch(API)
 // const filteredProfiles = computed(() => {

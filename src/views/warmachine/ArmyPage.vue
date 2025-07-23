@@ -5,21 +5,21 @@
     </section>
     <template v-else-if="profiles">
       <div class="builder-view-container">
-        <div id="army-list-container">
-          <ProfileList
-            :profiles="profiles"
-            :army-list="armyList"
-            @add-to-army="addToArmy"
-            @view-profile="viewProfile"
-          />
-        </div>
-        <div id="builder-container">
+        <div id="builder-container" v-if="armyList.profiles && Object.keys(armyList.profiles).length > 0">
           <ArmyBuilder
             :army-list="armyList"
             :profiles="profiles"
             @remove-from-army="removeFromArmy"
             @save-list="saveArmyList"
             v-model:armyList="armyList"
+          />
+        </div>
+        <div id="army-list-container">
+          <ProfileList
+            :profiles="profiles"
+            :army-list="armyList"
+            @add-to-army="addToArmy"
+            @view-profile="viewProfile"
           />
         </div>
       </div>
@@ -117,14 +117,36 @@ const saveArmyList = () => {
 .builder-view-container {
 	margin-top: 2rem;
   display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 #army-list-container {
 	margin-top: 2rem;
-  flex: 2;
+  /* flex: 2; */
 }
 #builder-container {
 	margin-top: 2rem;
-  flex: 1;
+  /* flex: 1; */
+}
+#card-details-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 80px;
+  /* overflow-y: auto; */
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  #card-details-container {
+    /* margin: 10px; */
+    padding: 10px;
+    height: auto;
+  }
 }
 </style>

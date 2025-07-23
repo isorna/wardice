@@ -247,6 +247,11 @@ footer {
 			background: linear-gradient(var(--dark-turquoise-gradient), var(--medium-blue));
 			border: 2px solid var(--brand-color); */
 		}
+
+    &.faction-list__item--selected {
+      background: linear-gradient(var(--dark-turquoise-gradient), var(--medium-blue));
+      border: 2px solid var(--brand-color);
+    }
 	}
 
 }

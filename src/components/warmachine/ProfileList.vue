@@ -13,20 +13,25 @@
       </thead>
       <tbody>
         <template v-for="(group, groupType) in groupedProfiles" :key="groupType">
-          <tr class="group-header">
-            <td colspan="5">{{ groupType.charAt(0).toUpperCase() + groupType.slice(1) }}s</td>
-          </tr>
-          <tr v-for="item in group" :key="item.key">
-            <td class="center-col">{{ item.data.points || '—' }}</td>
-            <td class="center-col">{{ (item.data.fieldAllowance || '—').toString().toUpperCase() }}</td>
-            <td>{{ item.data.name }}</td>
-            <td class="center-col">
-              <button @click="$emit('view-profile', item.key)">{{ i18n.VIEW }}</button>
-            </td>
-            <td class="center-col">
-              <button @click="$emit('add-to-army', item.key)" :disabled="isAddDisabled(item.key)">+</button>
+          <tr class="group-header" :class="{ collapsed: collapsedGroups[groupType], expanded: !collapsedGroups[groupType] }" @click="toggleGroup(groupType)">
+            <td colspan="5">
+              <span class="toggle-icon">{{ collapsedGroups[groupType] ? '&#9654;' : '&#9660;' }}</span>
+              {{ groupType.charAt(0).toUpperCase() + groupType.slice(1) }}s
             </td>
           </tr>
+          <template v-if="!collapsedGroups[groupType]">
+            <tr v-for="item in group" :key="item.key">
+              <td class="center-col">{{ item.data.points || '—' }}</td>
+              <td class="center-col">{{ (item.data.fieldAllowance || '—').toString().toUpperCase() }}</td>
+              <td>{{ item.data.name }}</td>
+              <td class="center-col">
+                <button @click.stop="$emit('view-profile', item.key)">{{ i18n.VIEW }}</button>
+              </td>
+              <td class="center-col">
+                <button @click.stop="$emit('add-to-army', item.key)" :disabled="isAddDisabled(item.key)">+</button>
+              </td>
+            </tr>
+          </template>
         </template>
       </tbody>
     </table>
@@ -34,7 +39,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import i18nApp from '@/i18n/en.i18n.json';
 import i18nGame from '@/i18n/warmachine/en.i18n.json';
 
@@ -55,6 +60,21 @@ const props = defineProps({
 });
 
 defineEmits(['add-to-army', 'view-profile']);
+
+const collapsedGroups = ref({
+  warcaster: false,
+  warlock: false,
+  warjack: true,
+  warbeast: true,
+  battleEngine: true,
+  unit: true,
+  commandAttachment: true,
+  solo: true,
+});
+
+const toggleGroup = (groupType) => {
+  collapsedGroups.value[groupType] = !collapsedGroups.value[groupType];
+};
 
 const groupedProfiles = computed(() => {
   const groups = {};
@@ -120,9 +140,26 @@ td.center-col {
   text-align: center;
   width: 50px;
 }
+.group-header {
+  cursor: pointer;
+  user-select: none;
+
+  &.collapsed {
+    color: #eee;
+  }
+  &.expanded {
+    color: var(--brand-color);
+  }
+}
 .group-header td {
   /* background-color: #eee; */
   background-color: var(--medium-blue);
   font-weight: bold;
+}
+.toggle-icon {
+  display: inline-block;
+  width: 1em;
+  margin-right: 5px;
+  text-align: center;
 }
 </style>
