@@ -12,22 +12,22 @@ const ScenarioPage = () => import('@/views/warmachine/ScenarioPage.vue')
 
 export const routesWarmachine = [
   {
-    path: '/warmachine',
+    path: '/warmachine/:lang?',
     name: 'Warmachine Home',
     component: HomePage
   },
   {
-    path: '/warmachine/rules',
+    path: '/warmachine/rules/:lang?',
     name: 'Warmachine Rules',
     component: RulesPage
   },
   {
-    path: '/warmachine/steamroller',
+    path: '/warmachine/steamroller/:lang?',
     name: 'Steamroller 2025',
     component: SteamrollerPage
   },
   {
-    path: '/warmachine/scenario/:scenario',
+    path: '/warmachine/scenario/:scenario/:lang?',
     name: 'Warmachine Scenario',
     component: ScenarioPage,
     beforeEnter: (to, from) => {
@@ -56,17 +56,17 @@ export const routesWarmachine = [
     })
   },
   {
-    path: '/warmachine/army-builder',
+    path: '/warmachine/army-builder/:lang?',
     name: 'Army Builder',
     component: ArmyBuilderPage
   },
   {
-    path: '/warmachine/faction/:faction',
+    path: '/warmachine/faction/:faction/:lang?',
     name: 'Warmachine Faction',
     component: FactionPage,
     children: [
       {
-        path: ':army',
+        path: ':army/:lang?',
         name: 'Army',
         component: ArmyPage,
         beforeEnter: (to, from) => {

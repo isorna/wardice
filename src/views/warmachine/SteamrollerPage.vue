@@ -29,10 +29,10 @@
 import SiteHeader from '@/components/SiteHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import RulesList from '@/components/warmachine/RulesList.vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useAppStore } from '@/store/app.store'
-import steamroller from '@/data/warmachine/steamroller.json'
+import { useLocalizedData } from '@/helpers/data-loader.js'
 // section 1: Player responsibilities
 // section 2: Army lists
 // section 3: Setup and deployment
@@ -48,8 +48,13 @@ import steamroller from '@/data/warmachine/steamroller.json'
 import i18nApp from '@/i18n/en.i18n.json'
 import i18nGame from '@/i18n/warmachine/en.i18n.json'
 
+const { data: steamroller } = useLocalizedData('steamroller')
+
 const filteredScenarios = computed(() => {
-  return steamroller
+  if (!steamroller.value) {
+    return []
+  }
+  return steamroller.value
     .sections[5]
     .scenarios
     .map((scenario) => {
