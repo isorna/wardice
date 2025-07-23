@@ -153,7 +153,8 @@ input {
   width: 100%;
 }
 
-button {
+button,
+.icon-button {
   background-color: var(--brand-color);
   border-radius: 10px;
   color: var(--darkest-blue);
@@ -164,7 +165,8 @@ button {
   text-transform: uppercase;
 }
 
-button:hover {
+button:hover,
+.icon-button:hover {
   background-color: var(--light-orange-gradient);
 }
 

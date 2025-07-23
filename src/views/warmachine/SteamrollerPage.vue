@@ -1,26 +1,28 @@
 <template>
   <article class="page">
-    <site-header path="/warmachine" :title="pageTitle" @show-help="tour.resetTour()" />
+    <site-header path="/warmachine" :title="pageTitle" @show-help="tour.resetTour()" @translate="$emit('translate')" />
     <section class="rules-section">
       <h1 class="section-title">{{i18n.STEAMROLLER_2025}}</h1>
-      <template v-for="(section, index) in steamroller.sections" :key="`section-${index}`">
-        <template v-if="index !== 5">
-          <RulesList v-if="section.content" :rules="section.content" :title="section.title" :subsections="section.sub_sections" />
-        </template>
-        <template v-else>
-          <h2>{{ section.title }}</h2>
-          <ol class="links-list">
-            <li class="links-item"
-              v-for="(scenario, index) in filteredScenarios"
-              :key="`scenarios-${index}`">
-              <router-link
-                :to="scenario.link">{{ scenario.name }}</router-link>
-            </li>
-          </ol>
+      <template v-if="steamroller?.sections">
+        <template v-for="(section, index) in steamroller.sections" :key="`section-${index}`">
+          <template v-if="index !== 5">
+            <RulesList v-if="section.content" :rules="section.content" :title="section.title" :subsections="section.sub_sections" />
+          </template>
+          <template v-else>
+            <h2>{{ section.title }}</h2>
+            <ol class="links-list">
+              <li class="links-item"
+                v-for="(scenario, index) in filteredScenarios"
+                :key="`scenarios-${index}`">
+                <router-link
+                  :to="scenario.link">{{ scenario.name }}</router-link>
+              </li>
+            </ol>
+          </template>
         </template>
       </template>
     </section>
-    <VTour ref="tour" :steps="steps" :buttonLabels="tourButtonLabels" autoStart highlight />
+    <!-- <VTour ref="tour" :steps="steps" :buttonLabels="tourButtonLabels" autoStart highlight /> -->
     <PageFooter />
   </article>
 </template>
@@ -29,10 +31,10 @@
 import SiteHeader from '@/components/SiteHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import RulesList from '@/components/warmachine/RulesList.vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useAppStore } from '@/store/app.store'
-import steamroller from '@/data/warmachine/steamroller.json'
+import { useLocalizedData } from '@/helpers/data-loader.js'
 // section 1: Player responsibilities
 // section 2: Army lists
 // section 3: Setup and deployment
@@ -48,8 +50,13 @@ import steamroller from '@/data/warmachine/steamroller.json'
 import i18nApp from '@/i18n/en.i18n.json'
 import i18nGame from '@/i18n/warmachine/en.i18n.json'
 
+const { data: steamroller } = useLocalizedData('steamroller')
+
 const filteredScenarios = computed(() => {
-  return steamroller
+  if (!steamroller.value) {
+    return []
+  }
+  return steamroller.value
     .sections[5]
     .scenarios
     .map((scenario) => {
@@ -72,7 +79,7 @@ const i18n = {
 }
 const appStore = useAppStore()
 const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.SR2025_TITLE}`)
-const tour = ref(null)
+// const tour = ref(null)
 const tourButtonLabels = computed(() => {
   return {
     next: i18n.NEXT,
