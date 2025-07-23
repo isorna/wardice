@@ -1,26 +1,28 @@
 <template>
   <article class="page">
-    <site-header path="/warmachine" :title="pageTitle" @show-help="tour.resetTour()" />
+    <site-header path="/warmachine" :title="pageTitle" @show-help="tour.resetTour()" @translate="$emit('translate')" />
     <section class="rules-section">
       <h1 class="section-title">{{i18n.STEAMROLLER_2025}}</h1>
-      <template v-for="(section, index) in steamroller.sections" :key="`section-${index}`">
-        <template v-if="index !== 5">
-          <RulesList v-if="section.content" :rules="section.content" :title="section.title" :subsections="section.sub_sections" />
-        </template>
-        <template v-else>
-          <h2>{{ section.title }}</h2>
-          <ol class="links-list">
-            <li class="links-item"
-              v-for="(scenario, index) in filteredScenarios"
-              :key="`scenarios-${index}`">
-              <router-link
-                :to="scenario.link">{{ scenario.name }}</router-link>
-            </li>
-          </ol>
+      <template v-if="steamroller?.sections">
+        <template v-for="(section, index) in steamroller.sections" :key="`section-${index}`">
+          <template v-if="index !== 5">
+            <RulesList v-if="section.content" :rules="section.content" :title="section.title" :subsections="section.sub_sections" />
+          </template>
+          <template v-else>
+            <h2>{{ section.title }}</h2>
+            <ol class="links-list">
+              <li class="links-item"
+                v-for="(scenario, index) in filteredScenarios"
+                :key="`scenarios-${index}`">
+                <router-link
+                  :to="scenario.link">{{ scenario.name }}</router-link>
+              </li>
+            </ol>
+          </template>
         </template>
       </template>
     </section>
-    <VTour ref="tour" :steps="steps" :buttonLabels="tourButtonLabels" autoStart highlight />
+    <!-- <VTour ref="tour" :steps="steps" :buttonLabels="tourButtonLabels" autoStart highlight /> -->
     <PageFooter />
   </article>
 </template>
@@ -77,7 +79,7 @@ const i18n = {
 }
 const appStore = useAppStore()
 const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.SR2025_TITLE}`)
-const tour = ref(null)
+// const tour = ref(null)
 const tourButtonLabels = computed(() => {
   return {
     next: i18n.NEXT,

@@ -60,8 +60,9 @@ export const routesWarmachine = [
     name: 'Army Builder',
     component: ArmyBuilderPage
   },
+  // TODO: see how to resolve this
   {
-    path: '/warmachine/faction/:faction/:lang?',
+    path: '/warmachine/faction/:faction',
     name: 'Warmachine Faction',
     component: FactionPage,
     children: [

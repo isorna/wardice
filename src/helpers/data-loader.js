@@ -6,6 +6,8 @@ export function useLocalizedData (dataName) {
   const data = ref(null)
   const lang = route.params.lang || 'en'
 
+  console.log(`Loading data for ${dataName} (${lang})`)
+
   const loadData = async () => {
     try {
       let module

@@ -1,10 +1,10 @@
 <template>
-  <router-view v-slot="{ Component }">
+  <router-view v-slot="{ Component, route }">
     <transition
       name="custom-classes"
       enter-active-class="animate__animated animate__fadeIn"
       leave-active-class="animate__animated animate__fadeOut">
-      <component :is="Component" @translate="translate" />
+      <component :is="Component" :key="route.fullPath" />
     </transition>
   </router-view>
 </template>
@@ -15,10 +15,16 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 
-function translate () {
-  const lang = route.params.lang === 'es' ? undefined : 'es'
-  router.push({ params: { ...route.params, lang } })
-}
+// function translate () {
+//   const lang = route.params.lang === 'es' ? undefined : 'es'
+//   const params = { ...route.params }
+//   if (lang) {
+//     params.lang = lang
+//   } else {
+//     delete params.lang
+//   }
+//   router.push({ name: route.name, params, replace: true })
+// }
 </script>
 
 <style scoped>
