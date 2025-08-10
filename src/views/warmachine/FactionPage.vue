@@ -1,7 +1,7 @@
 <template>
   <article class="page">
-    <site-header :path="pageHeaderLink" :title="pageTitle" @show-help="tour.resetTour()" />
-    <section class="faction-section">
+    <site-header :path="pageHeaderLink" :title="pageTitle" @show-help="tour.resetTour()" class="no-print" />
+    <section class="faction-section no-print">
       <h1 class="section-title">{{ factionName }}</h1>
 			<p>{{ selectedFactionData.description }}</p>
 			<h2 class="section-title__secondary">{{ i18n.ARMIES }}</h2>
@@ -23,7 +23,7 @@
 				<component :is="Component" />
 			</transition>
 		</router-view>
-    <PageFooter />
+    <PageFooter class="no-print" />
   </article>
 </template>
 

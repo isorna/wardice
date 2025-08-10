@@ -4,7 +4,7 @@
       <p class="error-message"><strong>Error:</strong> {{ error.message }}</p>
     </section>
     <template v-else-if="profiles">
-      <div class="builder-view-container">
+      <div class="builder-view-container no-print">
         <div id="builder-container" v-if="armyList.profiles && Object.keys(armyList.profiles).length > 0">
           <ArmyBuilder
             :army-list="armyList"
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div id="card-details-container" v-if="selectedProfileKey">
-        <ProfileCard
+        <ProfileCardv2
           :profile="profiles[selectedProfileKey]"
           :profile-key="selectedProfileKey"
           :abilities-data="abilities"
@@ -42,7 +42,7 @@ import { useRoute } from 'vue-router';
 import { useFetch } from '@/helpers/useFetch.js';
 import ProfileList from '@/components/warmachine/ProfileList.vue';
 import ArmyBuilder from '@/components/warmachine/ArmyBuilder.vue';
-import ProfileCard from '@/components/warmachine/ProfileCard.vue';
+import ProfileCardv2 from '@/components/warmachine/ProfileCardv2.vue';
 
 const route = useRoute();
 const factionId = route.params.faction;
