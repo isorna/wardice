@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Primus Jalaam - Character Stats</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Cinzel:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --bg-color: #FDFBF8;
+            --border-color: #D4AF37;
+            --header-bg: #4A2424;
+            --header-text: #FDFBF8;
+            --stat-bg: #F3EFE9;
+            --stat-border: #D4AF37;
+            --text-color: #38241C;
+            --accent-color: #B8860B;
+            --light-bg: #F9F6F2;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #111;
+        }
+        @media print {
+            body {
+                background-color: transparent;
+            }
+            .a5-page {
+                box-shadow: none;
+                margin: 0;
+                border: none;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        .a5-horizontal-container {
+            width: 210mm;
+            height: 148mm;
+            box-sizing: border-box;
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23D4AF37" fill-opacity="0.05"><rect x="50" width="50" height="50"/><rect y="50" width="50" height="50"/></g></svg>');
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        .header-bar {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 4px 12px;
+            border-bottom: 2px solid var(--border-color);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .stat-box {
+            background-color: var(--stat-bg);
+            border: 1px solid var(--stat-border);
+            text-align: center;
+            padding: 2px 0;
+        }
+        .stat-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            font-family: 'Cinzel', serif;
+        }
+        .stat-value {
+            font-size: 1.4rem;
+            line-height: 1.4rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        .ability-box {
+            border: 1px solid var(--border-color);
+            background-color: var(--light-bg);
+        }
+        .weapon-header {
+             background-color: #6B4226;
+             border-bottom: 1px solid var(--border-color);
+             border-top: 1px solid var(--border-color);
+        }
+        .damage-grid {
+             display: grid;
+             grid-template-columns: repeat(6, 1fr);
+             gap: 3px;
+        }
+        .damage-box {
+             width: 20px;
+             height: 20px;
+             border: 1px solid var(--accent-color);
+             background-color: #fff;
+        }
+        .feat-box {
+             border: 2px solid var(--accent-color);
+             background-color: rgba(212, 175, 55, 0.1);
+        }
+        .fury-stat-label {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--header-text);
+            font-size: 0.8rem;
+        }
+        .fury-stat-value {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 2rem;
+            color: var(--text-color);
+        }
+        .skorne-icon-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-center items-center min-h-screen p-4 space-y-4">
+<div class="a5-horizontal-container shadow-lg p-3 page-break a5-page">
+<svg class="skorne-icon-bg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M50,5 C52.5,10 55,20 60,30 C65,20 67.5,10 70,5 L90,10 C80,20 75,35 75,45 L85,60 C75,65 65,70 60,80 L50,95 L40,80 C35,70 25,65 15,60 L25,45 C25,35 20,20 10,10 L30,5 C32.5,10 35,20 40,30 C45,20 47.5,10 50,5 Z" fill="#4A2424"></path>
+</svg>
+<div class="content-wrapper flex flex-col flex-grow">
+<div class="header-bar text-center flex items-center justify-center relative">
+<svg class="w-8 h-8 absolute left-3" fill="none" stroke="var(--accent-color)" stroke-width="4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M50,5 C52.5,10 55,20 60,30 C65,20 67.5,10 70,5 L90,10 C80,20 75,35 75,45 L85,60 C75,65 65,70 60,80 L50,95 L40,80 C35,70 25,65 15,60 L25,45 C25,35 20,20 10,10 L30,5 C32.5,10 35,20 40,30 C45,20 47.5,10 50,5 Z" fill="none"></path>
+</svg>
+<h1 class="font-cinzel text-2xl tracking-widest">PRIMUS JALAAM</h1>
+<svg class="w-8 h-8 absolute right-3" fill="none" stroke="var(--accent-color)" stroke-width="4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M50,5 C52.5,10 55,20 60,30 C65,20 67.5,10 70,5 L90,10 C80,20 75,35 75,45 L85,60 C75,65 65,70 60,80 L50,95 L40,80 C35,70 25,65 15,60 L25,45 C25,35 20,20 10,10 L30,5 C32.5,10 35,20 40,30 C45,20 47.5,10 50,5 Z" fill="none"></path>
+</svg>
+</div>
+<div class="grid grid-cols-12 gap-3 flex-grow mt-2">
+<div class="col-span-4 flex flex-col space-y-2">
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="text-center font-cinzel text-[10px] text-[var(--text-color)] leading-tight mt-1">
+<p class="font-bold text-sm">Skorne Warlock</p>
+<p>Army of the Western Reaches Scout</p>
+<p class="text-[9px] mt-1">Field Allowance: C | Point Cost: +28 | Base Size: Small</p>
+</div>
+<div class="flex justify-center items-center py-4">
+<div class="w-32 h-32 rounded-full border-4 border-[var(--border-color)] bg-[var(--stat-bg)] shadow-lg">
+<img alt="Primus Jalaam Portrait" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8wIgwPt6OXPg6UEQFezOpSGHrp8vSRZAoZGKyYbprDKItPSJ52wYkplMKcQ7fELSULap9zrUA1tsJfmPnG-izS38vPgW7LzEaFQ42ACfntSg2On6TD6uLGtT8GoR003fD7EL0sYhE7b8Ztc-qtyoxvYJmWwH-SnQAUGMhZmQzjI01ZMnmOiY0HvZZA94mxidq6tD9ZeYzlppq88kTUYwV6CtDfZte5N_2WETrHG3j4FzNaI6ivPvaMqk9khSGKW2IoPqcm_FMsI0"/>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-1">
+<div class="stat-box"><span class="stat-label">SPD</span><span class="stat-value">6</span></div>
+<div class="stat-box"><span class="stat-label">STR</span><span class="stat-value">6</span></div>
+<div class="stat-box"><span class="stat-label">MAT</span><span class="stat-value">7</span></div>
+<div class="stat-box"><span class="stat-label">RAT</span><span class="stat-value">7</span></div>
+<div class="stat-box"><span class="stat-label">DEF</span><span class="stat-value">15</span></div>
+<div class="stat-box"><span class="stat-label">ARM</span><span class="stat-value">15</span></div>
+<div class="stat-box"><span class="stat-label">CMD</span><span class="stat-value">8</span></div>
+<div class="stat-box"><span class="stat-label">FURY</span><span class="stat-value">6</span></div>
+</div>
+<div class="flex flex-col items-center justify-around space-y-1 pt-3">
+<div class="damage-grid">
+<div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div>
+</div>
+<div class="damage-grid">
+<div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div>
+</div>
+<div class="damage-grid">
+<div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div><div class="damage-box"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-8 flex flex-col space-y-2 text-[var(--text-color)]">
+<div class="space-y-1 text-xs flex-grow">
+<div class="ability-box">
+<div class="weapon-header p-1 px-2 flex justify-between items-center font-bold text-sm text-[var(--header-text)]">
+<div class="flex items-center gap-2"><span class="material-icons text-base text-[var(--accent-color)]">gps_fixed</span> <span class="font-cinzel tracking-wider">REIVER</span></div>
+<div class="flex items-center gap-3 text-xs"><span>RNG 12</span><span>ROF 1</span><span>POW 10</span></div>
+</div>
+<div class="p-1 px-2 space-y-1 text-[10px]">
+<p><strong>Grievous Wounds</strong> - On a direct hit, a model hit by this weapon loses Tough and cannot have damage removed from it for one round.</p>
+<p><strong>Volume Fire</strong> - Gain +1 to attack and damage rolls against medium-based models and +2 against larger-based models.</p>
+<p><strong>Reload [1]</strong> - This model can spend 1 focus or fury point to make one additional ranged attack with this weapon.</p>
+</div>
+</div>
+<div class="ability-box">
+<div class="weapon-header p-1 px-2 flex justify-between items-center font-bold text-sm text-[var(--header-text)]">
+<div class="flex items-center gap-2"><span class="material-icons text-base rotate-45 text-[var(--accent-color)]">hardware</span><span class="font-cinzel tracking-wider">BLADE</span></div>
+<div class="flex items-center gap-3 text-xs"><span>RNG 1</span><span>P+S 12</span></div>
+</div>
+<div class="p-1 px-2 text-[10px]">
+<p><strong>Grievous Wounds</strong> - On a direct hit, a model hit by this weapon loses Tough and cannot have damage removed from it for one round.</p>
+</div>
+</div>
+</div>
+<div class="feat-box p-1 px-2 mt-auto">
+<h2 class="font-cinzel text-center text-lg text-[var(--accent-color)] tracking-widest">FEAT: HIDE IN SIGHT</h2>
+<p class="text-center text-[10px] mt-1">When an enemy model makes an attack roll against a friendly Faction model in Jalaam's control range, the enemy model rolls one less die. Hide in Sight lasts for one round.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="a5-horizontal-container shadow-lg p-3 a5-page">
+<svg class="skorne-icon-bg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M50,5 C52.5,10 55,20 60,30 C65,20 67.5,10 70,5 L90,10 C80,20 75,35 75,45 L85,60 C75,65 65,70 60,80 L50,95 L40,80 C35,70 25,65 15,60 L25,45 C25,35 20,20 10,10 L30,5 C32.5,10 35,20 40,30 C45,20 47.5,10 50,5 Z" fill="#4A2424"></path>
+</svg>
+<div class="content-wrapper flex flex-col flex-grow">
+<div class="header-bar text-center">
+<h1 class="font-cinzel text-2xl tracking-widest">PRIMUS JALAAM - ABILITIES &amp; SPELLS</h1>
+</div>
+<div class="grid grid-cols-2 gap-3 flex-grow mt-2 text-[var(--text-color)] text-xs">
+<div class="flex flex-col space-y-2">
+<div class="ability-box p-2 space-y-1 h-full text-[11px]">
+<p><strong>Hunter</strong> - This model ignores concealment and cover when making ranged attacks.</p>
+<p><strong>Prey</strong> - After deployment but before the first player's turn, choose an enemy model/unit to be this model/unit's prey. This model gains +2 to attack and damage rolls against its prey. When the prey is destroyed or removed from play, choose another model/unit to be the prey.</p>
+<p><strong>Resourceful</strong> - This model can upkeep spells on models in its battlegroup without spending focus or fury points.</p>
+</div>
+</div>
+<div class="flex-grow space-y-1">
+<div class="flex justify-between items-center bg-[var(--header-bg)] text-[var(--header-text)] p-1 px-2 font-bold font-cinzel">
+<span class="text-sm tracking-wider">SPELLS</span>
+<div class="flex space-x-3 text-xs"><span>COST</span><span>RNG</span><span>AOE</span><span>POW</span><span>UP</span><span>OFF</span></div>
+</div>
+<div class="ability-box p-1 px-2">
+<div class="flex justify-between items-center font-bold">
+<span class="font-cinzel text-xs tracking-wider">ARTIFICE OF DEVIATION</span>
+<div class="flex space-x-4 text-center text-sm"><span>2</span><span>CTRL</span><span>-</span><span>-</span><span>Yes</span><span>No</span></div>
+</div>
+<p class="mt-1 text-[10px]">Place a cloud effect template anywhere completely within the spellcaster's control range. While in the template, friendly Faction models gain cover. Enemy models treat the template as rough terrain.</p>
+</div>
+<div class="ability-box p-1 px-2">
+<div class="flex justify-between items-center font-bold">
+<span class="font-cinzel text-xs tracking-wider">DEADEYE</span>
+<div class="flex space-x-4 text-center text-sm"><span>1</span><span>6</span><span>-</span><span>-</span><span>No</span><span>No</span></div>
+</div>
+<p class="mt-1 text-[10px]">Target friendly Faction model gains an additional die on its next ranged attack roll this turn.</p>
+</div>
+<div class="ability-box p-1 px-2">
+<div class="flex justify-between items-center font-bold">
+<span class="font-cinzel text-xs tracking-wider">SCAVENGER'S BLESSING</span>
+<div class="flex space-x-4 text-center text-sm"><span>2</span><span>6</span><span>-</span><span>-</span><span>Yes</span><span>No</span></div>
+</div>
+<p class="mt-1 text-[10px]">Target model/unit gains Pathfinder and Prowl. (While a model with Prowl has concealment, it gains Stealth.)</p>
+</div>
+<div class="ability-box p-1 px-2">
+<div class="flex justify-between items-center font-bold">
+<span class="font-cinzel text-xs tracking-wider">VANISH</span>
+<div class="flex space-x-4 text-center text-sm"><span>1</span><span>SELF</span><span>-</span><span>-</span><span>No</span><span>No</span></div>
+</div>
+<p class="mt-1 text-[10px]">Place the spellcaster anywhere completely within 3" of its current location. Vanish can be cast only once per activation.</p>
+</div>
+<div class="ability-box p-1 px-2">
+<div class="flex justify-between items-center font-bold">
+<span class="font-cinzel text-xs tracking-wider">WARPATH</span>
+<div class="flex space-x-4 text-center text-sm"><span>3</span><span>SELF</span><span>-</span><span>-</span><span>Yes</span><span>No</span></div>
+</div>
+<p class="mt-1 text-[10px]">When a friendly Faction model in the spellcaster's control range destroys one or more enemy models with an attack, one cohort model in its battlegroup can advance up to 3".</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>
