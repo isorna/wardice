@@ -2,9 +2,9 @@
   <article class="page">
     <site-header path="/warmachine" :title="pageTitle" @show-help="tour.resetTour()" @translate="$emit('translate')" />
     <section class="rules-section">
-      <h1 class="section-title">{{i18n.RULES_TITLE}}</h1>
-      <template v-if="mk4rules?.sections">
-        <template v-for="(section, index) in mk4rules.sections" :key="`section-${index}`">
+      <h1 class="section-title">{{i18n.BRAWLMACHINE_2025 || 'Brawlmachine 2025'}}</h1>
+      <template v-if="brawlmachine?.sections">
+        <template v-for="(section, index) in brawlmachine.sections" :key="`section-${index}`">
           <RulesList v-if="section.content || section.sub_sections" :rules="section.content" :title="section.title" :subsections="section.sub_sections" />
         </template>
       </template>
@@ -23,15 +23,14 @@ import { useLocalizedData } from '@/helpers/data-loader.js'
 import i18nApp from '@/i18n/en.i18n.json'
 import i18nGame from '@/i18n/warmachine/en.i18n.json'
 
-const { data: mk4rules } = useLocalizedData('mk4-rules')
+const { data: brawlmachine } = useLocalizedData('brawlmachine-rules')
 
 const i18n = {
   ...i18nApp,
   ...i18nGame
 }
 
-const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.RULES_TITLE}`)
-
+const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: Brawlmachine`)
 // Mock tour to avoid crashes if triggered, consistent with other pages structure
 const tour = ref({ resetTour: () => {} })
 
