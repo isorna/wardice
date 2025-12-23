@@ -1,0 +1,74 @@
+{
+    "burningAsh": {
+      "name": "Burning Ash",
+      "description": "Place a cloud effect template anywhere completely within the spellcaster's control range. The template is a hazard that remains in play for one round. While in the template, living enemy models without Immunity: Fire suffer -2 to attack rolls."
+    },
+    "inviolableResolve": {
+      "name": "Inviolable Resolve",
+      "description": "Target friendly Faction model/unit gains +2 ARM and cannot be knocked down or moved by a push or a slam."
+    },
+    "killingGround": {
+      "name": "Killing Ground",
+      "description": "Friendly Faction models beginning a charge in the spellcaster's control range gain Pathfinder. Warbeasts in the spellcaster's battlegroup beginning their activations in its control range can charge or make slam power attacks against enemy models without being forced. Killing Ground lasts for one turn."
+    },
+    "flashingBlade": {
+      "name": "Flashing Blade",
+      "description": "The spellcaster immediately makes one basic attack with one of its melee weapons against each enemy model in its LOS that is in the weapon's melee range. These attacks are simultaneous."
+    },
+    "artificeOfDeviation": {
+      "name": "Artifice of Deviation",
+      "description": "Place a cloud effect template anywhere completely within the spellcaster's control range. While in the template, friendly Faction models gain cover. Enemy models treat the template as rough terrain."
+    },
+    "deadeye": {
+      "name": "Deadeye",
+      "description": "Target friendly Faction model gains an additional die on its next ranged attack roll this turn."
+    },
+    "scavengersBlessing": {
+      "name": "Scavenger's Blessing",
+      "description": "Target model/unit gains Pathfinder and Prowl. (While a model with Prowl has concealment, it gains Stealth.)"
+    },
+    "vanish": {
+      "name": "Vanish",
+      "description": "Place the spellcaster anywhere completely within 3\" of its current location. Vanish can be cast only once per activation."
+    },
+    "warpath": {
+      "name": "Warpath",
+      "description": "When a friendly Faction model in the spellcaster's control range destroys one or more enemy models with a melee or ranged attack during its activation, immediately after the attack is resolved one Cohort model in the spellcaster's battlegroup that is in its control range can advance up to 3\". A Cohort model can advance as a result of Warpath only once per turn."
+    },
+    "dash": {
+      "name": "Dash",
+      "description": "The spellcaster and friendly Faction warrior models activating in its control range gain +1 SPD. Dash lasts for one turn."
+    },
+    "deflection": {
+      "name": "Deflection",
+      "description": "While in the spellcaster's control range, friendly Faction models gain +2 DEF against ranged and arcane attacks. Deflection lasts for one round."
+    },
+    "forceStrike": {
+      "name": "Force Strike",
+      "description": "On a critical hit, the model hit becomes knocked down."
+    },
+    "stormRager": {
+      "name": "Storm Rager",
+      "description": "Target friendly Faction warrior model gains +2 MAT and ARM and +2 on melee attack damage rolls and cannot be targeted by combined ranged attacks or combined melee attacks."
+    },
+    "ignite": {
+      "name": "Ignite",
+      "description": "Target friendly Faction model/unit gains +2 to melee attack damage rolls. Affected models gain Critical Fire on their melee attacks."
+    },
+    "rapport": {
+      "name": "Rapport",
+      "description": "Target Cohort model in the spellcaster's battlegroup can use the spellcaster's current MAT and RAT in place of its own. When checking to see if the affected Cohort model is in its controller's control range, double the range."
+    },
+    "stranglehold": {
+      "name": "Stranglehold",
+      "description": "A model damaged by Stranglehold forfeits either its Normal Movement or its Combat Action during its next activation, as its controller chooses."
+    },
+    "firstBlood": {
+      "name": "First Blood",
+      "description": "When an enemy model is damaged by First Blood, immediately after the attack is resolved one model in the spellcaster's battlegroup that is currently in its control range can make a full advance toward the damaged model. A model can advance as a result of First Blood only once per turn."
+    },
+    "synergy": {
+      "name": "Synergy",
+      "description": "While in the spellcaster's control range, models in this model's battlegroup gain a +1 cumulative bonus on melee attack and melee damage rolls for each other model in the battlegroup that hit an enemy model with a melee attack this turn while in the spellcaster's control range. This cumulative bonus cannot exceed +3."
+    }
+  }

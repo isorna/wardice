@@ -10,6 +10,9 @@
 				<li class="link-list__item">
 					<router-link to="/warmachine/steamroller">Steamroller 2025 Rules</router-link>
 				</li>
+				<li class="link-list__item">
+					<router-link to="/warmachine/brawlmachine">Brawlmachine 2025 Rules</router-link>
+				</li>
 			</ul>
       <h2 class="section-title__secondary">Custom Scenarios</h2>
       <ol class="links-list">

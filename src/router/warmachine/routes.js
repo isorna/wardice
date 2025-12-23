@@ -5,6 +5,7 @@ import scenarios from '@/data/warmachine/scenarios.json'
 const HomePage = () => import('@/views/warmachine/HomePage.vue')
 const RulesPage = () => import('@/views/warmachine/RulesPage.vue')
 const SteamrollerPage = () => import('@/views/warmachine/SteamrollerPage.vue')
+const BrawlmachinePage = () => import('@/views/warmachine/BrawlmachinePage.vue')
 const ArmyBuilderPage = () => import('@/views/warmachine/ArmyBuilder.vue')
 const ArmyPage = () => import('@/views/warmachine/ArmyPage.vue')
 const FactionPage = () => import('@/views/warmachine/FactionPage.vue')
@@ -25,6 +26,11 @@ export const routesWarmachine = [
     path: '/warmachine/steamroller/:lang?',
     name: 'Steamroller 2025',
     component: SteamrollerPage
+  },
+  {
+    path: '/warmachine/brawlmachine/:lang?',
+    name: 'Brawlmachine 2025',
+    component: BrawlmachinePage
   },
   {
     path: '/warmachine/scenario/:scenario/:lang?',
