@@ -34,12 +34,12 @@ describe('ScenarioMap.vue', () => {
     })
 
     const circles = wrapper.findAll('circle')
-    // Flag radius (visual) = 30mm diameter -> ~15mm radius.
-    // Logic: r = (30 / 25.4 / 2) * 12.5 = 7.3818...
+    // Flag radius (visual) = 30mm diameter -> ~15 units radius?
+    // Logic: r = (30 / 25.4) * 12.5 = 14.7637...
     // x = 18 * 12.5 = 225.
-    // cx = 225 + 7.38... = 232.38...
+    // cx = 225 + 14.76... = 239.76...
     // cy = 16 * 12.5 = 200.
-    // cy = 200 + 7.38... = 207.38...
+    // cy = 200 + 14.76... = 214.76...
 
     expect(circles.length).toBe(1)
     const circle = circles[0]
@@ -48,8 +48,8 @@ describe('ScenarioMap.vue', () => {
     const cx = parseFloat(circle.attributes('cx'))
     const cy = parseFloat(circle.attributes('cy'))
 
-    expect(Math.abs(cx - 232.38)).toBeLessThan(0.1)
-    expect(Math.abs(cy - 207.38)).toBeLessThan(0.1)
+    expect(Math.abs(cx - 239.76)).toBeLessThan(0.1)
+    expect(Math.abs(cy - 214.76)).toBeLessThan(0.1)
 
     // Check lines
     // Should have:

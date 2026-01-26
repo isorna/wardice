@@ -109,7 +109,7 @@ const computedObjectives = computed(() => {
         break
       case 'cache':
         diameterMm = 30
-        label = 'F'
+        label = 'C'
         typeClass = 'flag-cache'
         textClass = 'flag-cache-text'
         break
@@ -132,21 +132,11 @@ const computedObjectives = computed(() => {
         textClass = 'objective-text'
     }
 
-    // Radius in SVG units
+    // Radius in SVG units (Using the 2x visual scale from example: DrawnRadius = DiameterMm / 25.4 * 12.5)
+    // Actually, based on analysis: DrawnRadius ~= RealDiameterInInches * 12.5
     // RealDiameterInInches = diameterMm / 25.4
-    // r = (RealDiameterInInches / 2) * SCALE * 2 (visual scale)
-    // The example SVG seemed to have larger circles than real scale.
-    // However, for correctness, let's stick to the visual scale that makes sense or is requested.
-    // Reviewer noted: "radius is assigned to r, but formula was diameter".
-    // If I want to match the visual style of the example which had "2x visual scale", then maybe the previous code was "intentionally" wrong?
-    // But the reviewer said it's a bug.
-    // Let's fix it to be correct: Radius = (Diameter / 2).
-    // The previous code was: r = (diameterMm / 25.4) * SCALE. This is DiameterInInches * Scale.
-    // So it was drawing the radius as the full diameter. That's 2x size.
-    // If the example requires 2x size for visibility, I should maybe keep it but acknowledge it.
-    // But "visually inaccurate" suggests I should fix it.
-    // I will divide by 2.
-    const r = (diameterMm / 25.4 / 2) * SCALE
+    // So r = (diameterMm / 25.4) * 12.5
+    const r = (diameterMm / 25.4) * SCALE
 
     // Coordinates
     const xDist = obj.x * SCALE
