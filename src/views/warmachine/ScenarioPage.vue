@@ -15,6 +15,7 @@
           :src="import(`@/data/warmachine/scenarios/${ fileName }.svg`)"
           :alt="scenario.name" />
       </div>
+      <ScenarioMap :objectives="sampleObjectives" />
     </section>
     <PageFooter />
   </article>
@@ -24,6 +25,7 @@
 import SiteHeader from '@/components/SiteHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import InlineSvg from '@/components/InlineSvg.vue'
+import ScenarioMap from '@/components/warmachine/ScenarioMap.vue'
 import { computed, ref, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/app.store'
@@ -46,6 +48,10 @@ const fileName = computed(() => {
 const scenarioRules = computed(() => {
   return props.scenario.rules
 })
+
+const sampleObjectives = [
+  { type: 'flag', owner: 'p1', x: 18, xFrom: 'left', y: 16, yFrom: 'top' },
+]
 </script>
 
 <style scoped>

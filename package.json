@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.6",
+    "@vue/test-utils": "^2.4.6",
     "eslint": "^8.45.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.27.5",
@@ -51,6 +52,7 @@
     "eslint-plugin-vue": "^9.28.0",
     "jsdoc": "^4.0.2",
     "jsdoc-vuejs": "^4.0.0",
+    "jsdom": "^27.4.0",
     "lint-staged": "^15.2.10",
     "postcss-html": "^1.5.0",
     "stylelint": "^15.10.1",
