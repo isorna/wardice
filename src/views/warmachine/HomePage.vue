@@ -8,7 +8,7 @@
 					<router-link to="/warmachine/rules">MK4 Rules</router-link>
 				</li>
 				<li class="link-list__item">
-					<router-link to="/warmachine/steamroller">Steamroller 2025 Rules</router-link>
+					<router-link to="/warmachine/steamroller">Steamroller 2026 Rules</router-link>
 				</li>
 				<li class="link-list__item">
 					<router-link to="/warmachine/brawlmachine">Brawlmachine 2025 Rules</router-link>

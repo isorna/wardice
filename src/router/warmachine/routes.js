@@ -24,7 +24,7 @@ export const routesWarmachine = [
   },
   {
     path: '/warmachine/steamroller/:lang?',
-    name: 'Steamroller 2025',
+    name: 'Steamroller 2026',
     component: SteamrollerPage
   },
   {

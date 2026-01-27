@@ -7,25 +7,25 @@
     class="scenario-map"
   >
     <!-- Backgrounds -->
-    <rect class="bg-player1" x="0" y="0" width="600" :height="p1DeployHeight" />
-    <rect class="bg-neutral" x="0" :y="p1DeployHeight" width="600" :height="neutralHeight" />
-    <rect class="bg-player2" x="0" :y="600 - p2DeployHeight" width="600" :height="p2DeployHeight" />
+    <rect class="bg-player2" x="0" y="0" width="600" :height="p2DeployHeight" />
+    <rect class="bg-neutral" x="0" :y="p2DeployHeight" width="600" :height="neutralHeight" />
+    <rect class="bg-player1" x="0" :y="600 - p1DeployHeight" width="600" :height="p1DeployHeight" />
 
     <!-- Center Line -->
     <line x1="0" y1="300" x2="600" y2="300" stroke="#808080" stroke-width="2" stroke-dasharray="5 5" />
 
     <!-- Deployment Zone Labels -->
-    <text class="label-text" x="500" :y="p1DeployHeight / 2 - 10">Player 1</text>
-    <text class="label-text" x="500" :y="p1DeployHeight / 2 + 10">Deployment Zone</text>
-    <text class="label-text" x="500" :y="600 - p2DeployHeight / 2 - 10">Player 2</text>
-    <text class="label-text" x="500" :y="600 - p2DeployHeight / 2 + 10">Deployment Zone</text>
+    <text class="label-text" x="500" :y="p2DeployHeight / 2 - 10">Player 2</text>
+    <text class="label-text" x="500" :y="p2DeployHeight / 2 + 10">Deployment Zone</text>
+    <text class="label-text" x="500" :y="600 - p1DeployHeight / 2 - 10">Player 1</text>
+    <text class="label-text" x="500" :y="600 - p1DeployHeight / 2 + 10">Deployment Zone</text>
 
     <!-- Deployment Measurements -->
-    <text class="measurement-text" x="70" :y="p1DeployHeight / 2">{{ p1Deploy }}"</text>
-    <line x1="50" y1="0" x2="50" :y2="p1DeployHeight" stroke="white" stroke-width="4" stroke-dasharray="10 5" />
+    <text class="measurement-text" x="70" :y="p2DeployHeight / 2">{{ p2Deploy }}"</text>
+    <line x1="50" y1="0" x2="50" :y2="p2DeployHeight" stroke="white" stroke-width="4" stroke-dasharray="10 5" />
 
-    <text class="measurement-text" x="70" :y="600 - p2DeployHeight / 2">{{ p2Deploy }}"</text>
-    <line x1="50" :y1="600 - p2DeployHeight" x2="50" y2="600" stroke="white" stroke-width="4" stroke-dasharray="10 5" />
+    <text class="measurement-text" x="70" :y="600 - p1DeployHeight / 2">{{ p1Deploy }}"</text>
+    <line x1="50" :y1="600 - p1DeployHeight" x2="50" y2="600" stroke="white" stroke-width="4" stroke-dasharray="10 5" />
 
     <!-- Objectives -->
     <g v-for="(obj, index) in computedObjectives" :key="index">
@@ -46,8 +46,8 @@
       />
 
       <!-- Measurement Text -->
-      <text class="measurement-text" :x="obj.textX.x" :y="obj.textX.y">{{ obj.raw.x }}"</text>
-      <text class="measurement-text" :x="obj.textY.x" :y="obj.textY.y">{{ obj.raw.y }}"</text>
+      <text class="measurement-text" :class="`measurement-text--${obj.owner}`" :x="obj.textX.x" :y="obj.textX.y">{{ obj.raw.x }}"</text>
+      <text class="measurement-text" :class="`measurement-text--${obj.owner}`" :x="obj.textY.x" :y="obj.textY.y">{{ obj.raw.y }}"</text>
 
       <!-- Circle -->
       <circle
@@ -87,6 +87,12 @@ const props = defineProps({
 })
 
 const SCALE = 12.5 // units per inch
+const OBJECTIVE__P1_COLOR = 'red'
+const OBJECTIVE__P1_FILL_COLOR = '#505050'
+const OBJECTIVE__P2_COLOR = 'blue'
+const OBJECTIVE__P2_FILL_COLOR = '#a7a7a7'
+const OBJECTIVE_NEUTRAL_COLOR = 'black'
+const OBJECTIVE_NEUTRAL_FILL_COLOR = '#303030'
 
 const p1DeployHeight = computed(() => props.p1Deploy * SCALE)
 const p2DeployHeight = computed(() => props.p2Deploy * SCALE)
@@ -187,13 +193,13 @@ const computedObjectives = computed(() => {
     let fillStyle = {}
 
     if (owner === 'p1') {
-      fillStyle = { fill: '#505050', stroke: 'red' }
+      fillStyle = { fill: OBJECTIVE__P1_FILL_COLOR, stroke: OBJECTIVE__P1_COLOR }
     } else if (owner === 'p2') {
-      fillStyle = { fill: '#505050', stroke: 'blue' }
+      fillStyle = { fill: OBJECTIVE__P2_FILL_COLOR, stroke: OBJECTIVE__P2_COLOR }
     } else {
-      fillStyle = { fill: '#303030', stroke: 'black' }
+      fillStyle = { fill: OBJECTIVE_NEUTRAL_FILL_COLOR, stroke: OBJECTIVE_NEUTRAL_COLOR }
       if (['40mm', '50mm'].includes(obj.type)) {
-         fillStyle.fill = '#505050'
+         fillStyle.fill = OBJECTIVE_NEUTRAL_FILL_COLOR
       }
     }
 
@@ -227,8 +233,10 @@ const computedObjectives = computed(() => {
 .objective-text { fill: white; font-size: 20px; text-anchor: middle; dominant-baseline: central; }
 .flag-cache { stroke: black; stroke-width: 1; }
 .flag-cache-text { fill: white; font-size: 18px; text-anchor: middle; dominant-baseline: central; }
-.label-text { fill: black; font-size: 14px; text-anchor: middle; }
-.measurement-text { fill: black; font-size: 12px; text-anchor: middle; }
+.label-text { fill: black; font-size: 14px; font-weight: bold; text-shadow: 1px 1px white; text-anchor: middle; }
+.measurement-text { fill: black; font-size: 14px; font-weight: bold; text-shadow: 1px 1px white; text-anchor: middle; }
+.measurement-text--p1 { fill: red; }
+.measurement-text--p2 { fill: blue; }
 
 .text-p1 { fill: red; }
 .text-p2 { fill: blue; }

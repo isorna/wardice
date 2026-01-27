@@ -1,5 +1,5 @@
 {
-  "document_title": "WARMACHINE STEAMROLLER 2025",
+  "document_title": "WARMACHINE STEAMROLLER 2026",
   "generated_for": "#SFU85391. Alvaro Isorna Baez (alvaro.isorna@gmail.com)",
   "contents_page": 1,
   "sections": [
@@ -253,42 +253,59 @@
       "scenarios": [
         {
           "id": "scenario_1",
-          "name": "COLOR GUARD",
-          "page": 5,
-          "map_image_filename": "scenario_1_color_guard_map.svg",
-          "rules": {
-            "scenario_victory": "A player wins immediately if, after scoring during their opponent's turn, their Victory Point total is at least 3 points higher than their opponent's. A player may not win via Scenario Victory on their own turn.",
-            "scenario_elements": "Place two 50mm objectives, two caches, and two flags in accordance with the diagram below.",
-            "earning_victory_points_intro": "Starting on the second player's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
-            "victory_points_summary": [
-              "Objective secured = 1 VP",
-              "Cache scored = 2 VP",
-              "Scenario terrain secured = 2 VP"
-            ],
-            "flag_movement_rule": "At the end of each scoring round after points have been scored, starting with the first player, each player places their opponent's flag on a terrain piece within 5\" of the last scenario terrain piece not already used as scenario terrain by either player. If no terrain piece is valid for placement of a flag, do not move the flag. The flag remains in that location until the end of the game.",
-            "vp_limit": "There is no limit to the number of VPs a player can earn.",
-            "fixed_game_length": "The game ends at the end of the second player's seventh turn."
-          }
-        },
-        {
-          "id": "scenario_2",
           "name": "TRENCH WARFARE",
           "page": 6,
           "map_image_filename": "scenario_2_trench_warfare_map.svg",
           "rules": {
-            "scenario_victory": "A player wins immediately if, after scoring during their opponent's turn, their Victory Point total is at least 3 points higher than their opponent's. A player may not win via Scenario Victory on their own turn.",
-            "earthworks": "When within 3\" of a player's own 40mm or 50mm objectives, medium- and small-based warrior models gain cover and Resistance: Blast.",
+            "scenario_victory": "A player who has 3 or more VP than their opponent after scoring on their opponent's turn immediately wins.",
+            "earthworks": "When within 3\" of a player's own 40mm or 50mm objectives, medium and small-based warrior models gain cover and Resistance: Blast.",
             "scenario_elements": "Place two 50mm objectives, two 40mm objectives, two flags and two caches in accordance with the diagram below.",
-            "earning_victory_points_intro": "Starting on the second player's second turn, at the end of each player's turn, a player earns victory points (VP) as follows:",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns victory points (VP) as follows:",
             "victory_points_summary": [
               "Objective secured = 1 VP",
-              "Opponents scenario terrain scored = 2 VP",
-              "A players own scenario terrain scored = 0 VP",
+              "Opponent's scenario terrain scored = 2 VP",
+              "A player's own scenario terrain scored = 0 VP",
               "Scoring a cache = 2 VP"
             ],
             "vp_limit": "There is no limit to the number of VPs a player can earn.",
-            "fixed_game_length": "The game ends at the end of the second player's seventh turn."
-          }
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
+          },
+          "objectives": [
+            { "type": "flag", "owner": "p1", "x": 6, "xFrom": "right", "y": 15, "yFrom": "top" },
+            { "type": "cache", "owner": "p1", "x": 20, "xFrom": "left", "y": 18, "yFrom": "top" },
+            { "type": "40mm", "owner": "p1", "x": 22, "xFrom": "left", "y": 12, "yFrom": "top" },
+            { "type": "50mm", "owner": "p1", "x": 12, "xFrom": "left", "y": 21, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 6, "xFrom": "left", "y": 17, "yFrom": "bottom" },
+            { "type": "cache", "owner": "p2", "x": 20, "xFrom": "right", "y": 22, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p2", "x": 22, "xFrom": "right", "y": 14, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p2", "x": 12, "xFrom": "right", "y": 25, "yFrom": "bottom" }
+          ]
+        },
+        {
+          "id": "scenario_2",
+          "name": "TWO FRONTS",
+          "page": 9,
+          "map_image_filename": "scenario_5_two_fronts_map.svg",
+          "rules": {
+            "scenario_victory": "A player who has 3 or more VP than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, and one flag in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
+            "victory_points_summary": [
+              "Objective secured = 1 VP",
+              "Scenario terrain secured = 1 VP",
+              "A Player has scored both 40mm = 1 VP",
+              "A Player has scored both 50mm = 1 VP"
+            ],
+            "vp_limit": "There is no limit to the number of VPs a player can score.",
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
+          },
+          "objectives": [
+            { "type": "40mm", "owner": "p1", "x": 12, "xFrom": "left", "y": 19, "yFrom": "top" },
+            { "type": "50mm", "owner": "p1", "x": 12, "xFrom": "right", "y": 17, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 23, "xFrom": "left", "y": 24, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 8, "xFrom": "left", "y": 20, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p2", "x": 8, "xFrom": "right", "y": 19, "yFrom": "bottom" }
+          ]
         },
         {
           "id": "scenario_3",
@@ -296,75 +313,138 @@
           "page": 7,
           "map_image_filename": "scenario_3_wolves_at_our_heels_map.svg",
           "rules": {
-            "the_wolves_advance": "Starting on the first player's third turn, extend the Kill Box by 2\" at the beginning of each of the first player's turns.",
-            "scenario_victory": "A player wins immediately if, after scoring during their opponent's turn, their Victory Point total is at least 3 points higher than their opponent's. A player may not win via Scenario Victory on their own turn.",
-            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, and two flags in accordance with the diagram below.",
-            "earning_victory_points_intro": "Starting on the second player's second turn, at the end of each player's turn, a player earns Victory Points (VP) as described below.",
+            "the_wolves_advance": "Starting on the Attacker's third turn, extend the Kill Box by 2\" at the beginning of each of the Attacker's turns.",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place two 50 mm objectives, two 40 mm objectives, and two flags in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
             "victory_points_summary": [
               "Objective secured = 1 VP",
-              "Scenario terrain secured = 1 VP"
+              "Scenario Terrain secured = 1 VP",
+              "Player adds the 3rd token to the objective and their opponent did not = 3 VP"
             ],
-            "objective_movement_rule": "At the end of each scoring turn after points have been scored, players may move each 40mm objective they control up to 3\" toward their opponent's table edge.",
-            "centerline_crossing_vp": "After moving objectives, a player whose 40mm objective has completely crossed the 24\" centerline of the map earns 3 VP. If both objectives crossed this line in the same turn, no points are earned in this manner. Scoring for this goal is checked only once per game.",
+
+            "objective_movement_rule": "At the end of each scoring turn after points have been scored, if a player has secured their own 40 mm objective, they can add a token to their objective if they do, their opponent may move that objective 3\" towards the 50mm objective of the same color.",
+            "centerline_crossing_vp": "If both objectives gain their third token in the same turn, no points are scored in this manner. Scoring for this goal is checked only once per game.",
             "vp_limit": "There is no limit to the number of VPs a player can earn.",
-            "fixed_game_length": "The game ends at the end of the second player's seventh turn."
-          }
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
+          },
+          "objectives": [
+            { "type": "flag", "owner": "p1", "x": 12, "xFrom": "right", "y": 20, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p1", "x": 8, "xFrom": "left", "y": 20, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p1", "x": 19, "xFrom": "left", "y": 24, "yFrom": "bottom" },
+            { "type": "flag", "owner": "p2", "x": 12, "xFrom": "left", "y": 20, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 8, "xFrom": "right", "y": 15, "yFrom": "top" },
+            { "type": "50mm", "owner": "p2", "x": 19, "xFrom": "right", "y": 20, "yFrom": "top" }
+          ]
         },
         {
           "id": "scenario_4",
-          "name": "PAYLOAD",
-          "page": 8,
-          "map_image_filename": "scenario_4_payload_map.svg",
+          "name": "PRESSURE POINT",
+          "page": 7,
+          "map_image_filename": "scenario_4_pressure_point_map.svg",
           "rules": {
-            "scenario_victory": "A player wins immediately if, after scoring during their opponent's turn, their Victory Point total is at least 3 points higher than their opponent's. A player may not win via Scenario Victory on their own turn.",
-            "made_to_haul": "After moving their 50mm objective at the end of their turn, that player may move one friendly Cohort model 5\" directly toward their 50mm objective.",
-            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, and two flags in accordance with the diagram below.",
-            "earning_victory_points_intro": "Starting on the second player's second turn, at the end of each player's turn, a player earns Victory Points (VP) as described below.",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place 4 flags and 1 50mm objective in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
             "victory_points_summary": [
-              "Objective secured = 1 VP",
-              "If a player's 50mm objective ends its movement within the area of the scenario terrain or if being within the scenario terrain piece is impossible, within 3\" of the piece of terrain itself, that player immediately earn 3 points. Remove that 50mm objective from play."
+              "Scenario terrain secured = 1 VP",
+              "Objective secured = 2 VP"
             ],
-            "objective_movement_rule": "At the end of each scoring turn after points have been scored, a player securing a 50mm objective may move that objective up to 3\" toward their opponent's Scenario Terrain, +1\" for each other 40mm or 50mm objective secured by that player.",
-            "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "The game ends at the end of the second player's seventh turn."
-          }
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
+          },
+          "objectives": [
+            { "type": "50mm", "owner": "p1", "x": 23, "xFrom": "right", "y": 22, "yFrom": "bottom" },
+            { "type": "flag", "owner": "p2", "x": 6, "xFrom": "left", "y": 31, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 12, "xFrom": "left", "y": 20, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 12, "xFrom": "right", "y": 20, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 6, "xFrom": "right", "y": 31, "yFrom": "top" }
+          ]
         },
         {
           "id": "scenario_5",
-          "name": "TWO FRONTS",
-          "page": 9,
-          "map_image_filename": "scenario_5_two_fronts_map.svg",
+          "name": "HIGH STAKES",
+          "page": 7,
+          "map_image_filename": "scenario_5_high_stakes_map.svg",
           "rules": {
-            "scenario_victory": "A player wins immediately if, after scoring during their opponent's turn, their Victory Point total is at least 3 points higher than their opponent's. A player may not win via Scenario Victory on their own turn.",
-            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, and one flag in accordance with the diagram below.",
-            "earning_victory_points_intro": "Starting on the second player's second turn, at the end of each player's turn, a player earns Victory Points (VP) as described below.",
-            "victory_points_summary": [
-              "Objective secured = 1 VP",
-              "Scenario terrain secured = 1 VP",
-              "A Player has scored both 40mm or both 50mm = 2 VP"
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place one 50mm objective, two 40mm objectives, and two flags in accordance with the diagram below. Additionally, place 5 count down tokens on each piece of objective terrain and the 50mm objective.",
+            "light_the_fuse": "Starting on the Defender's second turn, at the end of each player's turn before scoring if a player has secured the 50mm objective that player must choose that objective, or either objective terrain and remove 1d3 countdown tokens. The player cannot choose an objective or objective terrain that has 0 count down tokens.",
+            "If no player has secured the 50mm objective roll 1d3 and do the following:": [
+              "Remove 1 countdown token from the blue objective terrain / flag",
+              "Remove 1 countdown token from the red objective terrain / flag",
+              "Remove 1 countdown token from the 50mm objective"
             ],
-            "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "The game ends at the end of the second player's seventh turn."
-          }
+            "": "If an objective reaches 0 count down tokens, models within the objective terrain, or 3\" of the objective or impassible objective terrain, suffer a POW14 magical blast damage roll. Then continue onto scoring.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
+            "victory_points_summary": [
+              "40mm objective secured = 1 VP",
+              "50mm objective secured = 1 VP +1VP while it has 0 count down tokens",
+              "Scenario Terrain secured = 1 VP +1VP while it has 0 count down tokens"
+            ],
+            "vp_limit": "There is no limit to the number of VPs a player can earn.",
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
+          },
+          "objectives": [
+            { "type": "flag", "owner": "p1", "x": 8, "xFrom": "left", "y": 18, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p1", "x": 14, "xFrom": "right", "y": 20, "yFrom": "bottom" },
+            { "type": "flag", "owner": "p2", "x": 8, "xFrom": "left", "y": 23, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 14, "xFrom": "right", "y": 17, "yFrom": "top" },
+            { "type": "50mm", "owner": "p2", "x": 23, "xFrom": "right", "y": 22, "yFrom": "top" }
+          ]
         },
         {
           "id": "scenario_6",
-          "name": "BEST LAID PLANS",
-          "page": 10,
-          "map_image_filename": "scenario_6_best_laid_plans_map.svg",
+          "name": "FAULT LINE",
+          "page": 7,
+          "map_image_filename": "scenario_6_fault_line_map.svg",
           "rules": {
-            "scenario_victory": "A player wins immediately if, after scoring during their opponent's turn, their Victory Point total is at least 3 points higher than their opponent's. A player may not win via Scenario Victory on their own turn.",
-            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, two caches and two flags in accordance with the diagram below.",
-            "earning_victory_points_intro": "Starting on the second player's second turn, at the end of each player's turn, a player earns victory points (VP) as described below.",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place four 40mm and two 50mm objectives in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
             "victory_points_summary": [
               "Objective secured = 1 VP",
-              "Scenario terrain secured = 1 VP",
-              "Scoring a cache = 2 VP"
+              "A player has secured two of their own objectives = +1 VP",
+              "A players has secured all three of their own objectives = +1 VP"
             ],
-            "special_rule_p2_turn1_end": "At the end of the second player's first turn the second player rolls 1d3:\n1-Remove both caches from the game.\n2-Remove both 40mm objectives from the game.\n3-Remove both 50mm objectives from the game.",
+            "vp_limit": "There is no limit to the number of VPs a player can earn.",
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
+          },
+          "objectives": [
+            { "type": "40mm", "owner": "p1", "x": 8, "xFrom": "left", "y": 15, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p1", "x": 23, "xFrom": "left", "y": 20, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p1", "x": 8, "xFrom": "right", "y": 25, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p2", "x": 8, "xFrom": "left", "y": 25, "yFrom": "top" },
+            { "type": "50mm", "owner": "p2", "x": 23, "xFrom": "right", "y": 20, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 8, "xFrom": "right", "y": 15, "yFrom": "top" }
+          ]
+        },
+        {
+          "id": "scenario_7",
+          "name": "PAYLOAD",
+          "page": 8,
+          "map_image_filename": "scenario_7_payload_map.svg",
+          "rules": {
+            "made_to_haul": "After moving their 50mm objective at the end of their turn, that player may move one friendly Cohort model 5\" directly toward their 50mm objective.",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, and two flags in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as described below.",
+            "victory_points_summary": [
+              "Objective secured = 1 VP",
+              "Scenario Terrain Secured = 1 VP",
+              "If a player's 50mm objective ends its movement within the area of their opponent's terrain or, if being within the scenario terrain piece is impossible, within 3\" of the piece of terrain itself, that player immediately earns 3 VP. Remove the 50mm objective from play"
+            ],
+            "objective_movement_rule": "At the end of each scoring turn after points have been scored, a player securing a 50mm objective may move that objective up to 3\" toward their opponent's scenario terrain, +1\" for each other 40mm or 50mm objective secured by that player.",
             "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "The game ends at the end of the second player's seventh turn."
-          }
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
+          },
+          "objectives": [
+            { "type": "flag", "owner": "p1", "x": 16, "xFrom": "left", "y": 19, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p1", "x": 20, "xFrom": "right", "y": 20, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p1", "x": 9, "xFrom": "right", "y": 16, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p2", "x": 9, "xFrom": "left", "y": 16, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 20, "xFrom": "left", "y": 20, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 16, "xFrom": "right", "y": 19, "yFrom": "top" }
+          ]
         }
       ]
     },

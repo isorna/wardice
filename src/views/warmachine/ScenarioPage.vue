@@ -10,12 +10,12 @@
         </ol>
         <p v-else>{{ rule }}</p>
       </template>
-      <div class="scenario-map">
+      <ScenarioMap v-if="scenario.objectives" :objectives="scenario.objectives" />
+      <div class="scenario-map" v-else>
         <InlineSvg
           :src="import(`@/data/warmachine/scenarios/${ fileName }.svg`)"
           :alt="scenario.name" />
       </div>
-      <ScenarioMap :objectives="sampleObjectives" />
     </section>
     <PageFooter />
   </article>
@@ -49,9 +49,9 @@ const scenarioRules = computed(() => {
   return props.scenario.rules
 })
 
-const sampleObjectives = [
-  { type: 'flag', owner: 'p1', x: 18, xFrom: 'left', y: 16, yFrom: 'top' },
-]
+// const sampleObjectives = [
+//   { type: 'flag', owner: 'p1', x: 18, xFrom: 'left', y: 16, yFrom: 'top' },
+// ]
 </script>
 
 <style scoped>

@@ -2,7 +2,7 @@
   <article class="page">
     <site-header path="/warmachine" :title="pageTitle" @show-help="tour.resetTour()" @translate="$emit('translate')" />
     <section class="rules-section">
-      <h1 class="section-title">{{i18n.STEAMROLLER_2025}}</h1>
+      <h1 class="section-title">{{i18n.STEAMROLLER_2026}}</h1>
       <template v-if="steamroller?.sections">
         <template v-for="(section, index) in steamroller.sections" :key="`section-${index}`">
           <template v-if="index !== 5">
@@ -78,7 +78,7 @@ const i18n = {
   ...i18nGame
 }
 const appStore = useAppStore()
-const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.SR2025_TITLE}`)
+const pageTitle = computed(() => `${i18n.GAME_TITLE} ${i18n.GAME_EDITION}: ${i18n.SR2026_TITLE}`)
 // const tour = ref(null)
 const tourButtonLabels = computed(() => {
   return {
