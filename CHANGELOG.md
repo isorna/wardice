@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.14.0](https://github.com/isorna/wardice/compare/v0.13.0...v0.14.0) (2026-01-28)
+
+
+### Features
+
+* add Brawlmachine and Rules pages ([fd2583b](https://github.com/isorna/wardice/commit/fd2583b8e7b5871782d7f48c1f5a1346c18d96b4))
+* add spanish translations for mk4 and brawlmachine rules ([bccc9d0](https://github.com/isorna/wardice/commit/bccc9d0a6dea1c7115f912396a7f6d947df93561))
+* Add translation capabilities ([e041060](https://github.com/isorna/wardice/commit/e04106096494c4fed592a5aca2e4330d40a8655c))
+* **army builder:** :construction: profiles viewer ([58ddfc9](https://github.com/isorna/wardice/commit/58ddfc94aac14bb3344289924716588d97a91ef3))
+* **army builder:** :recycle: optimize visibility of profile list, card view and army builder components ([0778e8c](https://github.com/isorna/wardice/commit/0778e8c08dd6c94d7a2753e050b6b04ac39bb225))
+* **army builder:** :sparkles: army builder profile viewer first iteration ([0d90e4a](https://github.com/isorna/wardice/commit/0d90e4a1dab67f6a07298afcb5a16d71047b8fd9))
+* **rules:** :sparkles: rules pages ([f6ec0bd](https://github.com/isorna/wardice/commit/f6ec0bd76f56e13dbd27ea638b71edc55b311e42))
+* **rules:** :sparkles: rules pages ([d28246c](https://github.com/isorna/wardice/commit/d28246c9022be701b0b4fe3dfc40dd6c60b6471e))
+* **rules:** :sparkles: SR2026 scenarios ([36a5623](https://github.com/isorna/wardice/commit/36a5623c286a3e46a666e04db37d387662082a72))
+* **rules:** :sparkles: SR2026 scenarios ([d4c73a3](https://github.com/isorna/wardice/commit/d4c73a3c5417fc7f5a622e6e634d0ad116149274))
+* **scenarios:** king of the hill custom scenario ([29698f5](https://github.com/isorna/wardice/commit/29698f5063aa4540f241117e23e25f78797887c1))
+* **translations:** :sparkles: feature translations ([d5f8ae7](https://github.com/isorna/wardice/commit/d5f8ae751658a28aa887a5257594f70635561f0d))
+* **translations:** :sparkles: feature translations ([343bf34](https://github.com/isorna/wardice/commit/343bf341c6b698461ac284b8a0052d52d6da61f3))
+* **warmachine data:** :sparkles: steamroller rules ([9ccaa6d](https://github.com/isorna/wardice/commit/9ccaa6d87bc42dab7cc25f4c3804b8b628621078))
+* **warmachine:** Refactor army builder to Vue.js ([2e11cf9](https://github.com/isorna/wardice/commit/2e11cf9861729d43d7d186eee9f503904f204c40))
+
+
+### Bug Fixes
+
+* :memo: update typo ([c3122ff](https://github.com/isorna/wardice/commit/c3122ff9f3e562886f31de5e76ea697c73c397a6))
+* **data:** :ambulance: update correct url ([94d24ea](https://github.com/isorna/wardice/commit/94d24ea279a7a4c9c2fc3be9fc83bc0b88461ddf))
+* **data:** :bug: missing data files ([393c3c0](https://github.com/isorna/wardice/commit/393c3c0de721e6ae4ca4ef4aa641b2428cd26bb7))
+* **data:** :bug: missing data files ([301bb5c](https://github.com/isorna/wardice/commit/301bb5cc129a5096d79bf100e87b6400b7fe9df1))
+* **warmachine data:** :bug: fix map lines ([67cf6c5](https://github.com/isorna/wardice/commit/67cf6c52ead695a433b214c178f69daa23be8070))
+* **warmachine data:** :bug: fix map lines ([066c3a4](https://github.com/isorna/wardice/commit/066c3a410f7b576a99eed1f66f10d883a41e7e6b))
+* **warmachine data:** :bug: fix map lines ([77b71dd](https://github.com/isorna/wardice/commit/77b71dd8a283166caa79b65d3916cfccad97f2e8))
+* **warmachine data:** :bug: fix map lines ([94f9ab2](https://github.com/isorna/wardice/commit/94f9ab25a2507fe1363657eab073b473a8a81cab))
+* **warmachine data:** :bug: fix map lines ([f4e32d4](https://github.com/isorna/wardice/commit/f4e32d4ea108702241d55995850387e8c1f8a464))
+* **warmachine data:** :bug: fix map lines ([460339c](https://github.com/isorna/wardice/commit/460339cd194525b13e876649e7ecdbcb162500c8))
+* **warmachine data:** :bug: fix map lines ([61c5936](https://github.com/isorna/wardice/commit/61c593680fb47197a29b463abb09421570621140))
+* **warmachine data:** :bug: fix map lines ([87682c3](https://github.com/isorna/wardice/commit/87682c3ea98b4c0cbaa969bc24b4a72f9ba8a008))
+* **warmachine data:** :bug: fix map lines ([220e6fa](https://github.com/isorna/wardice/commit/220e6fa79816dfb6223a1a08851cc9843a9b4fc6))
+* **warmachine data:** :bug: fix map lines ([22d8862](https://github.com/isorna/wardice/commit/22d88623862a44f772225c21c56598f375e0bf04))
+* **warmachine data:** :bug: fix map lines ([32bd906](https://github.com/isorna/wardice/commit/32bd9065dd1bbb6395000adb4f22a5c63bf5b35f))
+
 ## [0.13.0](https://github.com/isorna/wardice/compare/v0.12.0...v0.13.0) (2025-06-01)
 
 
