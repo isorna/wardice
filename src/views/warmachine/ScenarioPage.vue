@@ -48,10 +48,6 @@ const fileName = computed(() => {
 const scenarioRules = computed(() => {
   return props.scenario.rules
 })
-
-// const sampleObjectives = [
-//   { type: 'flag', owner: 'p1', x: 18, xFrom: 'left', y: 16, yFrom: 'top' },
-// ]
 </script>
 
 <style scoped>

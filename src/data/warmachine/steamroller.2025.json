@@ -53,44 +53,45 @@
     },
     {
       "title": "SETUP AND DEPLOYMENT",
-      "page": 2,
+      "page": 3,
       "content": [
         {
           "type": "paragraph",
-          "text": "Refer to the diagram in each scenario to set up a game. Each player's table edge, deployment zone, and various scenario elements (such as flags and objectives) are highlighted in that player's corresponding color (Attacker = red, Defender = blue). Players will place their objectives, flags, and cache on the table in accordance with the scenario before the start of the round but after turn order is determined. When placing the objectives, flags, and cache, make sure to measure from the table edge to the edge of the base."
+          "text": "Refer to the diagram in each scenario to set up a game. Each player's table edge, deployment zone, and scenario elements (such as flags and objectives) are highlighted in that player's corresponding color (P1=red, P2=blue). Players place their objectives, flags, and cache on the table in accordance with the scenario before the start of the round but after turn order is determined. When placing the objectives, flags, and cache, make sure to measure from the table edge to the edge of the base."
         },
         {
           "type": "list",
           "ordered": true,
           "items": [
-            "Determine scenario, either chosen by TO, rolled randomly, or agreed upon by both players",
+            "Determine scenario either chosen by TO, rolled randomly, or agreed upon by both players",
             "Choose one list from your pair and reveal simultaneously with your opponent",
-            "Each player rolls 1d6 until one player rolls a higher number. That player chooses Attacker or Defender",
-            "Defender determines which side of the table they'll deploy on, the Attacker takes the opposite side",
+            "Choose your Rack spells, if your Leader has available rack slots, and then reveal simultaneously with your opponent",
+            "Each player rolls 1d6 until one player rolls a higher number. That player chooses to be first or second player",
+            "Second player determines which side of the table they'll deploy on, and the first player takes the opposite side",
             "Place scenario elements according to the scenario",
-            "If the scenario includes it, choose Scenario Terrain and place flags in order of Attacker, then Defender",
-            "If one or more players use the Defenses command card, starting with the Defender, alternate placing defenses",
-            "Attacker starts the clock, deploying models within their deployment zone after which Attacker starts Defender's clock",
-            "Defender deploys models within their deployment zone after which they start the Attacker's clock",
-            "Attacker places Advanced Deployment models then starts Defender's clock",
-            "Defender places Advanced Deployment models then starts the Attacker's clock",
-            "Resolve any other before game effects in order of Attacker, then Defender",
-            "Attacker begins their first turn"
+            "If the scenario includes it, choose scenario terrain and place flags in order of first player and then second player",
+            "If one or more players use the Defenses command card, starting with the second player, alternate placing defenses",
+            "First player starts the clock, deploying models within their deployment zone and then starts second player's clock",
+            "Second player deploys models within their deployment zone and then starts the first player's clock",
+            "First player places Advanced Deployment models and then starts second player's clock",
+            "Second player places Advanced Deployment models and then starts the first player's clock",
+            "Resolve any other before game effects in order of first player and then second player",
+            "First player begins their first turn"
           ]
         }
       ]
     },
     {
       "title": "SCENARIO ELEMENTS",
-      "page": 2,
+      "page": 3,
       "content": [
         {
           "type": "paragraph",
-          "text": "Scenario elements include objectives, Scenario Terrain, flags, and caches. Scenario elements are not models."
+          "text": "Scenario elements include objectives, scenario terrain, flags, and caches. Scenario elements are not models."
         },
         {
           "type": "paragraph",
-          "text": "Scenario elements are represented on the map by circles, flags are represented by triangles, and caches are represented by squares. A number indicating base size appears on the objective icon."
+          "text": "Scenario elements are represented on the map by black circles. Objectives have the base size on them. 40 for 40mm bases, and 50 for 50mm bases. Elements marked with a C or F are caches and flags respectfully."
         },
         {
           "type": "paragraph",
@@ -113,7 +114,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "Objectives are represented on the tabletop by 40mm and 50mm bases. Objectives are not models and do not block line of sight. Models can advance through an objective, or be pushed, thrown, or slammed through an objective, if they have enough movement to move completely past it; otherwise, they must stop short of the objective. A slammed or thrown model does not suffer an additional damage die for contacting the objective."
+          "text": "Objectives are represented on the tabletop by 40mm and 50mm bases. Objectives are not models and do not block line of sight. Models can advance through an objective or be pushed, thrown, or slammed through an objective, if they have enough movement to move completely past it; otherwise, they must stop short of the objective. A slammed or thrown model does not suffer an additional damage die for contacting the objective."
         },
         {
           "type": "paragraph",
@@ -125,12 +126,12 @@
         },
         {
           "type": "definition",
-          "term": "A player secures a 50mm objective",
+          "term": "A player secures a 50mm objective (50 50)",
           "definition": "if they own one or more Leader models, Cohort models, or battle engines within 3\" of the objective, and no opponent contests it (see below)."
         },
         {
           "type": "definition",
-          "term": "A player secures a 40mm objective",
+          "term": "A player secures a 40mm objective (40 40)",
           "definition": "if they own one or more Leader models or units within 3\" of it, and no opponent contests it. For a unit to secure an objective, all models in the unit still in play must be within 3\" of the same objective."
         },
         {
@@ -142,24 +143,24 @@
       "sub_sections": [
         {
           "title": "Flags and Scenario Terrain",
-          "page": 3,
+          "page": 4,
           "content": [
             {
               "type": "paragraph",
-              "text": "Some terrain on the tabletop can also take on a role similar to objectives in some scenarios. Flags are used in these scenarios to denote Scenario Terrain. If a scenario contains a flag, before deployment and starting with the Attacker, players take turns choosing one piece of terrain within 5\" of their own 30 mm flag. Place the flag on, in, or next to that piece of terrain to represent that it is now an Scenario Terrain piece. If no valid terrain piece exists, leave the flag at the location specified in the scenario. The flag itself becomes an obstruction Scenario Terrain piece."
+              "text": "Some terrain on the tabletop can also take on a role similar to objectives in some scenarios. Flags are used in these scenarios to denote scenario terrain. If a scenario contains a flag, before deployment and starting with the first player, players take turns choosing one piece of terrain within 5\" of their own 30mm flag. Place the flag on, in, or next to that piece of terrain to represent that it is now a scenario terrain piece. If no valid terrain piece exists, leave the flag at the location specified in the scenario. The flag itself becomes an obstruction scenario terrain piece."
             },
             {
               "type": "paragraph",
-              "text": "If a Scenario Terrain piece is destroyed, expires, or is removed from the table, before removing the terrain piece the player that caused its removal places its flag anywhere touching its edge. After placing the flag, remove the terrain from the table. The flag then becomes an obstruction Scenario Terrain piece."
+              "text": "If an objective terrain piece is destroyed, expires, or is removed from the table, before removing the terrain piece the player who caused its removal places its flag anywhere touching its edge. After placing the flag, remove the terrain from the table. The flag then becomes an obstruction scenario terrain piece."
             },
             {
               "type": "definition",
-              "term": "A player secures a piece of Scenario Terrain",
-              "definition": "by having one or more Leader models, solos, or two or more of any combination of other model types within the area of the terrain or, if being within the scenario terrain is impossible within 3\" of the piece of terrain itself and no opponent contests it."
+              "term": "A player secures a piece of scenario terrain (F F)",
+              "definition": "by having two or more models within the area of the terrain or, if being within the scenario terrain piece is impossible, within 3\" of the piece of terrain itself, and no opponent contests it."
             },
             {
               "type": "paragraph",
-              "text": "A piece of Scenario Terrain is contested if one of your opponent's models are within the area of the terrain or, if being within the scenario terrain is impossible 3\" of the piece of terrain itself. Leader models, inert warjacks, wild warbeasts, autonomous monstrosities, and disabled models cannot contest."
+              "text": "A piece of scenario terrain is contested if one of your opponent's models is within the area of the terrain or, if being within the terrain is impossible, within 3\" of the piece of terrain. Leader models, inert warjacks, wild warbeasts, autonomous monstrosities, and disabled models cannot contest."
             }
           ]
         },
@@ -169,11 +170,11 @@
           "content": [
             {
               "type": "paragraph",
-              "text": "Caches are represented by a 30mm base. Caches are not models and do not block line of sight. Models can advance through a cache, or be pushed, thrown, or slammed through a cache, if they have enough movement to move completely past it; otherwise, they must stop short of the cache. A slammed or thrown model does not suffer collateral damage from caches."
+              "text": "Caches are represented by a 30mm base. Caches are not models and do not block line of sight. Models can advance through a cache or be pushed, thrown, or slammed through a cache, if they have enough movement to move completely past it; otherwise, they must stop short of the cache. A slammed or thrown model does not suffer collateral damage from caches."
             },
             {
               "type": "paragraph",
-              "text": "Players can only score from an opponent's cache. To score a cache, a player must have a friendly model forfeit its Combat Action while within 3\" of the opponent's cache and no enemy model contests it. When a cache is scored, immediately remove it from play."
+              "text": "Players can only score from an opponent's cache. To score a cache (C C), a player must have a friendly model forfeit its Combat Action while within 3\" of the opponent's cache and no enemy model contests it. When a cache is scored, immediately remove it from play."
             },
             {
               "type": "paragraph",
@@ -187,7 +188,7 @@
           "content": [
             {
               "type": "paragraph",
-              "text": "Kill Box: Starting on the Attacker's second turn, if a player ends their turn with a friendly Leader model completely within 12\" of their table edge, the opponent immediately scores 2 Victory Points."
+              "text": "Kill Box: Starting on the first player's second turn, if a player ends their turn with a friendly Leader model completely within 12\" of their table edge, the opponent immediately scores 2 Victory Points."
             }
           ]
         },
@@ -227,7 +228,7 @@
           "content": [
             {
               "type": "paragraph",
-              "text": "Tally the point cost of the remaining models and units owned by each player within scenario zones or Scenario Terrain that could potentially control the scenario element regardless of whether it is currently contested or not. Ignore models without a point cost, inert warjacks, and wild warbeasts. The player with the higher total wins the game."
+              "text": "Tally the point cost of the remaining models and units owned by each player within contesting range of objectives, caches, or scenario terrain that could potentially control the scenario element regardless of whether it is currently contested or not. Ignore models without a point cost, inert warjacks, and wild warbeasts. The player with the higher total wins the game."
             },
             {
               "type": "paragraph",
@@ -239,7 +240,7 @@
               "items": [
                 "Leader models are worth 10 army points each. Leaders consisting of multiple models with the Leader rule are worth only 10 points regardless of the number of models remaining.",
                 "Cohort models are worth their point cost value.",
-                "Units and unit attachments are worth the unit's point cost. Models with the Attachment special rule add to the unit's value.",
+                "Units and unit attachments are worth the unit's point cost. Models with the Attachment special rule add their point cost to the unit's value.",
                 "Solos are worth the model's point cost. For multiple-model solos (e.g., solos that include multiple models for a single point cost), all the remaining models must be within range of the same objective."
               ]
             }
@@ -253,111 +254,121 @@
         {
           "id": "scenario_1",
           "name": "TRENCH WARFARE",
-          "page": 5,
+          "page": 6,
+          "map_image_filename": "scenario_2_trench_warfare_map.svg",
           "rules": {
-            "scenario_victory": "Scenario Victory: A player who has 3 or more VP than their opponent after scoring on their opponent's turn immediately wins.",
-            "earthworks": "Earthworks: When within 3\" of a player's own 40mm or 50mm objectives, medium and small-based warrior models gain cover and Resistance: Blast.",
-            "scenario_elements": "Scenario Elements: Place two 50mm objectives, two 40mm objectives, two flags and two caches in accordance with the diagram below. Starting on the Defender's second turn, at the end of each player's turn, a player earns victory points (VP) as follows:",
+            "scenario_victory": "A player who has 3 or more VP than their opponent after scoring on their opponent's turn immediately wins.",
+            "earthworks": "When within 3\" of a player's own 40mm or 50mm objectives, medium and small-based warrior models gain cover and Resistance: Blast.",
+            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, two flags and two caches in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns victory points (VP) as follows:",
             "victory_points_summary": [
               "Objective secured = 1 VP",
-              "Opponent's Scenario Terrain scored = 2 VP",
-              "A player's own Scenario Terrain scored = 0 VP",
-              "Scoring a Cache = 2 VP"
+              "Opponent's scenario terrain scored = 2 VP",
+              "A player's own scenario terrain scored = 0 VP",
+              "Scoring a cache = 2 VP"
             ],
-            "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "Fixed Game Length: The game ends at the end of the Defender's seventh turn."
+            "vp_limit": "There is no limit to the number of VPs a player can earn.",
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
           },
           "objectives": [
-            { "type": "flag", "owner": "defender", "x": 6, "xFrom": "right", "y": 15, "yFrom": "top" },
-            { "type": "cache", "owner": "defender", "x": 20, "xFrom": "left", "y": 18, "yFrom": "top" },
-            { "type": "40mm", "owner": "defender", "x": 22, "xFrom": "left", "y": 12, "yFrom": "top" },
-            { "type": "50mm", "owner": "defender", "x": 12, "xFrom": "left", "y": 21, "yFrom": "top" },
-            { "type": "flag", "owner": "attacker", "x": 6, "xFrom": "left", "y": 17, "yFrom": "bottom" },
-            { "type": "cache", "owner": "attacker", "x": 20, "xFrom": "right", "y": 22, "yFrom": "bottom" },
-            { "type": "40mm", "owner": "attacker", "x": 22, "xFrom": "right", "y": 14, "yFrom": "bottom" },
-            { "type": "50mm", "owner": "attacker", "x": 12, "xFrom": "right", "y": 25, "yFrom": "bottom" }
+            { "type": "flag", "owner": "p1", "x": 6, "xFrom": "right", "y": 15, "yFrom": "top" },
+            { "type": "cache", "owner": "p1", "x": 20, "xFrom": "left", "y": 18, "yFrom": "top" },
+            { "type": "40mm", "owner": "p1", "x": 22, "xFrom": "left", "y": 12, "yFrom": "top" },
+            { "type": "50mm", "owner": "p1", "x": 12, "xFrom": "left", "y": 21, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 6, "xFrom": "left", "y": 17, "yFrom": "bottom" },
+            { "type": "cache", "owner": "p2", "x": 20, "xFrom": "right", "y": 22, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p2", "x": 22, "xFrom": "right", "y": 14, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p2", "x": 12, "xFrom": "right", "y": 25, "yFrom": "bottom" }
           ]
         },
         {
           "id": "scenario_2",
           "name": "TWO FRONTS",
-          "page": 6,
+          "page": 9,
+          "map_image_filename": "scenario_5_two_fronts_map.svg",
           "rules": {
-            "scenario_victory": "Scenario Victory: A player who has 3 or more VP than their opponent after scoring on their opponent's turn immediately wins.",
-            "scenario_elements": "Scenario Elements: Place two 50mm objectives, two 40mm objectives, and one flag in accordance with the diagram below. Starting on the Defender's second turn, at the end of each player's turn, a player earns victory points (VP) as follows:",
+            "scenario_victory": "A player who has 3 or more VP than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, and one flag in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
             "victory_points_summary": [
               "Objective secured = 1 VP",
-              "Scenario Terrain Secured = 1 VP",
+              "Scenario terrain secured = 1 VP",
               "A Player has scored both 40mm = 1 VP",
               "A Player has scored both 50mm = 1 VP"
             ],
             "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "Fixed Game Length: The game ends at the end of the Defender's seventh turn."
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
           },
           "objectives": [
-            { "type": "40mm", "owner": "defender", "x": 12, "xFrom": "left", "y": 19, "yFrom": "top" },
-            { "type": "50mm", "owner": "defender", "x": 12, "xFrom": "right", "y": 17, "yFrom": "top" },
-            { "type": "flag", "owner": "attacker", "x": 23, "xFrom": "left", "y": 24, "yFrom": "top" },
-            { "type": "40mm", "owner": "attacker", "x": 8, "xFrom": "left", "y": 20, "yFrom": "bottom" },
-            { "type": "50mm", "owner": "attacker", "x": 8, "xFrom": "right", "y": 19, "yFrom": "bottom" }
+            { "type": "40mm", "owner": "p1", "x": 12, "xFrom": "left", "y": 19, "yFrom": "top" },
+            { "type": "50mm", "owner": "p1", "x": 12, "xFrom": "right", "y": 17, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 23, "xFrom": "left", "y": 24, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 8, "xFrom": "left", "y": 20, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p2", "x": 8, "xFrom": "right", "y": 19, "yFrom": "bottom" }
           ]
         },
         {
           "id": "scenario_3",
           "name": "WOLVES AT OUR HEELS",
           "page": 7,
+          "map_image_filename": "scenario_3_wolves_at_our_heels_map.svg",
           "rules": {
-            "the_wolves_advance": "The Wolves Advance: Starting on the Attacker's third turn, extend the Kill Box by 2\" at the beginning of each of the Attacker's turns.",
-            "scenario_victory": "Scenario Victory: A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
-            "scenario_elements": "Scenario Elements: Place two 50 mm objectives, two 40 mm objectives, and two flags in accordance with the diagram below. Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
+            "the_wolves_advance": "Starting on the Attacker's third turn, extend the Kill Box by 2\" at the beginning of each of the Attacker's turns.",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place two 50 mm objectives, two 40 mm objectives, and two flags in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
             "victory_points_summary": [
               "Objective secured = 1 VP",
               "Scenario Terrain secured = 1 VP",
               "Player adds the 3rd token to the objective and their opponent did not = 3 VP"
             ],
+
             "objective_movement_rule": "At the end of each scoring turn after points have been scored, if a player has secured their own 40 mm objective, they can add a token to their objective if they do, their opponent may move that objective 3\" towards the 50mm objective of the same color.",
             "centerline_crossing_vp": "If both objectives gain their third token in the same turn, no points are scored in this manner. Scoring for this goal is checked only once per game.",
-            "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "Fixed Game Length: The game ends at the end of the Defender's seventh turn."
+            "vp_limit": "There is no limit to the number of VPs a player can earn.",
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
           },
           "objectives": [
-            { "type": "flag", "owner": "defender", "x": 12, "xFrom": "right", "y": 20, "yFrom": "bottom" },
-            { "type": "40mm", "owner": "defender", "x": 8, "xFrom": "left", "y": 20, "yFrom": "bottom" },
-            { "type": "50mm", "owner": "defender", "x": 19, "xFrom": "left", "y": 24, "yFrom": "bottom" },
-            { "type": "flag", "owner": "attacker", "x": 12, "xFrom": "left", "y": 20, "yFrom": "top" },
-            { "type": "40mm", "owner": "attacker", "x": 8, "xFrom": "right", "y": 15, "yFrom": "top" },
-            { "type": "50mm", "owner": "attacker", "x": 19, "xFrom": "right", "y": 20, "yFrom": "top" }
+            { "type": "flag", "owner": "p1", "x": 12, "xFrom": "right", "y": 20, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p1", "x": 8, "xFrom": "left", "y": 20, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p1", "x": 19, "xFrom": "left", "y": 24, "yFrom": "bottom" },
+            { "type": "flag", "owner": "p2", "x": 12, "xFrom": "left", "y": 20, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 8, "xFrom": "right", "y": 15, "yFrom": "top" },
+            { "type": "50mm", "owner": "p2", "x": 19, "xFrom": "right", "y": 20, "yFrom": "top" }
           ]
         },
         {
           "id": "scenario_4",
           "name": "PRESSURE POINT",
-          "page": 8,
+          "page": 7,
+          "map_image_filename": "scenario_4_pressure_point_map.svg",
           "rules": {
-            "scenario_victory": "Scenario Victory: A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
-            "scenario_elements": "Scenario Elements: Place 4 flags and 1 50mm objective in accordance with the diagram below. Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place 4 flags and 1 50mm objective in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
             "victory_points_summary": [
-              "Scenario Terrain secured  = 1 VP",
+              "Scenario terrain secured = 1 VP",
               "Objective secured = 2 VP"
             ],
-            "fixed_game_length": "Fixed Game Length: The game ends at the end of the Defender's seventh turn."
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
           },
           "objectives": [
-            { "type": "50mm", "owner": "defender", "x": 23, "xFrom": "right", "y": 22, "yFrom": "bottom" },
-            { "type": "flag", "owner": "attacker", "x": 6, "xFrom": "left", "y": 31, "yFrom": "top" },
-            { "type": "flag", "owner": "attacker", "x": 12, "xFrom": "left", "y": 20, "yFrom": "top" },
-            { "type": "flag", "owner": "attacker", "x": 12, "xFrom": "right", "y": 20, "yFrom": "top" },
-            { "type": "flag", "owner": "attacker", "x": 6, "xFrom": "right", "y": 31, "yFrom": "top" }
+            { "type": "50mm", "owner": "p1", "x": 23, "xFrom": "right", "y": 22, "yFrom": "bottom" },
+            { "type": "flag", "owner": "p2", "x": 6, "xFrom": "left", "y": 31, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 12, "xFrom": "left", "y": 20, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 12, "xFrom": "right", "y": 20, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 6, "xFrom": "right", "y": 31, "yFrom": "top" }
           ]
         },
         {
           "id": "scenario_5",
           "name": "HIGH STAKES",
-          "page": 9,
+          "page": 7,
+          "map_image_filename": "scenario_5_high_stakes_map.svg",
           "rules": {
-            "scenario_victory": "Scenario Victory: A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
-            "scenario_elements": "Scenario Elements: Place one 50mm objective, two 40mm objectives, and two flags in accordance with the diagram below. Additionally, place 5 count down tokens on each piece of objective terrain and the 50mm objective.",
-            "light_the_fuse": "Light the Fuse: Starting on the Defender's second turn, at the end of each player's turn before scoring if a player has secured the 50mm objective that player must choose that objective, or either objective terrain and remove 1d3 countdown tokens. The player cannot choose an objective or objective terrain that has 0 count down tokens.",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place one 50mm objective, two 40mm objectives, and two flags in accordance with the diagram below. Additionally, place 5 count down tokens on each piece of objective terrain and the 50mm objective.",
+            "light_the_fuse": "Starting on the Defender's second turn, at the end of each player's turn before scoring if a player has secured the 50mm objective that player must choose that objective, or either objective terrain and remove 1d3 countdown tokens. The player cannot choose an objective or objective terrain that has 0 count down tokens.",
             "If no player has secured the 50mm objective roll 1d3 and do the following:": [
               "Remove 1 countdown token from the blue objective terrain / flag",
               "Remove 1 countdown token from the red objective terrain / flag",
@@ -370,72 +381,76 @@
               "50mm objective secured = 1 VP +1VP while it has 0 count down tokens",
               "Scenario Terrain secured = 1 VP +1VP while it has 0 count down tokens"
             ],
-            "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "Fixed Game Length: The game ends at the end of the Defender's seventh turn."
+            "vp_limit": "There is no limit to the number of VPs a player can earn.",
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
           },
           "objectives": [
-            { "type": "flag", "owner": "defender", "x": 8, "xFrom": "left", "y": 18, "yFrom": "bottom" },
-            { "type": "40mm", "owner": "defender", "x": 14, "xFrom": "right", "y": 20, "yFrom": "bottom" },
-            { "type": "flag", "owner": "attacker", "x": 8, "xFrom": "left", "y": 23, "yFrom": "top" },
-            { "type": "40mm", "owner": "attacker", "x": 14, "xFrom": "right", "y": 17, "yFrom": "top" },
-            { "type": "50mm", "owner": "attacker", "x": 23, "xFrom": "right", "y": 22, "yFrom": "top" }
+            { "type": "flag", "owner": "p1", "x": 8, "xFrom": "left", "y": 18, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p1", "x": 14, "xFrom": "right", "y": 20, "yFrom": "bottom" },
+            { "type": "flag", "owner": "p2", "x": 8, "xFrom": "left", "y": 23, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 14, "xFrom": "right", "y": 17, "yFrom": "top" },
+            { "type": "50mm", "owner": "p2", "x": 23, "xFrom": "right", "y": 22, "yFrom": "top" }
           ]
         },
         {
           "id": "scenario_6",
           "name": "FAULT LINE",
-          "page": 10,
+          "page": 7,
+          "map_image_filename": "scenario_6_fault_line_map.svg",
           "rules": {
-            "scenario_victory": "Scenario Victory: A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
-            "scenario_elements": "Scenario Elements: Place four 40mm and two 50mm objectives in accordance with the diagram below. Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place four 40mm and two 50mm objectives in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as follows:",
             "victory_points_summary": [
               "Objective secured = 1 VP",
               "A player has secured two of their own objectives = +1 VP",
               "A players has secured all three of their own objectives = +1 VP"
             ],
-            "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "Fixed Game Length: The game ends at the end of the Defender's seventh turn."
+            "vp_limit": "There is no limit to the number of VPs a player can earn.",
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
           },
           "objectives": [
-            { "type": "40mm", "owner": "defender", "x": 8, "xFrom": "left", "y": 15, "yFrom": "bottom" },
-            { "type": "50mm", "owner": "defender", "x": 23, "xFrom": "left", "y": 20, "yFrom": "bottom" },
-            { "type": "40mm", "owner": "defender", "x": 8, "xFrom": "right", "y": 25, "yFrom": "bottom" },
-            { "type": "40mm", "owner": "attacker", "x": 8, "xFrom": "left", "y": 25, "yFrom": "top" },
-            { "type": "50mm", "owner": "attacker", "x": 23, "xFrom": "right", "y": 20, "yFrom": "top" },
-            { "type": "40mm", "owner": "attacker", "x": 8, "xFrom": "right", "y": 15, "yFrom": "top" }
+            { "type": "40mm", "owner": "p1", "x": 8, "xFrom": "left", "y": 15, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p1", "x": 23, "xFrom": "left", "y": 20, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p1", "x": 8, "xFrom": "right", "y": 25, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p2", "x": 8, "xFrom": "left", "y": 25, "yFrom": "top" },
+            { "type": "50mm", "owner": "p2", "x": 23, "xFrom": "right", "y": 20, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 8, "xFrom": "right", "y": 15, "yFrom": "top" }
           ]
         },
         {
           "id": "scenario_7",
           "name": "PAYLOAD",
-          "page": 11,
+          "page": 8,
+          "map_image_filename": "scenario_7_payload_map.svg",
           "rules": {
-            "made_to_haul": "Made To Haul: After moving their 50mm objective at the end of their turn, that player may move one friendly Cohort model 5\" directly toward their 50mm objective.",
-            "scenario_victory": "Scenario Elements: Place two 50mm objectives, two 40mm objectives, and two flags in accordance with the diagram below.",
-            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn a player earns victory points as described below.",
+            "made_to_haul": "After moving their 50mm objective at the end of their turn, that player may move one friendly Cohort model 5\" directly toward their 50mm objective.",
+            "scenario_victory": "A player who has 3 or more Victory Points than their opponent after scoring on their opponent's turn immediately wins.",
+            "scenario_elements": "Place two 50mm objectives, two 40mm objectives, and two flags in accordance with the diagram below.",
+            "earning_victory_points_intro": "Starting on the Defender's second turn, at the end of each player's turn, a player earns Victory Points (VP) as described below.",
             "victory_points_summary": [
               "Objective secured = 1 VP",
               "Scenario Terrain Secured = 1 VP",
-              "If a player's 50mm objective ends its movement within the area of their opponent's terrain or, if being within the scenario terrain piece is impossible, within 3\" of the piece of terrain itself, that player immediately earns 3 VP. Remove the 50mm objective from play."
+              "If a player's 50mm objective ends its movement within the area of their opponent's terrain or, if being within the scenario terrain piece is impossible, within 3\" of the piece of terrain itself, that player immediately earns 3 VP. Remove the 50mm objective from play"
             ],
             "objective_movement_rule": "At the end of each scoring turn after points have been scored, a player securing a 50mm objective may move that objective up to 3\" toward their opponent's scenario terrain, +1\" for each other 40mm or 50mm objective secured by that player.",
             "vp_limit": "There is no limit to the number of VPs a player can score.",
-            "fixed_game_length": "Fixed Game Length: The game ends at the end of the Defender's seventh turn."
+            "fixed_game_length": "The game ends at the end of the Defender's seventh turn."
           },
           "objectives": [
-            { "type": "flag", "owner": "defender", "x": 16, "xFrom": "left", "y": 19, "yFrom": "bottom" },
-            { "type": "40mm", "owner": "defender", "x": 20, "xFrom": "right", "y": 20, "yFrom": "bottom" },
-            { "type": "50mm", "owner": "defender", "x": 9, "xFrom": "right", "y": 16, "yFrom": "bottom" },
-            { "type": "50mm", "owner": "attacker", "x": 9, "xFrom": "left", "y": 16, "yFrom": "top" },
-            { "type": "40mm", "owner": "attacker", "x": 20, "xFrom": "left", "y": 20, "yFrom": "top" },
-            { "type": "flag", "owner": "attacker", "x": 16, "xFrom": "right", "y": 19, "yFrom": "top" }
+            { "type": "flag", "owner": "p1", "x": 16, "xFrom": "left", "y": 19, "yFrom": "bottom" },
+            { "type": "40mm", "owner": "p1", "x": 20, "xFrom": "right", "y": 20, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p1", "x": 9, "xFrom": "right", "y": 16, "yFrom": "bottom" },
+            { "type": "50mm", "owner": "p2", "x": 9, "xFrom": "left", "y": 16, "yFrom": "top" },
+            { "type": "40mm", "owner": "p2", "x": 20, "xFrom": "left", "y": 20, "yFrom": "top" },
+            { "type": "flag", "owner": "p2", "x": 16, "xFrom": "right", "y": 19, "yFrom": "top" }
           ]
         }
       ]
     },
     {
       "title": "MODELING, PAINTING, & CONVERSIONS",
-      "page": 12,
+      "page": 11,
       "content": [
         {
           "type": "paragraph",
@@ -490,8 +505,13 @@
       ]
     },
     {
+      "title": "CONVERSIONS",
+      "page": 11,
+      "note": "This section is covered under 'MODELING, PAINTING, & CONVERSIONS' on page 11."
+    },
+    {
       "title": "SPORTSMANSHIP",
-      "page": 13,
+      "page": 12,
       "content": [
         {
           "type": "paragraph",
@@ -517,7 +537,7 @@
     },
     {
       "title": "TOURNAMENT ORGANIZER RESPONSIBILITIES",
-      "page": 13,
+      "page": 12,
       "content": [
         {
           "type": "paragraph",
@@ -527,7 +547,7 @@
       "sub_sections": [
         {
           "title": "Number of Rounds",
-          "page": 13,
+          "page": 12,
           "content": [
             {
               "type": "paragraph",
@@ -561,7 +581,7 @@
         },
         {
           "title": "First-Round Pairings",
-          "page": 13,
+          "page": 12,
           "content": [
             {
               "type": "paragraph",
@@ -571,7 +591,7 @@
         },
         {
           "title": "Subsequent Pairings",
-          "page": 13,
+          "page": 12,
           "content": [
             {
               "type": "paragraph",
@@ -585,7 +605,7 @@
         },
         {
           "title": "Byes & Odd Number of Players",
-          "page": 14,
+          "page": 13,
           "content": [
             {
               "type": "paragraph",
@@ -599,7 +619,7 @@
         },
         {
           "title": "Tournament Timing: The Deathclock",
-          "page": 14,
+          "page": 13,
           "content": [
             {
               "type": "paragraph",
@@ -639,31 +659,29 @@
         },
         {
           "title": "Scenario Selection",
-          "page": 14,
+          "page": 13,
           "content": [
             {
               "type": "paragraph",
-              "text": "Steamroller 2026 includes six scenarios. The TO can either choose the scenarios and the order in which they are played or use the following random scenario selection table. A scenario should not be repeated. All players play the same scenario each round, and the TO should not announce the scenario until the start of the round."
+              "text": "Steamroller 2025 includes six scenarios. The TO can either choose the scenarios and the order in which they are played or use the following random scenario selection table. A scenario should not be repeated. All players play the same scenario each round, and the TO should not announce the scenario until the start of the round."
             },
             {
               "type": "table",
-              "headers": ["D8 ROLL", "SCENARIO"],
+              "headers": ["D6 ROLL", "SCENARIO"],
               "rows": [
-                {"D8 ROLL": 1, "SCENARIO": "Trench Warfare"},
-                {"D8 ROLL": 2, "SCENARIO": "Two Fronts"},
-                {"D8 ROLL": 3, "SCENARIO": "Wolves at Our Heels"},
-                {"D8 ROLL": 4, "SCENARIO": "Pressure Point"},
-                {"D8 ROLL": 5, "SCENARIO": "High Stakes"},
-                {"D8 ROLL": 6, "SCENARIO": "Fault Line"},
-                {"D8 ROLL": 7, "SCENARIO": "Payload"},
-                {"D8 ROLL": 8, "SCENARIO": "Re-roll"}
+                {"D6 ROLL": 1, "SCENARIO": "Color Guard"},
+                {"D6 ROLL": 2, "SCENARIO": "Trench Warfare"},
+                {"D6 ROLL": 3, "SCENARIO": "Wolves at Our Heels"},
+                {"D6 ROLL": 4, "SCENARIO": "Payload"},
+                {"D6 ROLL": 5, "SCENARIO": "Two Fronts"},
+                {"D6 ROLL": 6, "SCENARIO": "Best Laid Plans"}
               ]
             }
           ]
         },
         {
           "title": "Terrain",
-          "page": 15,
+          "page": 14,
           "content": [
             {
               "type": "paragraph",
@@ -721,7 +739,7 @@
         },
         {
           "title": "Terrain Setup Methods",
-          "page": 16,
+          "page": 15,
           "content": [
             {
               "type": "paragraph",
@@ -731,7 +749,7 @@
               "type": "definition",
               "term": "Quadrant Method (recommended number of terrain pieces: 12)",
               "definition_list": [
-                "Divide the table into four 24\" × 24\" quadrants.",
+                "Divide the table into four 24\" x 24\" quadrants.",
                 "Place a terrain piece completely within each quadrant and within 6\" of the center of the table.",
                 "Place a terrain piece completely within each quadrant and within 6\" of the center of the quadrant.",
                 "Choose one table side. Add one obstruction within 6\" of the center between the two quadrants on that table side.",
@@ -746,7 +764,7 @@
     },
     {
       "title": "RECORDING THE GAME",
-      "page": 16,
+      "page": 15,
       "content": [
         {
           "type": "paragraph",
@@ -756,7 +774,7 @@
       "sub_sections": [
         {
           "title": "Recording Game Results",
-          "page": 16,
+          "page": 15,
           "content": [
             {
               "type": "paragraph",
@@ -766,7 +784,7 @@
         },
         {
           "title": "Final Standings",
-          "page": 16,
+          "page": 15,
           "content": [
             {
               "type": "paragraph",
@@ -778,7 +796,7 @@
     },
     {
       "title": "PRIZES",
-      "page": 16,
+      "page": 15,
       "content": [
         {
           "type": "paragraph",
