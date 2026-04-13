@@ -14,13 +14,14 @@ describe('ScenarioMap.vue', () => {
     // Scale is 12.5. 6 * 12.5 = 75. 11 * 12.5 = 137.5.
     const p1Zone = wrapper.find('.bg-player1')
     expect(p1Zone.exists()).toBe(true)
+    // p1 y = 600 - 75 = 525
     expect(p1Zone.attributes('height')).toBe('75')
+    expect(p1Zone.attributes('y')).toBe('525')
 
     const p2Zone = wrapper.find('.bg-player2')
     expect(p2Zone.exists()).toBe(true)
-    // p2 y = 600 - 137.5 = 462.5
     expect(p2Zone.attributes('height')).toBe('137.5')
-    expect(p2Zone.attributes('y')).toBe('462.5')
+    expect(p2Zone.attributes('y')).toBe('0')
   })
 
   it('renders objectives correctly', () => {

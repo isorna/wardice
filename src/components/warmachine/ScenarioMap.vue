@@ -7,25 +7,25 @@
     class="scenario-map"
   >
     <!-- Backgrounds -->
-    <rect class="bg-player2" x="0" y="0" width="600" :height="defenderDeployHeight" />
-    <rect class="bg-neutral" x="0" :y="defenderDeployHeight" width="600" :height="neutralHeight" />
-    <rect class="bg-player1" x="0" :y="600 - attackerDeployHeight" width="600" :height="attackerDeployHeight" />
+    <rect class="bg-player1" x="0" :y="600 - p1DeployHeight" width="600" :height="p1DeployHeight" />
+    <rect class="bg-neutral" x="0" :y="p2DeployHeight" width="600" :height="neutralHeight" />
+    <rect class="bg-player2" x="0" y="0" width="600" :height="p2DeployHeight" />
 
     <!-- Center Line -->
     <line x1="0" y1="300" x2="600" y2="300" stroke="#808080" stroke-width="2" stroke-dasharray="5 5" />
 
     <!-- Deployment Zone Labels -->
-    <text class="label-text" x="500" :y="defenderDeployHeight / 2 - 10">Defender</text>
-    <text class="label-text" x="500" :y="defenderDeployHeight / 2 + 10">Deployment Zone</text>
-    <text class="label-text" x="500" :y="600 - attackerDeployHeight / 2 - 10">Attacker</text>
-    <text class="label-text" x="500" :y="600 - attackerDeployHeight / 2 + 10">Deployment Zone</text>
+    <text class="label-text" x="500" :y="600 - p1DeployHeight / 2 - 10">Player 1</text>
+    <text class="label-text" x="500" :y="600 - p1DeployHeight / 2 + 10">Deployment Zone</text>
+    <text class="label-text" x="500" :y="p2DeployHeight / 2 - 10">Player 2</text>
+    <text class="label-text" x="500" :y="p2DeployHeight / 2 + 10">Deployment Zone</text>
 
     <!-- Deployment Measurements -->
-    <text class="measurement-text" x="70" :y="defenderDeployHeight / 2">{{ defenderDeploy }}"</text>
-    <line x1="50" y1="0" x2="50" :y2="defenderDeployHeight" stroke="white" stroke-width="4" stroke-dasharray="10 5" />
+    <text class="measurement-text" x="70" :y="600 - p1DeployHeight / 2">{{ p1Deploy }}"</text>
+    <line x1="50" :y1="600 - p1DeployHeight" x2="50" y2="600" stroke="white" stroke-width="4" stroke-dasharray="10 5" />
 
-    <text class="measurement-text" x="70" :y="600 - attackerDeployHeight / 2">{{ attackerDeploy }}"</text>
-    <line x1="50" :y1="600 - attackerDeployHeight" x2="50" y2="600" stroke="white" stroke-width="4" stroke-dasharray="10 5" />
+    <text class="measurement-text" x="70" :y="p2DeployHeight / 2">{{ p2Deploy }}"</text>
+    <line x1="50" y1="0" x2="50" :y2="p2DeployHeight" stroke="white" stroke-width="4" stroke-dasharray="10 5" />
 
     <!-- Objectives -->
     <g v-for="(obj, index) in computedObjectives" :key="index">
@@ -72,11 +72,11 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  attackerDeploy: {
+  p1Deploy: {
     type: Number,
     default: 6
   },
-  defenderDeploy: {
+  p2Deploy: {
     type: Number,
     default: 11
   },
@@ -87,16 +87,16 @@ const props = defineProps({
 })
 
 const SCALE = 12.5 // units per inch
-const OBJECTIVE__ATTACKER_COLOR = 'red'
-const OBJECTIVE__ATTACKER_FILL_COLOR = '#505050'
-const OBJECTIVE__defender_COLOR = 'blue'
-const OBJECTIVE__defender_FILL_COLOR = '#a7a7a7'
+const OBJECTIVE_P1_COLOR = 'red'
+const OBJECTIVE_P1_FILL_COLOR = '#505050'
+const OBJECTIVE_P2_COLOR = 'blue'
+const OBJECTIVE_P2_FILL_COLOR = '#a7a7a7'
 const OBJECTIVE_NEUTRAL_COLOR = 'black'
 const OBJECTIVE_NEUTRAL_FILL_COLOR = '#303030'
 
-const attackerDeployHeight = computed(() => props.attackerDeploy * SCALE)
-const defenderDeployHeight = computed(() => props.defenderDeploy * SCALE)
-const neutralHeight = computed(() => 600 - attackerDeployHeight.value - defenderDeployHeight.value)
+const p1DeployHeight = computed(() => props.p1Deploy * SCALE)
+const p2DeployHeight = computed(() => props.p2Deploy * SCALE)
+const neutralHeight = computed(() => 600 - p1DeployHeight.value - p2DeployHeight.value)
 
 const computedObjectives = computed(() => {
   return props.objectives.map(obj => {
@@ -193,9 +193,9 @@ const computedObjectives = computed(() => {
     let fillStyle = {}
 
     if (owner === 'p1' || owner === 'attacker') {
-      fillStyle = { fill: OBJECTIVE__ATTACKER_FILL_COLOR, stroke: OBJECTIVE__ATTACKER_COLOR }
+      fillStyle = { fill: OBJECTIVE_P1_FILL_COLOR, stroke: OBJECTIVE_P1_COLOR }
     } else if (owner === 'p2' || owner === 'defender') {
-      fillStyle = { fill: OBJECTIVE__defender_FILL_COLOR, stroke: OBJECTIVE__defender_COLOR }
+      fillStyle = { fill: OBJECTIVE_P2_FILL_COLOR, stroke: OBJECTIVE_P2_COLOR }
     } else {
       fillStyle = { fill: OBJECTIVE_NEUTRAL_FILL_COLOR, stroke: OBJECTIVE_NEUTRAL_COLOR }
       if (['40mm', '50mm'].includes(obj.type)) {
