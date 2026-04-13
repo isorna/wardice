@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* V2 COLOR VARIABLES */
+  --v2-primary: #4fd7f0;
+  --v2-on-primary: #00363e;
+  --v2-primary-container: #00b2ca;
+  --v2-on-primary-container: #003f48;
+  --v2-primary-fixed: #a3eeff;
+  --v2-primary-fixed-dim: #4fd7f0;
+  --v2-on-primary-fixed: #001f25;
+  --v2-on-primary-fixed-variant: #004e5a;
+
+  --v2-secondary: #ffb68b;
+  --v2-on-secondary: #522300;
+  --v2-secondary-container: #ff7f1c;
+  --v2-on-secondary-container: #602a00;
+  --v2-secondary-fixed: #ffdbc8;
+  --v2-secondary-fixed-dim: #ffb68b;
+  --v2-on-secondary-fixed: #321200;
+  --v2-on-secondary-fixed-variant: #753400;
+
+  --v2-tertiary: #00daf3;
+  --v2-on-tertiary: #00363d;
+  --v2-tertiary-container: #00b2c7;
+  --v2-on-tertiary-container: #003f47;
+  --v2-tertiary-fixed: #9cf0ff;
+  --v2-tertiary-fixed-dim: #00daf3;
+  --v2-on-tertiary-fixed: #001f24;
+  --v2-on-tertiary-fixed-variant: #004f58;
+
+  --v2-error: #ffb4ab;
+  --v2-on-error: #690005;
+  --v2-error-container: #93000a;
+  --v2-on-error-container: #ffdad6;
+
+  --v2-surface: #001620;
+  --v2-on-surface: #cbe7f7;
+  --v2-surface-variant: #1e3845;
+  --v2-on-surface-variant: #bcc9cc;
+  --v2-surface-bright: #223c49;
+  --v2-surface-dim: #001620;
+  --v2-surface-container-lowest: #001019;
+  --v2-surface-container-low: #011e2a;
+  --v2-surface-container: #05222f;
+  --v2-surface-container-high: #122d39;
+  --v2-surface-container-highest: #1e3845;
+
+  --v2-outline: #869396;
+  --v2-outline-variant: #3c494c;
+  --v2-inverse-surface: #cbe7f7;
+  --v2-inverse-on-surface: #193440;
+  --v2-inverse-primary: #006877;
+  --v2-surface-tint: #4fd7f0;
+
+  --v2-background: #001620;
+  --v2-on-background: #cbe7f7;
+
+  /* FONTS VARIABLES */
+  --v2-font-headline: 'Space Grotesk', sans-serif;
+  --v2-font-body: 'Inter', sans-serif;
+  --v2-font-label: 'Space Grotesk', sans-serif;
+}
+
+.v2-theme {
+  background-color: var(--v2-background);
+  color: var(--v2-on-surface);
+  font-family: var(--v2-font-body);
+  min-height: 100vh;
+}
+
+.v2-theme .font-headline {
+  font-family: var(--v2-font-headline);
+}
+
+.v2-theme .font-body {
+  font-family: var(--v2-font-body);
+}
+
+.v2-theme .font-label {
+  font-family: var(--v2-font-label);
+}
+
+.v2-theme .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
